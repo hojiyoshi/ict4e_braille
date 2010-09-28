@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <%= stylesheet_link_tag('common') %>
+    <%= javascript_include_tag 'jquery' %>
+    <%= javascript_include_tag 'jquery_blockUI' %>
+    <%= javascript_include_tag 'application' %>
+    <%= yield :html_header %>
+    <title>遠隔点字印刷サービス - <%=@title%></title>
+  </head>
+  <body>
+    <div id="page">
+      <div id="headerArea">
+        <div class="divLeft">
+          <%= link_to(image_tag('header_logo.gif', :alt =>'ロゴ画像',:border=>0),select_master_data('ict4e_url',:first)) %>
+        </div>
+      </div>
+      <div CLASS="clearDiv"></div>
+      <div CLASS="spacer"></div>
+      <div class="divLeft">
+        <%= link_to 'トップ', select_master_data('ict4e_url',:first) %>&nbsp;&#62;&nbsp;<%= link_to '遠隔点字印刷サービス', '/' %>
+        <% unless @title.blank? %>
+          &nbsp;&#62;&nbsp;<%= @title %>
+        <% end %>
+      </div>
+      <div class="textRight">
+        <% unless current_user.blank? %>
+          <div>
+            <b><%= current_user.email  %></b>でログイン中&nbsp;|&nbsp;<%= link_to 'ログアウト',logout_path %>
+          </div>
+        <% end %>
+        <% if !current_user.blank? && !current_user.tenji_user.blank? %>
+          <div class="spacer_mini"></div>
+          <div class="margintopArea">
+            <%= link_to 'ホーム', '/' %>
+            <% if current_user.tenji_user.tenji_type == 'w'%>
+              &nbsp;|&nbsp;<%= link_to '作業状況', "/braille_print/request_prints" %>
+            <% else %>
+              &nbsp;|&nbsp;<%= link_to '印刷依頼', :controller => 'requests', :action => 'new' %>&nbsp;|&nbsp;<%= link_to '印刷状況', '/' %>
+            <% end %>
+            &nbsp;|&nbsp;<%= link_to 'ユーザ情報', '/' %>
+          </div>
+        <% end %>
+      </div>
+      <div CLASS="clearDiv"></div>
+      <hr/>
+      <div CLASS="spacer"></div>
+      <div id="contentArea">
+        <%= yield %>
+      </div>
+      <div CLASS="clearDiv"></div>
+      <div CLASS="spacer"></div>
+      <hr/>
+      <div id="footerArea">
+        <div CLASS="divLeft"><%= link_to(image_tag('ict4_logo.gif', :alt =>'ロゴ画像',:border=>0),select_master_data('ict4e_url',:first)) %></div>
+        <div><%= link_to(image_tag('contact_us.gif', :alt =>'お問い合わせはこちら',:border=>0),select_master_data('ict4e_regist_url',:first) + 'contactus') %></div>
+      </div>
+    </div>
+  </body>
+</html>

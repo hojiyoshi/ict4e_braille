@@ -1,0 +1,19 @@
+<h1>印刷依頼登録メニュー</h1>
+<div class="spacer"></div>
+<div>以下の依頼方法をご利用になれます。</div>
+<div class="spacer"></div>
+<div>
+  <dl>
+    <dt><%= link_to 'テンプレートに入力する', url_for(:controller=> 'requests', :action => 'new', :type => 'form') %></dt>
+    <dd>テンプレート入力で点字にしたい内容を入力して依頼します。</dd>
+  </dl>
+</div>
+<div class="spacer"></div>
+<div>
+  <dl>
+    <dt><%= link_to 'Wordデータまたは点字データで送信する', :controller => 'requests', :action => 'new', :type => 'upload' %></dt>
+    <dd>
+      くわしくは遠隔点字印刷サービスの<%= link_to 'ご利用の流れ', select_master_data('ict4e_url',:first) + 'braille_prt/' %>をご覧ください。
+    </dd>
+  </dl>
+</div>

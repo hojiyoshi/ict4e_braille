@@ -1,0 +1,27 @@
+<div id="introPage" class="tableArea">
+  <%= render :partial => 'layouts/top_explain' %>
+</div>
+<div id="loginPage" class="tableArea">
+  <div class="marginLeftArea">
+    <h2>遠隔点字印刷サービスとは？</h2>
+  </div>
+  <div class="spacer"></div>
+  <div class="marginArea">
+    遠隔点字印刷サービスを利用するには、みんなのICTへの ログインが必要です。
+  </div>
+  <div class="marginArea">
+    <%= link_to(image_tag('login.gif', :alt =>'ログインはこちら',:border=>0),select_master_data('ict4e_regist_url',:first) + 'login') %>
+  </div>
+  <div class="spacer"></div>
+  <div class="marginArea">
+    ユーザ登録（無料）は、新規登録から行うことができます。
+  </div>
+  <div class="marginArea">
+    <%= link_to(image_tag('regist.gif', :alt =>'新規登録はこちら',:border=>0),select_master_data('ict4e_regist_url',:first) + 'signup') %>
+  </div>
+  <div class="spacer"></div>
+  <div class="marginArea">
+    遠隔点字印刷サービスを利用したいかたは、<%= link_to 'ご利用の流れ', select_master_data('ict4e_url',:first) + 'braille_prt/' %>をご覧下さい！
+  </div>
+  <div class="spacer"></div>
+</div>

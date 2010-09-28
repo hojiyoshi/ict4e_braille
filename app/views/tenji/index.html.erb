@@ -1,0 +1,31 @@
+<div class="divcenterArea">
+  <div id="brailltopArea">
+    <div class="tableArea marginArea">
+      <div>点字印刷をインターネットから依頼することができます。</div>
+      <div>ご依頼の前に「遠隔点字印刷サービス」ページにある<%= link_to 'ご利用の流れ', select_master_data('ict4e_url',:first) + 'braille_prt/' %>を必ずお読み下さい。</div>
+    </div>
+    <div class="spacer"></div>
+    <% if current_user.tenji_user.tenji_type == 'w' %>
+      <h1>遠隔点字印刷サービス作業者メニュー</h1>
+      <div class="brailletopContent"><%= link_to image_tag('braille_reqest_list_all.gif', :alt =>'依頼管理',:border=>0),'request_list' %></div>
+      <div class="brailletopContent brailletopBackground marginLeftArea">依頼履歴の一覧から、依頼確認・編集を行ないます。</div>
+      <div class="spacer"></div>
+
+      <div class="brailletopContent"><%= link_to image_tag('braille_reqest_autodelete.gif', :alt =>'削除日数入力',:border=>0),'autodelete' %></div>
+      <div class="brailletopContent brailletopBackground marginLeftArea">依頼データの自動削除日数を設定します。</div>
+    <% else %>
+      <h1>遠隔点字印刷サービスメニュー</h1>
+      <div class="brailletopContent">
+        <%= link_to image_tag('braille_reqest_create.gif', :alt =>'印刷の依頼登録',:border=>0),:controller => 'requests', :action => 'new' %>
+      </div>
+      <div class="brailletopContent brailletopBackground marginLeftArea">点字印刷の依頼を行ないます。</div>
+      <div class="spacer"></div>
+
+      <div class="brailletopContent"><%= link_to image_tag('braille_reqest_list.gif', :alt =>'依頼状況の確認',:border=>0),'request_list' %></div>
+      <div class="brailletopContent brailletopBackground marginLeftArea">依頼履歴の閲覧をされる場合にご利用ください。</div>
+    <% end %>
+    
+    <div class="spacer" />
+    
+  </div>
+</div>

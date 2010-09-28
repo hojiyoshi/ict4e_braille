@@ -1,0 +1,106 @@
+<%= render :partial => 'user_bar', :locals => {:status => 2} %>
+
+<h1>遠隔点字印刷サービス ユーザ情報の入力</h1>
+<div class="margintopArea">必要事項の入力後、「確認画面へ進む」ボタンをクリックしてください。</div>
+<div class="margintopArea">郵便番号、電話番号、携帯電話番号はハイフンで区切って入力します。</div>
+<div class="spacer"></div>
+<%= error_messages_for 'tenji_user' %>
+<div><strong>*</strong>が付いている項目は必須項目です。</div>
+
+<% form_tag({:controller => 'users', :action => 'confirm'},{:method => :put}) do -%>
+<% fields_for :tenji_user do |f| %>
+<div class="margintopArea">
+  <table class='tableArea formtableWidth'>
+    <% unless current_user.user_type == 'a' %>
+      <tr>
+        <td class="captiontableArea">ユーザ種別</td>
+        <td class="formtableArea">
+          <%= f.select(:tenji_type,{'発送元'=>'f', '作業者'=>'w'},:prompt => '選択してください。') %>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td class="captiontableArea"><strong>*</strong>名前</td>
+      <td class="formtableArea"><%= f.text_field 'firstname_kanji', :size => 70, :maxlength=>50 %></td>
+    </tr>
+    <tr>
+      <td class="captiontableArea">ふりがな（ひらがなで入力）</td>
+      <td class="formtableArea"><%= f.text_field 'firstname_kana', :size => 70, :maxlength=>50 %></td>
+    </tr>
+    <tr>
+      <td class="captiontableArea">郵便番号(半角英数)</td>
+      <td class="formtableArea">
+          <%= f.text_field 'zip_code1', :size => 10, :maxlength=>3 %> -
+          <%= f.text_field 'zip_code2', :size => 10, :maxlength=>4 %>
+      </td>
+    </tr>
+    <tr>
+      <td class="captiontableArea">住所(都道府県)</td>
+      <td class="formtableArea"><%= f.collection_select(:user_address1,select_master_data('pref_name'),:item_data,:item_data,:prompt => '選択してください。') %></td>
+    </tr>
+    <tr>
+      <td class="captiontableArea">住所(市区郡)</td>
+      <td class="formtableArea"><%= f.text_field 'user_address2', :size => 70, :maxlength=>100 %></td>
+    </tr>
+    <tr>
+      <td class="captiontableArea">住所(町村字)</td>
+      <td class="formtableArea"><%= f.text_field 'user_address3', :size => 70, :maxlength=>100 %></td>
+    </tr>
+    <tr>
+      <td class="captiontableArea">住所(番地)</td>
+      <td class="formtableArea"><%= f.text_field 'user_address4', :size => 70, :maxlength=>100 %></td>
+    </tr>
+    <tr>
+      <td class="captiontableArea">住所(建物)</td>
+      <td class="formtableArea"><%= f.text_field 'user_address5', :size => 70, :maxlength=>100 %></td>
+    </tr>
+    <tr>
+      <td class="captiontableArea">会社名</td>
+      <td class="formtableArea"><%= f.text_field 'lastname_kanji', :size => 70, :maxlength=>50  %></td>
+    </tr>
+    <tr>
+      <td class="captiontableArea">部署名</td>
+      <td class="formtableArea"><%= f.text_field 'lastname_kana', :size => 70, :maxlength=>50  %></td>
+    </tr>
+    <tr>
+      <td class="captiontableArea">電話番号(半角英数)</td>
+      <td class="formtableArea">
+        <%= f.text_field 'phone_number1', :size => 10, :maxlength => 4 -%> -
+        <%= f.text_field 'phone_number2', :size => 10, :maxlength => 4 -%> -
+        <%= f.text_field 'phone_number3', :size => 10, :maxlength => 4 -%>
+      </td>
+    </tr>
+    <tr>
+      <td class="captiontableArea">FAX番号(半角英数)</td>
+      <td class="formtableArea">
+        <%= f.text_field 'fax_number1', :size => 10, :maxlength => 4 -%> -
+        <%= f.text_field 'fax_number2', :size => 10, :maxlength => 4 -%> -
+        <%= f.text_field 'fax_number3', :size => 10, :maxlength => 4 -%>
+      </td>
+    </tr>
+    <tr>
+      <td class="captiontableArea">携帯電話番号(半角英数)</td>
+      <td class="formtableArea">
+        <%= f.text_field 'cellphone_number1', :size => 10, :maxlength => 4  %> -
+        <%= f.text_field 'cellphone_number2', :size => 10, :maxlength => 4  %> -
+        <%= f.text_field 'cellphone_number3', :size => 10, :maxlength => 4  %>
+      </td>
+    </tr>
+    <tr>
+      <td class="captiontableArea">携帯電話メールアドレス</td>
+      <td class="formtableArea"><%= f.text_field 'cellphone_email', :size => 70, :maxlength => 100 %></td>
+    </tr>
+  </table>
+</div>
+<% end -%>
+<div class="spacer_mini"></div>
+<div class="divLeft">
+  <%= submit_tag '確認画面へ進む', :name => 'next_page', :disable_with => 'しばらくお待ちください。' %>
+<% end -%>
+<% form_tag :controller => 'users', :action => 'license' do -%>
+</div>
+
+<div>
+  <%= submit_tag '前画面へ戻る', :name => 'back_page', :disable_with => 'しばらくお待ちください。' %>
+<% end -%>
+</div>
