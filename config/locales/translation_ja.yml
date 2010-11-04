@@ -16,58 +16,25 @@ ja:
       tenji_autodelete: 
         days: "days"  #g
 
-      tenji_request: 
-        req_date: "req_date"  #g
-        accp_date: "accp_date"  #g
-        req_title: "req_title"  #g
-        req_sts: "req_sts"  #g
-        download_date: "download_date"  #g
-        send_date: "send_date"  #g
-        stop_date: "stop_date"  #g
-        data_name: "data_name"  #g
-        data_flg: "data_flg"  #g
-        pdata_name: "pdata_name"  #g
-        pdata_flg: "pdata_flg"  #g
-        from_lastname_kanji: "from_lastname_kanji"  #g
-        from_lastname_kana: "from_lastname_kana"  #g
-        from_firstname_kanji: "from_firstname_kanji"  #g
-        from_firstname_kana: "from_firstname_kana"  #g
-        from_phone_number1: "from_phone_number1"  #g
-        from_phone_number2: "from_phone_number2"  #g
-        from_phone_number3: "from_phone_number3"  #g
-        from_fax_number1: "from_fax_number1"  #g
-        from_fax_number2: "from_fax_number2"  #g
-        from_fax_number3: "from_fax_number3"  #g
-        from_cellphone_number1: "from_cellphone_number1"  #g
-        from_cellphone_number2: "携帯電話number2から"  #g
-        from_cellphone_number3: "from_cellphone_number3"  #g
-        from_email: "from_email"  #g
-        from_zip_code: "from_zip_code"  #g
-        from_user_address1: "from_user_address1"  #g
-        from_user_address2: "from_user_address2"  #g
-        from_user_address3: "from_user_address3"  #g
-        from_user_address4: "from_user_address4"  #g
-        from_user_address5: "from_user_address5"  #g
-        to_lastname_kanji: "to_lastname_kanji"  #g
-        to_lastname_kana: "to_lastname_kana"  #g
-        to_firstname_kanji: "to_firstname_kanji"  #g
-        to_firstname_kana: "to_firstname_kana"  #g
-        to_phone_number1: "to_phone_number1"  #g
-        to_phone_number2: "to_phone_number2"  #g
-        to_phone_number3: "to_phone_number3"  #g
-        to_fax_number1: "to_fax_number1"  #g
-        to_fax_number2: "to_fax_number2"  #g
-        to_fax_number3: "to_fax_number3"  #g
-        to_cellphone_number1: "to_cellphone_number1"  #g
-        to_cellphone_number2: "to_cellphone_number2"  #g
-        to_cellphone_number3: "to_cellphone_number3"  #g
-        to_email: "to_email"  #g
-        to_zip_code: "to_zip_code"  #g
-        to_user_address1: "ユーザーアドレス1に"  #g
-        to_user_address2: "to_user_address2"  #g
-        to_user_address3: "to_user_address3"  #g
-        to_user_address4: "to_user_address4"  #g
-        to_user_address5: "to_user_address5"  #g
+      tenji_request:
+        from_user_name: "依頼人のお名前"  #g
+        from_zip_code: "依頼人の郵便番号"  #g
+        from_user_address1: "依頼人の住所"  #g
+        from_user_address2: "依頼人のビル・マンション名"  #g
+        from_phone_number: "依頼人の電話番号"  #g
+        from_user_affiliation: "依頼人の所属"  #g
+        to_user_name: "お届け先のお名前"  #g
+        to_zip_code: "お届け先の郵便番号"  #g
+        to_user_address1: "お届け先の住所"  #g
+        to_user_address2: "お届け先のビル・マンション名"  #g
+        print_name: "印刷依頼データのタイトル" #g
+        print_title1: "印刷依頼データのサブタイトル1" #g
+        print_title2: "印刷依頼データのサブタイトル2" #g
+        print_title3: "印刷依頼データのサブタイトル3" #g
+        print_contents1: "印刷依頼データの内容1" #g
+        print_contents2: "印刷依頼データの内容2" #g
+        print_contents3: "印刷依頼データの内容3" #g
+        attached_file: "印刷依頼データの添付ファイル" #g
 
       tenji_user: 
         tenji_type: "tenji_type"  #g

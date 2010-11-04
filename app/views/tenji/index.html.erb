@@ -1,31 +1,48 @@
-<div class="divcenterArea">
-  <div id="brailltopArea">
-    <div class="tableArea marginArea">
-      <div>点字印刷をインターネットから依頼することができます。</div>
-      <div>ご依頼の前に「遠隔点字印刷サービス」ページにある<%= link_to 'ご利用の流れ', select_master_data('ict4e_url',:first) + 'braille_prt/' %>を必ずお読み下さい。</div>
-    </div>
-    <div class="spacer"></div>
-    <% if current_user.tenji_user.tenji_type == 'w' %>
-      <h1>遠隔点字印刷サービス作業者メニュー</h1>
-      <div class="brailletopContent"><%= link_to image_tag('braille_reqest_list_all.gif', :alt =>'依頼管理',:border=>0),'request_list' %></div>
-      <div class="brailletopContent brailletopBackground marginLeftArea">依頼履歴の一覧から、依頼確認・編集を行ないます。</div>
-      <div class="spacer"></div>
+<h1 id="honbun">印刷依頼<%= '：エラー' unless flash[:error].blank? %></h1>
+<p>
+  <% if flash[:error].blank? %>
+  登録済みユーザー情報のメールアドレスとパスワードを入力し、印刷依頼に使用するデータ形式を選択して「印刷依頼情報入力へ」ボタンをおしてください。
+  <% else %>
+  入力されたユーザー情報のメールアドレスもしくはパスワードが正しくありません。登録されているユーザー情報を入力してください。
+  <% end %>
+</p>
+<p>ユーザー登録されていない方は、事前に「<%= link_to 'ユーザ新規登録', select_master_data('ict4e_regist_url',:first) + 'signup' %>」が必要です。</p>
+<% form_tag :controller => 'sessions', :action => 'create' do -%>
+  <% fields_for :users do |f| %>
+<h2>登録済みユーザー情報</h2>
+<table class="col">
+  <tr>
+    <th><label for="email">Eメール<span class="tCaution">(必須)</span></label></th>
+    <td>
+      <%= f.text_field 'email', :id=> 'email',:size=> '30', :style => 'ime-mode: disabled;',
+        :type => 'email', :class=>'textB ascii', :required => 'required', :value=>@user_email %>
+    </td>
+  </tr>
+  <tr>
+  <th><label for="password">パスワード<span class="tCaution">(必須)</span></label></th>
+  <td>
+    <%= f.password_field 'password', :id => 'password', :size => "10", :style => "ime-mode: disabled;",
+      :class => "textC ascii", :required => "required" %>
+    <a href="../user/forget.php">パスワードを忘れた方</a></td>
+  </tr>
+</table>
 
-      <div class="brailletopContent"><%= link_to image_tag('braille_reqest_autodelete.gif', :alt =>'削除日数入力',:border=>0),'autodelete' %></div>
-      <div class="brailletopContent brailletopBackground marginLeftArea">依頼データの自動削除日数を設定します。</div>
-    <% else %>
-      <h1>遠隔点字印刷サービスメニュー</h1>
-      <div class="brailletopContent">
-        <%= link_to image_tag('braille_reqest_create.gif', :alt =>'印刷の依頼登録',:border=>0),:controller => 'requests', :action => 'new' %>
-      </div>
-      <div class="brailletopContent brailletopBackground marginLeftArea">点字印刷の依頼を行ないます。</div>
-      <div class="spacer"></div>
-
-      <div class="brailletopContent"><%= link_to image_tag('braille_reqest_list.gif', :alt =>'依頼状況の確認',:border=>0),'request_list' %></div>
-      <div class="brailletopContent brailletopBackground marginLeftArea">依頼履歴の閲覧をされる場合にご利用ください。</div>
-    <% end %>
-    
-    <div class="spacer" />
-    
-  </div>
-</div>
+<h2>印刷依頼データの形式</h2>
+<fieldset>
+  <legend class="acc">印刷依頼データの選択</legend>
+  <p>
+    <label for="data_type_text" class="fBold">
+      <%= f.radio_button :data_type, :data_type_text, {:id => :data_type_text, :checked => true} %>テキスト入力
+    </label>
+    <br />入力フォームに直接テキストを入力します。
+  </p>
+  <p>
+    <label for="data_type_file" class="fBold">
+      <%= f.radio_button :data_type, :data_type_file, {:id => 'data_type_file'} %>ファイル添付
+    </label>
+    <br />添付可能ファイルはWord(.docまたは.docx)もしくは点字データ(.Baseまたは.Bes)
+  </p>
+</fieldset>
+<p><%= submit_tag '印刷依頼情報入力へ', :name => 'next', :disable_with => 'しばらくお待ちください。' %></p>
+  <% end -%>
+<% end -%>

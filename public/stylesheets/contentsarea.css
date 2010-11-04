@@ -1,0 +1,321 @@
+@charset "utf-8";
+
+/*--------------------------------------------------------
+	ファイル名: contentsarea.css
+	概要: コンテンツエリア限定スタイル
+	制作日: 2010/10/21
+	更新日: 2010/10/26
+
+----------------------------------------------------------*/
+
+/*見出し1
+----------------------------------------------------------*/
+#contentsArea h1 {
+	padding: 10px 10px 10px 50px;
+	font-size: 150%;
+	margin-bottom: 15px;
+	background: #D9EBFF url(../images/tt_common.gif) no-repeat 15px 50%;
+}
+
+#know #contentsArea h1 {
+	background: #D9F0F0 url(../images/tt_know.gif) no-repeat 15px 50%;
+}
+
+#use #contentsArea h1 {
+	background: #FFE59B url(../images/tt_use.gif) no-repeat 15px 50%;
+}
+
+#read #contentsArea h1 {
+	background: #FAD1D1 url(../images/tt_read.gif) no-repeat 15px 50%;
+}
+
+#entry #contentsArea h1 {
+	background: #D2E5B7 url(../images/tt_entry.gif) no-repeat 15px 50%;
+}
+
+
+/*見出し2
+----------------------------------------------------------*/
+#contentsArea h2 {
+	padding: 5px 10px;
+	font-size: 120%;
+	margin-bottom: 15px;
+	background-color: #D9EBFF;
+	border-bottom: 3px solid #49A0FF;
+}
+
+#know #contentsArea h2 {
+	background: #F0F0F0;
+	border-bottom: 3px solid #3586A8;
+}
+
+#use #contentsArea h2 {
+	background: #F0F0F0;
+	border-bottom: 3px solid #FB5424;
+}
+
+#read #contentsArea h2 {
+	background: #F0F0F0;
+	border-bottom: 3px solid #FF3366;
+}
+
+#entry #contentsArea h2 {
+	background: #F0F0F0;
+	border-bottom: 3px solid #628811;
+}
+
+
+/*見出し3
+----------------------------------------------------------*/
+#contentsArea h3 {
+	padding: 3px 3px 3px 20px;
+	font-size: 110%;
+	margin-bottom: 15px;
+}
+
+#know #contentsArea h3 {
+	background: url(../images/tt_know_s.gif) no-repeat 0 50%;
+}
+
+#use #contentsArea h3 {
+	background: url(../images/tt_use_s.gif) no-repeat 0 50%;
+}
+
+#read #contentsArea h3 {
+	background: url(../images/tt_read_s.gif) no-repeat 0 50%;
+}
+
+#entry #contentsArea h3 {
+	background: url(../images/tt_entry_s.gif) no-repeat 0 50%;
+}
+
+
+/*段落
+----------------------------------------------------------*/
+#contentsArea .indent {
+	margin-left: 20px;
+}
+
+#contentsArea p {
+	margin-bottom: 15px;
+}
+
+
+
+/*リスト
+----------------------------------------------------------*/
+#contentsArea dl {
+	margin-bottom: 15px;
+}
+
+#contentsArea dt {
+	padding-left: 20px;
+	font-weight: bold;
+	color: #333333;
+	background: url(../images/tt_common_s.gif) no-repeat 0 50%;
+}
+
+#contentsArea dd {
+	margin-left: 20px;
+	font-size: 95%;
+}
+
+
+#contentsArea ul,
+#contentsArea ol {
+	margin-bottom: 15px;
+	margin-left: 10px;
+}
+
+#contentsArea ul li {
+	margin-left: 25px;
+	list-style-position: outside;
+	list-style-type: circle;	
+}
+
+#contentsArea ol li {
+	margin-left: 25px;
+	list-style-position: outside;
+	list-style-type: decimal;	
+}
+
+
+
+/*リンク
+----------------------------------------------------------*/
+#contentsArea a.link {
+	padding-left: 20px;
+	background:url(../images/link.gif) no-repeat 0 50%;
+}
+
+/*このページの先頭へ*/
+#contentsArea .pagetop {
+	margin-bottom: 0;
+	margin-top: 30px;
+	text-align: right;
+}
+
+#contentsArea .pagetop a {
+	padding-left: 20px;
+	background:url(../images/link_up.gif) no-repeat 0 50%;
+}
+
+/*ボックス
+----------------------------------------------------------*/
+#contentsArea .boxA {
+	border: 3px solid #CCCCCC;
+	padding: 15px;
+	margin-bottom: 15px;
+}
+
+#contentsArea .boxB {
+	border: 3px solid #CCCCCC;
+	padding: 15px;
+	margin-bottom: 15px;
+	background-color: #FFFFCC;
+}
+
+
+/*テーブル
+----------------------------------------------------------*/
+#contentsArea table {
+	margin-bottom: 25px;
+	width: 100%;
+}
+
+#contentsArea table th, 
+#contentsArea table td {
+	padding: 7px;
+	border: 2px solid #CCCCCC;
+}
+
+#contentsArea table th {
+	white-space: nowrap;
+	width: 1%;
+	background-color: #F0F0F0;
+}
+
+#contentsArea table.col th {
+	text-align: right;
+	vertical-align: top;
+}
+
+#contentsArea caption {
+	text-align: left;
+	font-weight: bold;
+}
+
+/*トピックパス
+----------------------------------------------------------*/
+#contentsArea .topicPath {
+	font-size: 90%;
+	color: #333333;
+}
+
+#contentsArea .topicPath span {
+	font-weight: bold;
+}
+
+
+/*画像寄せ
+----------------------------------------------------------*/
+/*画像右*/
+#contentsArea .imgRight {
+	float: right;
+	margin: 0 0 5px 5px;
+}
+
+
+/*画像左*/
+#contentsArea .imgLeft {
+	float: left;
+	margin: 0 5px 5px 0;
+}
+
+
+/*テキスト
+----------------------------------------------------------*/
+#contentsArea .fBold {
+	font-weight: bold;
+}
+
+#contentsArea .fSmall {
+	font-size: small;
+}
+
+#contentsArea .tCenter {
+	text-align: center;
+}
+
+#contentsArea .tCaution {
+	color:#CC0000;
+}
+
+
+/*余白
+----------------------------------------------------------*/
+#contentsArea .mNon {
+	margin: 0 !important;
+}
+
+#contentsArea .mBottomNon {
+	margin-bottom: 0 !important;
+}
+
+#contentsArea .pNon {
+	padding: 0 !important;
+}
+
+#contentsArea .mTopA {
+	margin-top: 150px !important;
+}
+
+/*フロート
+----------------------------------------------------------*/
+#contentsArea .clearBoth {
+	clear: both;
+}
+
+#contentsArea .floatLeft {
+	float: left;
+}
+
+#contentsArea .floatRight {
+	float: right;
+}
+
+
+/*フォーム
+----------------------------------------------------------*/
+#contentsArea input,
+#contentsArea textarea {
+	font-size: 110%;
+	padding: 3px;
+}
+
+#contentsArea input.btA {
+	font-size: 90%;
+	padding: 1px;
+}
+
+#contentsArea .textA {
+	width: 90%;
+}
+
+#contentsArea .textB {
+	width: 15em;
+}
+
+#contentsArea .textC {
+	width: 5em;
+}
+
+#contentsArea .textareaA {
+	width: 90%;
+	height: 20em;
+}
+
+#contentsArea .textareaB {
+	width: 90%;
+	height: 5em;
+}

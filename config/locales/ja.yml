@@ -111,14 +111,14 @@ ja:
         header:
           one:    "%{model}にエラーが発生しました。"
           other:  "%{model}に%{count}つのエラーが発生しました。"
-        body: "次の項目を確認してください。"
+        body: "エラー内容"
 
   activerecord:
     errors:
       template:
         header:
-          one:   "入力項目に%{count}つの誤りがあります。"
-          other: "入力項目に%{count}つの誤りがあります。"
+          one: 
+          other: 
         body: "以下の項目を確認してください。"
 
       messages:

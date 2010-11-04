@@ -1,4 +1,6 @@
 class TenjiUser < ActiveRecord::Base
+  has_many :tenji_requests, :foreign_key => 'req_id'
+  belongs_to :user
   
   attr_accessor :zip_code1,:zip_code2
 
@@ -106,5 +108,7 @@ class TenjiUser < ActiveRecord::Base
 
     def before_save
       self.zip_code = zip_code1 + '-' + zip_code2
+      self.req_id = current_user.tenji_user.id
+      self.download_name = Time.now.strftime("%Y%m%d%H%M%S") + '.xml'
     end
 end

@@ -1,0 +1,447 @@
+@charset "utf-8";
+
+/*--------------------------------------------------------
+	ファイル名: base.css
+	概要：基本スタイル設定
+	制作日: 2010/10/21
+	更新日: 2010/10/26
+----------------------------------------------------------*/
+
+
+/*--------------------------------------------------------
+　1-リセット
+----------------------------------------------------------*/
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,select,textarea,p,blockquote,th,td { 
+	margin:0;
+	padding:0;
+	font-family:'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','MS P Gothic','ＭＳ Ｐゴシック',Osaka,sans-serif;
+	font-size:100%;
+}
+
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+	font-size: 100%;
+}
+
+fieldset { 
+	border:0;
+}
+
+select option{
+	padding:0 5px;
+}
+
+img { 
+	border:0;
+	vertical-align: middle;
+}
+
+a img {
+	cursor: pointer;/*Opera用*/
+}
+
+address,caption,cite,em {
+	font-style:normal;
+	font-weight:normal;
+}
+
+ol,ul {
+	list-style:none;
+}
+
+
+
+/*--------------------------------------------------------
+ 2-要素の再定義
+----------------------------------------------------------*/
+html{
+    background: #6A4800;
+}
+
+body {
+	color:#333333;
+	line-height:1.65;
+	background: #469EFF url(../images/nav_back.gif) repeat-x 0 0;
+
+}
+
+hr {
+	display: none;
+}
+
+a:link {
+	color: #0060C0;
+}
+
+
+/*html5新要素*/
+article, aside, dialog, figure, footer, header,hgroup, nav, section { display: block; }
+
+/*--------------------------------------------------------
+ 3-共通スタイル
+----------------------------------------------------------*/
+/*アクセシビリティ
+------------------------------------*/
+/*非表示*/
+.acc {
+	position: absolute !important;
+	overflow: hidden !important;
+	height: 0 !important;
+	width: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	border: none !important;
+	font-size: 0 !important;
+	left: 18px;
+}
+
+
+/*スキップリンク(キーボード対応）*/
+p.skiplink a {
+	position:absolute;
+	z-index: 2;
+	width: 120px;
+	padding: 5px;
+	left: -9999px;
+	top: 0;
+	text-align: center;
+}
+
+p.skiplink a:focus,
+p.skiplink a:active {
+	left: 0;
+	background: #666;
+	color: #fff;
+}
+
+
+/*clearFix
+------------------------------------*/
+.clearFix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearFix {
+  zoom: 1;
+}
+
+
+
+/*--------------------------------------------------------
+ 4-ヘッダエリア
+----------------------------------------------------------*/
+header {
+	height: 194px;
+	margin-bottom: 25px;
+	background: url(../images/head_back.gif) no-repeat 367px 0;
+}
+
+header h1 {
+	position: absolute;
+	top: 18px;
+	left: 18px; 
+}
+
+/*補助ナビ*/
+.functionNav {
+	position: absolute;
+	top: 0;
+	right: 15px;
+}
+
+.functionNav li {
+	float: left;
+	margin-left: 8px;
+	background: #FFFFFF url(../images/link.gif) no-repeat 12px 50%;
+	border-right: 3px solid #CCCCCC;
+	border-left: 3px solid #CCCCCC;
+	border-bottom: 3px solid #CCCCCC;
+}
+
+.functionNav li a {
+	display: block;
+	padding: 5px 12px 5px 35px;
+	font-weight: bold;
+
+}
+
+
+/*共通ナビ*/
+.mainNav {
+    position: absolute;
+    top: 130px;
+    width: 780px;
+    border-top: 3px solid #cccccc;
+    border-bottom: 3px solid #cccccc;
+    background: #ffffff;
+}
+
+.mainNav li {
+    float: left;
+    border-right: 3px solid #cccccc;
+    height:58px;
+}
+
+
+.mainNav li a {
+    display:block;
+    height:58px;
+}
+
+
+.mainNav li.nav_know,
+.mainNav li.nav_know a {
+    width: 199px;
+    background: url(../images/nav_know_o.gif) no-repeat 0 0;
+}
+
+.mainNav li.nav_use,
+.mainNav li.nav_use a {
+	width: 198px;
+    background:url(../images/nav_use_o.gif) no-repeat 0 0;
+}
+
+.mainNav li.nav_read,
+.mainNav li.nav_read a {
+	width: 177px;
+    background:url(../images/nav_read_o.gif) no-repeat 0 0;
+}
+
+.mainNav li.nav_entry,
+.mainNav li.nav_entry a {
+ 	width: 193px;
+   background:url(../images/nav_entry_o.gif) no-repeat 0 0;
+}
+
+
+.mainNav li a:hover {
+    background-color:#ffffff; /*IE6動作用*/
+}
+
+
+#know .mainNav li.nav_know img,
+#use .mainNav li.nav_use img,
+#read .mainNav li.nav_read img,
+#entry .mainNav li.nav_entry img,
+.mainNav li a:hover img,
+.mainNav li a:focus img,
+.mainNav li a:active img {
+    width: 0;
+	height: 0;
+}
+
+
+
+/*--------------------------------------------------------
+ 5-コンテナ
+----------------------------------------------------------*/
+#container {
+    float : left;
+    width: 100%;
+    margin-right : -300px;
+}
+
+/*--------------------------------------------------------
+ 6-コンテンツエリア
+----------------------------------------------------------*/
+#contentsArea {
+    margin: 0 300px 30px 15px;
+    background-color: #FFFFFF;
+    border: 3px solid #DFD0B3;
+    padding: 15px;
+
+}
+
+.col1 #contentsArea {
+    margin: 0 15px 30px 15px;
+}
+
+
+/*--------------------------------------------------------
+ 7-サブエリア
+----------------------------------------------------------*/
+aside {
+    float : right;
+    width: 285px;
+    margin-top: 20px;
+    margin-right: 15px;
+    background-color: #DFD0B3;
+    border-left: none;
+}
+
+/*サブメニュー*/
+aside nav {
+    margin: 18px 10px 18px 8px;
+    border-top: 3px solid #CCCCCC;
+    border-right: 3px solid #CCCCCC;
+    border-bottom: 2px solid #CCCCCC;
+    border-left: 3px solid #CCCCCC;
+    background-color: #FFFFFF;
+}
+
+
+aside nav h2 {
+    padding: 10px 10px 10px 38px;
+    font-size: 120%;
+}
+
+#know aside nav h2 {
+    background: #D9F0F0 url(../images/tt_know.gif) no-repeat 15px 50%;
+    border-bottom: 3px solid #3586A8;
+}
+
+#use aside nav h2 {
+    background: #FFE59B url(../images/tt_use.gif) no-repeat 15px 50%;
+    border-bottom: 3px solid #FB5424;
+}
+
+#read aside nav h2 {
+    background: #FAD1D1 url(../images/tt_read.gif) no-repeat 15px 50%;
+    border-bottom: 3px solid #FF3366;
+}
+
+#entry aside nav h2 {
+    background: #D2E5B7 url(../images/tt_entry.gif) no-repeat 15px 50%;
+    border-bottom: 3px solid #628811;
+}
+
+aside nav li {
+    border-bottom: 1px solid #CCCCCC;
+    font-weight: bold;
+}
+
+aside nav li li {
+    border: none;
+    font-weight: normal;
+    font-size: 95%;
+    padding-left: 1em;
+}
+
+aside nav li a {
+    padding: 5px 10px;
+    display: block;
+}
+
+aside nav li a:hover,
+aside nav li a:focus,
+aside nav li a:active {
+    background-color:#F0F0F0;
+}
+
+
+aside nav li.selected {
+    background-color:#F0F0F0;
+    padding: 5px 10px;
+}
+
+aside nav li.selected a {
+    background-color:#F0F0F0;
+    padding: 0;
+}
+
+aside nav li.selected a:hover,
+aside nav li.selected a:focus,
+aside nav li.selected a:active {
+    background-color:#F0F0F0;
+}
+
+aside nav li li.selected,
+aside nav li li a {
+    padding-left: 30px;
+}
+
+aside nav li li.selected a {
+    padding: 0;
+}
+
+
+/*--------------------------------------------------------
+ 8-フッタエリア
+----------------------------------------------------------*/
+footer {
+    clear: both;
+    width: 100%;
+    background: #6A4800 url(../images/footer_back.gif) repeat-x 0 0;
+}
+
+footer div {
+    padding: 70px 30px 30px 30px;
+    background: url(../images/footer_town.gif) no-repeat right top;
+    zoom: 1;
+}
+
+
+/*リンク*/
+footer  ul {
+    zoom:1;
+}
+
+footer li {
+    float: left;
+    margin-right: 20px;
+}
+
+footer li a {
+    color: #FFFFFF !important;
+    background: url(../images/link_b.gif) no-repeat 0 50%;
+    padding-left: 20px;
+}
+
+
+/*サイト運営者情報*/
+footer address {
+    clear: both;
+    padding-top: 33px;
+    color:#ECE9D8;
+    font-size: 93%;
+}
+
+footer address span {
+    font-weight: bold;
+    font-size: large;
+}
+
+footer .copy {
+    text-align: right;
+    margin-top: 10px;
+    font-family:Arial, Helvetica, sans-serif;
+    color:#ECE9D8;
+    font-size: 85%;
+}
+
+
+
+/*--------------------------------------------------------
+ 9-角丸
+----------------------------------------------------------*/
+.functionNav li {
+  -moz-border-radius: 0 0 10px 10px; /* Firefox */
+  -webkit-border-radius: 0 0 10px 10px; /* Safari and Chrome */
+  border-radius: 0 0 10px 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+
+/*  behavior: url(http://archism.jp/ict4e/common/css/ie-css3.htc); *//* This lets IE know to call the script on all elements which get the 'box' class */
+
+}
+
+#contentsArea, #contentsArea h1 {
+  -moz-border-radius: 10px; /* Firefox */
+  -webkit-border-radius: 10px; /* Safari and Chrome */
+  border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+
+/*  behavior: url(http://archism.jp/ict4e/common/css/ie-css3.htc); *//* This lets IE know to call the script on all elements which get the 'box' class */
+}
+
+aside {
+  -moz-border-radius: 0 10px 10px 0; /* Firefox */
+  -webkit-border-radius: 0 10px 10px 0; /* Safari and Chrome */
+  border-radius: 0 10px 10px 0; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+
+ /* behavior: url(http://archism.jp/ict4e/common/css/ie-css3.htc);*/ /* This lets IE know to call the script on all elements which get the 'box' class */
+}
+
+

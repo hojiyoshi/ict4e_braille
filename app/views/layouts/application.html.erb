@@ -1,60 +1,95 @@
-<html>
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://archism.jp/ict4e/use/tenji/entry.php -->
+<html lang="ja">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <%= stylesheet_link_tag('common') %>
-    <%= javascript_include_tag 'jquery' %>
-    <%= javascript_include_tag 'jquery_blockUI' %>
-    <%= javascript_include_tag 'application' %>
-    <%= yield :html_header %>
-    <title>遠隔点字印刷サービス - <%=@title%></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8" />
+    <title><%=@title%></title>
+    <%= stylesheet_link_tag('base.css', :media => 'screen,print') %>
+    <%= stylesheet_link_tag('contentsarea.css', :media => 'screen,print') %>
+    <%= stylesheet_link_tag('print.css', :media => 'print') %>
+    <%= stylesheet_link_tag('common.css') %>
+    <%= javascript_include_tag 'valueconvertor.js' %>
+    <%= javascript_include_tag 'application.js' %>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
   </head>
-  <body>
-    <div id="page">
-      <div id="headerArea">
-        <div class="divLeft">
-          <%= link_to(image_tag('header_logo.gif', :alt =>'ロゴ画像',:border=>0),select_master_data('ict4e_url',:first)) %>
-        </div>
-      </div>
-      <div CLASS="clearDiv"></div>
-      <div CLASS="spacer"></div>
-      <div class="divLeft">
-        <%= link_to 'トップ', select_master_data('ict4e_url',:first) %>&nbsp;&#62;&nbsp;<%= link_to '遠隔点字印刷サービス', '/' %>
-        <% unless @title.blank? %>
-          &nbsp;&#62;&nbsp;<%= @title %>
-        <% end %>
-      </div>
-      <div class="textRight">
-        <% unless current_user.blank? %>
-          <div>
-            <b><%= current_user.email  %></b>でログイン中&nbsp;|&nbsp;<%= link_to 'ログアウト',logout_path %>
-          </div>
-        <% end %>
-        <% if !current_user.blank? && !current_user.tenji_user.blank? %>
-          <div class="spacer_mini"></div>
-          <div class="margintopArea">
-            <%= link_to 'ホーム', '/' %>
-            <% if current_user.tenji_user.tenji_type == 'w'%>
-              &nbsp;|&nbsp;<%= link_to '作業状況', "/braille_print/request_prints" %>
-            <% else %>
-              &nbsp;|&nbsp;<%= link_to '印刷依頼', :controller => 'requests', :action => 'new' %>&nbsp;|&nbsp;<%= link_to '印刷状況', '/' %>
-            <% end %>
-            &nbsp;|&nbsp;<%= link_to 'ユーザ情報', '/' %>
-          </div>
-        <% end %>
-      </div>
-      <div CLASS="clearDiv"></div>
-      <hr/>
-      <div CLASS="spacer"></div>
-      <div id="contentArea">
+  <body id="use">
+    <p class="skiplink" id="skiplink"><a href="http://archism.jp/ict4e/use/tenji/entry.php#honbun">本文へ移動</a></p>
+    <!--header[START]-->
+    <header>
+      <h1><%= link_to(image_tag('logo.gif', :size => '336x91', :alt =>'みんなのICTホーム',:border=>0), "http://archism.jp/ict4e/") %></h1>
+      <nav role="navigation">
+        <ul class="functionNav">
+          <li><a href="http://archism.jp/ict4e/sitemap/">サイトマップ</a></li>
+          <li><a href="http://archism.jp/ict4e/contact/">お問い合わせ</a></li>
+        </ul>
+        <ul class="mainNav">
+          <li class="nav_know"><%= link_to(image_tag('nav_know.gif', :size => '199x58', :alt =>'知る',:border=>0), "http://archism.jp/ict4e/know/") %></li>
+          <li class="nav_use"><%= link_to(image_tag('nav_use.gif', :size => '198x58', :alt =>'使う',:border=>0), "http://archism.jp/ict4e/know/") %></li>
+          <li class="nav_read"><%= link_to(image_tag('nav_read.gif', :size => '177x58', :alt =>'読む',:border=>0), "http://archism.jp/ict4e/know/") %></li>
+          <li class="nav_entry"><%= link_to(image_tag('nav_entry.gif', :size => '193x58', :alt =>'参加',:border=>0), "http://archism.jp/ict4e/know/") %></li>
+        </ul>
+      </nav>
+    </header>
+    <!--header[END]-->
+
+    <!--container[START]-->
+    <div id="container" class="clearFix">
+
+      <!--contentsArea[START]-->
+      <div id="contentsArea" role="main">
+        <nav>
+          <p class="topicPath"><span>現在の位置： </span><a href="../../">ホーム</a> ＞ <a href="../">使う</a> ＞ <a href="index.php">遠隔点字印刷サービス</a> ＞ 印刷依頼</p>
+        </nav>
+
         <%= yield %>
+
+        <p class="pagetop"><a href="#skiplink">このページの先頭へ</a></p>
       </div>
-      <div CLASS="clearDiv"></div>
-      <div CLASS="spacer"></div>
-      <hr/>
-      <div id="footerArea">
-        <div CLASS="divLeft"><%= link_to(image_tag('ict4_logo.gif', :alt =>'ロゴ画像',:border=>0),select_master_data('ict4e_url',:first)) %></div>
-        <div><%= link_to(image_tag('contact_us.gif', :alt =>'お問い合わせはこちら',:border=>0),select_master_data('ict4e_regist_url',:first) + 'contactus') %></div>
-      </div>
+
+      <!--contentsArea[END]-->
     </div>
+    <!--container[END]-->
+
+    <!--aside[START]-->
+    <aside>
+      <nav>
+        <h2>「使う」メニュー</h2>
+        <ul>
+          <li><a href="../rinamn/">RAINMAN(レインマン)</a></li>
+          <li><a href="../youyaku/">要約筆記依頼サービス</a></li>
+          <li class="selected">
+            <a href="index.php">遠隔点字印刷サービス</a>
+            <ul>
+              <li><a href="service.php">サービス内容</a></li>
+              <li><a href="manual.php">ご利用方法</a></li>
+              <li><a href="data.php">印刷依頼データについて</a></li>
+              <li><a>印刷依頼</a></li>
+            </ul>
+          </li>
+          <li><a href="../user/">ユーザー登録・変更</a></li>
+          <li><a href="../rule/">利用規約</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <!--aside[END]-->
+
+    <!--footer[START]-->
+    <footer role="contentinfo">
+      <div>
+        <ul>
+          <li><a href="http://archism.jp/ict4e/about/">サイトのご利用について</a></li>
+        </ul>
+        <address><span>特定非営利活動法人　みんなのICT</span><br>
+          住所：〒790-0062　愛媛県松山南江戸1町目10-21　ペリ館S棟103<br>
+          電話/ファックス：089-989-2208
+        </address>
+        <p class="copy">Copyright（C) 2008 ICT for everyone, All right reserved.</p>
+      </div>
+    </footer>
+    <!--footer[END]-->
   </body>
 </html>

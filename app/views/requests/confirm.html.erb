@@ -1,0 +1,227 @@
+<%= render :partial => 'request_bar', :locals => {:status => 2} %>
+
+<h1>印刷依頼登録 <%= get_print_type_message %></h1>
+<div class="margintopArea">入力内容をご確認後、「上記の内容で依頼する」ボタンをクリックしてください。 </div>
+
+<% form_tag :controller => 'requests', :type => params[:type] do -%>
+<%= render :partial => 'hidden' %>
+
+<div class="margintopLargeArea captionArea">依頼人情報</div>
+<div class="margintopArea">入力された依頼人の情報を表示しています。</div>
+<div class="margintopArea">
+  <ul>
+    <li>
+<% unless params[:tenji_request]['regist_user']=='0' %>
+      入力した名前・住所等を登録する。
+<% else %>
+      入力した名前・住所等を登録しない。
+<% end %>
+    </li>
+  </ul>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">メールアドレス：</div>
+  <div class="formContent">
+    <%= h current_user.email %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">郵便番号(半角英数)：</div>
+  <div class="formContent">
+    <%= h @tenji_request.from_zip_code1 %> - <%= h @tenji_request.from_zip_code2 %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">住所(都道府県)：</div>
+  <div class="formContent">
+    <%= h @tenji_request.from_user_address1 %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">市区郡：</div>
+  <div class="formContent">
+    <%= h @tenji_request.from_user_address2 %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">町村字：</div>
+  <div class="formContent">
+    <%= h @tenji_request.from_user_address3 %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">番　地：</div>
+  <div class="formContent">
+    <%= h @tenji_request.from_user_address4 %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">建物名：</div>
+  <div class="formContent">
+    <%= h view_blank_check(@tenji_request.from_user_address5) %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">会社名：</div>
+  <div class="formContent">
+    <%= h view_blank_check(@tenji_request.from_lastname_kanji) %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">部署名：</div>
+  <div class="formContent">
+    <%= h view_blank_check(@tenji_request.from_lastname_kana) %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">氏名：</div>
+  <div class="formContent">
+    <%= h view_blank_check(@tenji_request.from_firstname_kanji) %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">電話番号(半角英数)：</div>
+  <div class="formContent">
+    <%= h view_blank_check("#{@tenji_request.from_phone_number1} - #{@tenji_request.from_phone_number2} - #{@tenji_request.from_phone_number3}") %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">携帯電話番号(半角英数)：</div>
+  <div class="formContent">
+    <%= h view_blank_check("#{@tenji_request.from_cellphone_number1} - #{@tenji_request.from_cellphone_number2} - #{@tenji_request.from_cellphone_number3}") %>
+  </div>
+</div>
+
+<div class="margintopLargeArea captionArea">発送先情報</div>
+<div class="margintopArea">入力された発送先の情報を表示しています。</div>
+<% if params[:tenji_request]['same_address']=='1' %>
+<div class="margintopArea">
+  <ul><li>依頼人の住所に送付する。</li></ul>
+</div>
+<% else %>
+<div class="margintopArea">
+  <div class="formCaption">郵便番号(半角英数)：</div>
+  <div class="formContent">
+    <%= h @tenji_request.to_zip_code1 %> - <%= h @tenji_request.to_zip_code2 %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">住所(都道府県)：</div>
+  <div class="formContent">
+    <%= h @tenji_request.to_user_address1 %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">市区郡：</div>
+  <div class="formContent">
+    <%= h @tenji_request.to_user_address2 %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">町村字：</div>
+  <div class="formContent">
+    <%= h @tenji_request.to_user_address3 %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">番　地：</div>
+  <div class="formContent">
+    <%= h @tenji_request.to_user_address4 %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">建物名：</div>
+  <div class="formContent">
+    <%= h view_blank_check(@tenji_request.to_user_address5) %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">会社名：</div>
+  <div class="formContent">
+    <%= h view_blank_check(@tenji_request.to_lastname_kanji) %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">部署名：</div>
+  <div class="formContent">
+    <%= h view_blank_check(@tenji_request.to_lastname_kana) %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">氏名：</div>
+  <div class="formContent">
+    <%= h view_blank_check(@tenji_request.to_firstname_kanji) %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">電話番号(半角英数)：</div>
+  <div class="formContent">
+    <%= h view_blank_check("#{@tenji_request.to_phone_number1} - #{@tenji_request.to_phone_number2} - #{@tenji_request.to_phone_number3}") %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">携帯電話番号(半角英数)：</div>
+  <div class="formContent">
+    <%= h view_blank_check("#{@tenji_request.to_cellphone_number1} - #{@tenji_request.to_cellphone_number2} - #{@tenji_request.to_cellphone_number3}") %>
+  </div>
+</div>
+<% end %>
+
+<div class="margintopLargeArea captionArea">依頼情報</div>
+<div class="margintopArea">入力された依頼の情報を表示しています。</div>
+<div class="margintopArea">
+  <div class="formCaption">タイトル：</div>
+  <div class="formContent">
+    <%= h @tenji_request.req_title %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">見出し1：</div>
+  <div class="formContent">
+    <%= h @tenji_request.sub_title1 %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">内容1：</div>
+  <div class="formContent">
+    <%= hbr(view_blank_check(h @tenji_request.entry1)) %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">見出し2：</div>
+  <div class="formContent">
+    <%= h view_blank_check(@tenji_request.sub_title2) %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">内容2：</div>
+  <div class="formContent">
+    <%= h view_blank_check(@tenji_request.entry2) %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">見出し3：</div>
+  <div class="formContent">
+    <%= h view_blank_check(@tenji_request.sub_title3) %>
+  </div>
+</div>
+<div class="margintopArea">
+  <div class="formCaption">内容3：</div>
+  <div class="formContent">
+    <%= hbr(view_blank_check(@tenji_request.entry3)) %>
+  </div>
+</div>
+
+<div class="margintopArea">
+  <div class="divLeft">
+    <%= submit_tag '上記の内容で登録する', :name => 'next_page', :disable_with => 'しばらくお待ちください。' %>
+  <% end -%>
+  </div>
+  
+  <% form_tag :controller => 'requests', :action => 'new',:type => params[:type] do -%>
+  <%= render :partial => 'hidden' %>
+  <div>
+    <%= submit_tag '前画面へ戻る', :name => 'back_page', :disable_with => 'しばらくお待ちください。' %>
+  <% end -%>
+  </div>
+</div>

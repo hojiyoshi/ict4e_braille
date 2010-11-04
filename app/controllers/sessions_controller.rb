@@ -2,44 +2,48 @@
 class SessionsController < ApplicationController
   skip_before_filter :login_required
 
-  # render new.erb.html
-  def new
-    @title = 'ログイン'
-    # ログイン済みならば、ホームにリダイレクトさせる。
-    redirect_to '/' unless current_user.blank?
-  end
-
   def create
     logout_keeping_session!
-    user = User.authenticate(params[:login], params[:password])
+    # 認証処理を行う。
+    user = User.authenticate(params[:users][:email], params[:users][:password])
+    # 認証OKの場合
     if user
       # Protects against session fixation attacks, causes request forgery
       # protection if user resubmits an earlier form using back
       # button. Uncomment if you understand the tradeoffs.
       # reset_session
+      #
+      # Userオブジェクトの値を変数に置く。
       self.current_user = user
-      new_cookie_flag = (params[:remember_me] == "1")
-      handle_remember_cookie! new_cookie_flag
-      redirect_back_or_default('/')
-      flash[:notice] = "Logged in successfully"
+      # メールアドレスの初期値をCookieに保存させておく。
+      cookies[:user_email] = {:value => params[:users]['email'], :expires => 1.months.from_now}
+      # 点字印刷依頼ページにリダイレクトさせる。
+      redirect_to :controller => 'requests', :action => 'new', :data_type => params[:users][:data_type]
+
+    # 認証NGの場合
     else
+      # NGの時の処理
       note_failed_signin
-      @login       = params[:login]
-      @remember_me = params[:remember_me]
-      render :action => 'new'
+      # 点字印刷トップページにリダイレクトさせる。
+      # たぶん、入力値が保持されない…
+      redirect_to :controller => 'tenji'
     end
   end
 
+=begin
   def destroy
     logout_killing_session!
     flash[:notice] = "You have been logged out."
     redirect_back_or_default('/')
   end
-
+=end
+  
 protected
-  # Track failed login attempts
+  # ログイン失敗時の処理
   def note_failed_signin
-    flash[:error] = "Couldn't log you in as '#{params[:login]}'"
+    # 失敗時のメッセージをflashに保存しておく。（メッセージの表示させないが、値の有無だけ見ている。）
+    flash[:error] = 'メールアドレス、またはパスワードが間違っています。'
+    # ログファイルに残しておく。
     logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now.utc}"
   end
 end

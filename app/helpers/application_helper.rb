@@ -14,4 +14,19 @@ module ApplicationHelper
   def get_progress_status(status, num)
     return 'current_' if status == num
   end
+
+  # 任意項目の入力表示チェック
+  def view_blank_check(value)
+    unless value.blank?
+      return value
+    else
+      return '（情報が入力されていません。）'
+    end
+  end
+
+  # 改行コードを含む文字列を出力するための変換メソッド
+  def hbr(target)
+    target = html_escape(target)
+    target.gsub(/\r\n|\r|\n/, "<br />")
+  end
 end

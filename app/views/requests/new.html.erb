@@ -1,230 +1,215 @@
-<%= render :partial => 'request_bar', :locals => {:status => 1} %>
-<h1>印刷依頼登録 テンプレート入力</h1>
-<div class="margintopArea">必要事項の入力後、「確認画面へ進む」ボタンをクリックしてください。</div>
-<div class="spacer"></div>
-<div class="margintopArea">発送元と発送先が同一でも入力が必要です。</div>
-<div class="margintopArea">利用者登録で入力した住所・氏名などが、既に発送元の情報として入力された状態になっています。</div>
-<div class="margintopArea">変更する場合は、入力済の情報を削除するか、上書きして入力してください。</div>
-<div class="spacer"></div>
-<div class="margintopArea">郵便番号、電話番号、携帯電話番号はハイフンで区切って入力します。</div>
-<div class="margintopArea">
-  <strong>*</strong>が付いている項目は必須項目です。<strong>会社名、氏名のどちらかは必ず記入をお願いします。</strong>
+<script type="text/JavaScript">
+
+<!--
+window.onload=function(){
+  setToForm(this);
+}
+//-->
+</script>
+<h1 id="honbun">印刷依頼情報<%= '：エラー' unless error_messages_for('tenji_request').blank? %></h1>
+<p>
+  <% if error_messages_for('tenji_request').blank? %>
+  依頼人情報、お届け先、印刷依頼データを入力して、「確認画面へ」ボタンを押してください。
+  <% else %>
+  エラー内容を確認し、入力情報を修正後、「確認画面へ」ボタンを押してください。
+  <% end %>
+</p>
+<%= error_messages_for 'tenji_request' %>
+<% form_tag({:controller => 'requests', :action => 'confirm', :data_type => params[:data_type]},{:name=>'to_form',:method => :put}) do -%>
+  <% fields_for :tenji_request do |f| %>
+  <%= f.hidden_field(:data_type, :value => params[:data_type]) %>
+<h2>依頼人情報</h2>
+<table class="col">
+  <tr>
+    <th>Eメール</th>
+    <td><%= h current_user.email %></td>
+  </tr>
+  <tr>
+    <th><label for="name">お名前<span class="tCaution">(必須)</span></label></th>
+    <td>
+      <span class="fSmall">入力例：山田　花子</span><br />
+      <%= f.text_field :from_user_name, :id => 'name', :size => 30, :class => "textB fullwidth-kana", :required => "required" %>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="zip">郵便番号<span class="tCaution">(必須)</span></label></th>
+    <td>
+      <span class="fSmall">入力例：123-4567</span><br />
+      <%= f.text_field :from_zip_code, :id => "zip", :style => "ime-mode: disabled;", :size => "8", :maxlength => "8", :class=>"textC ascii", :required => "required"%>
+      <input id="auto_add" name="auto_add" type="button" value="住所を自動入力" class="btA" />
+    </td>
+  </tr>
+  <tr>
+    <th><label for="addr">住所<span class="tCaution">(必須)</span></label></th>
+    <td>
+      <span class="fSmall">入力例：愛媛県松山市1町目1番地</span><br />
+      <%= f.text_field :from_user_address1, :id => "addr", :size => "60", :class => "textA fullwidth-kana", :required => "required" %>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="bill">ビル･マンション</label></th>
+    <td>
+      <span class="fSmall">入力例：みんなのICTビル　101号室</span><br />
+      <%= f.text_field :from_user_address2, :id => "bill", :size => "60", :class => "textA fullwidth-kana" %>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="tel">電話番号</label></th>
+    <td>
+      <span class="fSmall">入力例：000-1234-5678（携帯電話可）</span><br />
+      <%= f.text_field :from_phone_number, :id => "tel", :style => "ime-mode: disabled;", :size => "15", :maxlength => "15", :class => "textB ascii" %>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="group">所属</label></th>
+    <td>
+      <span class="fSmall">会社･団体等</span><br />
+        <%= f.text_field 'from_user_affiliation', :id => "group", :size => "30", :class => "textB fullwidth-kana" %>
+    </td>
+  </tr>
+</table>
+
+<div class="boxB">
+  <p class="mNon">
+    <label for="entry" class="fBold">
+      <%= check_box :entry, :entry, :id => 'entry', :onClick => "setToForm(this);", :checked => true %>
+      入力した依頼人情報(名前･住所等)を登録する。
+    </label>
+  </p>
+  <p class="mNon fSmall">
+    ※チェックをいれると次回から入力する手間が省けます。<br />
+    ※登録済みの情報を編集すると登録済み情報に上書きされます。
+  </p>
 </div>
-<% form_tag({:controller => 'requests', :action => 'confirm'},{:method => :put}) do -%>
-<% fields_for :tenji_request do |f| %>
-<div class="margintopArea">
-  <table class='tableArea formtableWidth'>
+<h2>お届け先</h2>
+<fieldset>
+  <legend class="acc">お届け先の選択</legend>
+  <p>
+    <label for="to_type_same" class="fBold">
+      <%= f.radio_button :to_type, :to_type_same, {:id => 'data_type_same', :checked => true, :onClick => "setToForm();"} %>
+      依頼人の住所に送る
+    </label>
+  </p>
+  <p>
+    <label for="to_type_other" class="fBold">
+      <%= f.radio_button :to_type, :to_type_other, {:id => 'data_type_other', :onClick => "setToForm();"} %>
+      別の住所に送る
+    </label>
+  </p>
+</fieldset>
+<div class="indent">
+  <table class="col">
+    <caption>
+      別の住所
+    </caption>
     <tr>
-      <td class="captiontableArea">発送先情報</td>
-      <td class="formtableArea">
-        <div class="margintopArea">発送先の情報を入力してください。</div>
-        <div class="margintopArea">
-          <div class="formCaption"><strong>*</strong>郵便番号(半角英数)：</div>
-          <div>
-            <%= f.text_field 'to_zip_code1', :size => 10, :maxlength=>3 %> -
-            <%= f.text_field 'to_zip_code2', :size => 10, :maxlength=>4 %>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption"><strong>*</strong>住所(都道府県)：</div>
-          <div>
-            <%= f.collection_select(:to_user_address1,select_master_data('pref_name'),:item_data,:item_data,:prompt => '選択してください。') %>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption"><strong>*</strong>市区郡：</div>
-          <div>
-            <%= f.text_field 'to_user_address2', :size => 60, :maxlength=>100 %>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption"><strong>*</strong>町村字：</div>
-          <div>
-            <%= f.text_field 'to_user_address3', :size => 60, :maxlength=>100 %>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption"><strong>*</strong>番　地：</div>
-          <div>
-            <%= f.text_field 'to_user_address4', :size => 60, :maxlength=>100 %>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption">建物名：</div>
-          <div>
-            <%= f.text_field 'to_user_address5', :size => 60, :maxlength=>100 %>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption">会社名：</div>
-          <div>
-            <%= f.text_field 'to_lastname_kanji', :size => 60, :maxlength=>100 %>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption">部署名：</div>
-          <div>
-            <%= f.text_field 'to_lastname_kana', :size => 60, :maxlength=>100 %>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption">氏名：</div>
-          <div>
-            <%= f.text_field 'to_firstname_kanji', :size => 60, :maxlength=>100 %>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption">電話番号(半角英数)：</div>
-          <div>
-            <%= f.text_field 'to_phone_number1', :size => 10, :maxlength => 4 -%> -
-            <%= f.text_field 'to_phone_number2', :size => 10, :maxlength => 4 -%> -
-            <%= f.text_field 'to_phone_number3', :size => 10, :maxlength => 4 -%>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption">携帯電話番号(半角英数)：</div>
-          <div>
-            <%= f.text_field 'to_cellphone_number1', :size => 10, :maxlength => 4  %> -
-            <%= f.text_field 'to_cellphone_number2', :size => 10, :maxlength => 4  %> -
-            <%= f.text_field 'to_cellphone_number3', :size => 10, :maxlength => 4  %>
-          </div>
-        </div>
+      <th><label for="name2">お名前<span class="tCaution">(必須)</span></label></th>
+      <td>
+        <%= f.text_field :to_user_name, :id => 'name2', :size => 30, :class => "textB fullwidth-kana", :required => "required" %>
       </td>
     </tr>
     <tr>
-      <td class="captiontableArea">発送元情報</td>
-      <td class="formtableArea">
-        <div class="margintopArea">発送元の情報を入力してください。</div>
-        <div class="margintopArea">
-          <div class="formCaption"><strong>*</strong>郵便番号(半角英数)：</div>
-          <div>
-            <%= f.text_field 'from_zip_code1', :size => 10, :maxlength=>3 %> -
-            <%= f.text_field 'from_zip_code2', :size => 10, :maxlength=>4 %>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption"><strong>*</strong>住所(都道府県)：</div>
-          <div>
-            <%= f.collection_select(:from_user_address1,select_master_data('pref_name'),:item_data,:item_data,:prompt => '選択してください。') %>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption"><strong>*</strong>市区郡：</div>
-          <div>
-            <%= f.text_field 'from_user_address2', :size => 60, :maxlength=>100 %>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption"><strong>*</strong>町村字：</div>
-          <div>
-            <%= f.text_field 'from_user_address3', :size => 60, :maxlength=>100 %>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption"><strong>*</strong>番　地：</div>
-          <div>
-            <%= f.text_field 'from_user_address4', :size => 60, :maxlength=>100 %>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption">建物名：</div>
-          <div>
-            <%= f.text_field 'from_user_address5', :size => 60, :maxlength=>100 %>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption">会社名：</div>
-          <div>
-            <%= f.text_field 'from_lastname_kanji', :size => 60, :maxlength=>100 %>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption">部署名：</div>
-          <div>
-            <%= f.text_field 'from_lastname_kana', :size => 60, :maxlength=>100 %>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption">氏名：</div>
-          <div>
-            <%= f.text_field 'from_firstname_kanji', :size => 60, :maxlength=>100 %>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption">電話番号(半角英数)：</div>
-          <div>
-            <%= f.text_field 'from_phone_number1', :size => 10, :maxlength => 4 -%> -
-            <%= f.text_field 'from_phone_number2', :size => 10, :maxlength => 4 -%> -
-            <%= f.text_field 'from_phone_number3', :size => 10, :maxlength => 4 -%>
-          </div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption">携帯電話番号(半角英数)：</div>
-          <div>
-            <%= f.text_field 'from_cellphone_number1', :size => 10, :maxlength => 4  %> -
-            <%= f.text_field 'from_cellphone_number2', :size => 10, :maxlength => 4  %> -
-            <%= f.text_field 'from_cellphone_number3', :size => 10, :maxlength => 4  %>
-          </div>
-        </div>
+      <th><label for="zip2">郵便番号<span class="tCaution">(必須)</span></label></th>
+      <td>
+        <%= f.text_field :to_zip_code, :id => "zip2", :style => "ime-mode: disabled;", :size => "8", :maxlength => "8", :class=>"textC ascii", :required => "required"%>
       </td>
     </tr>
-    
     <tr>
-      <td class="captiontableArea">依頼情報</td>
-      <td class="formtableArea">
-        <div class="margintopArea">点字印刷の依頼情報を入力してください。</div>
-        <div class="margintopArea">
-          <div class="formCaption"><strong>*</strong>タイトル：</div>
-          <div><%= f.text_field 'req_title', :size => 60, :maxlength => 100 %></div>
-        </div>
-        <div class="spacer"></div>
-        
-        <% if params[:type] == 'form' %>
-        <div class="margintopArea">印刷情報の入力見出しは3つ分の入力欄があります。</div>
-        <% fields_for :file do |f| %>
-        <div class="margintopArea">
-          <div class="formCaption"><strong>*</strong>見出し1：</div>
-          <div><%= f.text_field 'sub_title1', :size => 60, :maxlength => 100 %></div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption"><strong>*</strong>内容1：</div>
-          <div><%= f.text_area 'entry1', :rows =>15, :cols =>50 %></div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption">見出し2：</div>
-          <div><%= f.text_field 'sub_title2', :size => 60, :maxlength => 100 %></div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption">内容2：</div>
-          <div><%= f.text_area 'entry2', :rows =>15, :cols =>50 %></div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption">見出し3：</div>
-          <div><%= f.text_field 'sub_title3', :size => 60, :maxlength => 100 %></div>
-        </div>
-        <div class="margintopArea">
-          <div class="formCaption">内容3：</div>
-          <div><%= f.text_area 'entry3', :rows =>15, :cols =>50 %></div>
-        </div>
-        <% end %>
-
-        <% elsif params[:type] == 'upload' %>
-        <div class="margintopArea">依頼データは、テキストボックスからの入力または参照ボタンでファイルを選択してください。</div>
-        <div class="margintopArea">
-          <div class="formCaption">依頼データ：</div>
-          <div><%= f.file_field 'temp_file', :title => '依頼データ参照' %></div>
-        </div>
-        <div class="spacer"></div>
-        <div class="margintopArea">ファイル名は半角英数字と一部の半角記号(._-)の使用が可能です。</div>
-        <div class="margintopArea">依頼データはWordデータ（.docまたは.docxファイル）もしくは点字データ(.Base又は.Besファイル)に限ります。</div>
-
-        <% end %>
+      <th><label for="addr2">住所<span class="tCaution">(必須)</span></label></th>
+      <td>
+        <%= f.text_field :to_user_address1, :id => "addr2", :size => "60", :class => "textA fullwidth-kana", :required => "required" %>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="bill2">ビル･マンション</label></th>
+      <td>
+        <%= f.text_field :to_user_address2, :id => "bill2", :size => "60", :class => "textA fullwidth-kana" %>
       </td>
     </tr>
   </table>
 </div>
+
+<!--テキスト入力の場合以下を表示-->
+<% if params[:data_type] == 'data_type_text' %>
+<h2>印刷依頼データ（テキスト入力）</h2>
+<p>点字印刷を依頼したいテキスト情報を入力してください。見出しは3つ分の入力欄があります。</p>
+<table class="col">
+  <tr>
+    <th><label for="print_name">タイトル<span class="tCaution">(必須)</span></label></th>
+    <td>
+      <%= f.text_field :print_name, :id => "print_name", :size => "30", :class => "textA fullwidth-kana", :required => "required" %>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="print_title1">サブタイトル1</label></th>
+    <td>
+      <%= f.text_field :print_title1, :id => "print_title1", :size => "30", :class => "textA fullwidth-kana" %>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="print_contents1">内容1<span class="tCaution">(必須)</span></label></th>
+    <td>
+      <%= f.text_field :print_contents1, :id => "print_contents1", :cols => 30, :class => "textareaA fullwidth-kana", :required => "required" %>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="print_title2">サブタイトル2</label></th>
+    <td>
+      <%= f.text_field :print_title2, :id => "print_title2", :size => "30", :class => "textA fullwidth-kana" %>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="print_contents2">内容2</label></th>
+    <td>
+      <%= f.text_field :print_contents2, :id => "print_contents2", :cols => 30, :class => "textareaA fullwidth-kana" %>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="print_title3">サブタイトル3</label></th>
+    <td>
+      <%= f.text_field :print_title3, :id => "print_title3", :size => "30", :class => "textA fullwidth-kana" %>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="print_contents3">内容3</label></th>
+    <td>
+      <%= f.text_field :print_contents3, :id => "print_contents3", :cols => 30, :class => "textareaA fullwidth-kana" %>
+    </td>
+  </tr>
+</table>
+<% elsif params[:data_type] == 'data_type_file' %>
+
+<!--ファイル添付の場合以下を表示-->
+<h2>印刷依頼データ（ファイル添付）</h2>
+<p>点字印刷を依頼したいファイルの情報を入力してください。</p>
+<table class="col">
+  <tr>
+    <th><label for="print_file_title">タイトル<span class="tCaution">(必須)</span></label></th>
+    <td>
+      <span class="fSmall">入力例：山田さんへの手紙</span><br />
+      <%= f.text_field :print_name, :id => "print_file_title", :size => "30", :class => "textA fullwidth-kana", :required => "required" %>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="print_file">添付ファイル<span class="tCaution">(必須)</span></label></th>
+    <td>
+      <p class="fSmall">
+        ファイル名は半角英数字と一部の半角記号(._-)の使用が可能です。<br />
+        依頼データはWordデータ（.doc又は.docxファイル）もしくは点字データ(.Base又は.Besファイル)に限ります。
+      </p>
+      <p><%= f.file_field :attached_file, :id => 'print_file', :size => '30', :required => 'required' %></p>
+</td></tr>
+</table>
 <% end %>
-<div class="margintopArea">
-  <%= submit_tag '確認画面へ進む', :name => 'next_page', :disable_with => 'しばらくお待ちください。' %>
+
+<h2>連絡事項</h2>
+<p>連絡事項があれば入力してください。</p>
+<p>
+  <%= f.text_field :message, :id => "message", :cols => 5, :class => "textareaB fullwidth-kana" %>
+</p>
+
+<p>
+  <%= submit_tag '確認画面へ', :id => 'next', :name => 'next', :disable_with => 'しばらくお待ちください。' %>
+</p>
+  <% end -%>
 <% end -%>
-</div>
