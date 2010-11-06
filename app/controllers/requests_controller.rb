@@ -2,7 +2,9 @@ class RequestsController < ApplicationController
   # 初期化メソッド（最初に呼ばれる）
   def initialize
     # ページタイトル/ナビゲーションタイトルの設定
-    @title = '印刷依頼の登録'
+    @title = '印刷依頼情報:遠隔点字印刷サービス：みんなのICT'
+    # ナビゲーションバーのタイトル
+    @nav_title = '印刷依頼　＞'
   end
   # 依頼登録画面
   # requests/new:GET
@@ -21,9 +23,9 @@ class RequestsController < ApplicationController
           :from_zip_code        => tenji_user.zip_code,
           :from_user_address1   => tenji_user.user_address1,
           :from_user_address2   => tenji_user.user_address2,
-          :from_lastname_kanji  => tenji_user.user_name,
-          :from_lastname_kana   => tenji_user.user_affiliation,
-          :from_phone_number1   => tenji_user.phone_number
+          :from_user_name  => tenji_user.user_name,
+          :from_user_affiliation   => tenji_user.user_affiliation,
+          :from_phone_number   => tenji_user.phone_number
         )
       end
     end
@@ -54,14 +56,29 @@ class RequestsController < ApplicationController
 
   def create
     @tenji_request = TenjiRequest.new(params[:tenji_request])
-    @tenji_request.req_id = current_user.tenji_user.id
+    @tenji_request.user_id = current_user.id
     # データベースに登録する。
     if @tenji_request.save
       # メールを送る。
     end
-    # 「入力した名前・住所等を登録する」チェックがされている場合
-    if params[:tenji_request]['entry']
 
+    # 「入力した名前・住所等を登録する」チェックがされている場合
+    if params[:entry]['entry'] == '1'
+      #
+      user = @tenji_request.user
+      if user.tenji_user.blank?
+        # 関連性よりTenjiUserオブジェクトを作成する。
+        user.build_tenji_user
+      end
+      # 依頼人の情報を点字印刷ユーザオブジェクトに代入する。
+      user.tenji_user.zip_code = @tenji_request.from_zip_code
+      user.tenji_user.user_name = @tenji_request.from_user_name
+      user.tenji_user.user_affiliation = @tenji_request.from_user_affiliation
+      user.tenji_user.phone_number = @tenji_request.from_phone_number
+      user.tenji_user.user_address1 = @tenji_request.from_user_address1
+      user.tenji_user.user_address2 = @tenji_request.from_user_address2
+      # 点字印刷ユーザオブジェクトを保存する。
+      user.tenji_user.save
     end
   end
 end

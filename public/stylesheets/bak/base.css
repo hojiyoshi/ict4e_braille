@@ -4,7 +4,7 @@
 	ファイル名: base.css
 	概要：基本スタイル設定
 	制作日: 2010/10/21
-	更新日: 2010/11/1
+	更新日: 2010/10/26
 ----------------------------------------------------------*/
 
 
@@ -173,19 +173,67 @@ header h1 {
 
 /*共通ナビ*/
 .mainNav {
-	position: absolute;
-	top: 130px;
-	width: 787px;
-	border-top: 3px solid #cccccc;
-	border-bottom: 3px solid #cccccc;
+    position: absolute;
+    top: 130px;
+    width: 780px;
+    border-top: 3px solid #cccccc;
+    border-bottom: 3px solid #cccccc;
+    background: #ffffff;
 }
 
 .mainNav li {
-	float: left;
-	border-right: 3px solid #cccccc;
+    float: left;
+    border-right: 3px solid #cccccc;
     height:58px;
 }
 
+
+.mainNav li a {
+    display:block;
+    height:58px;
+}
+
+
+.mainNav li.nav_know,
+.mainNav li.nav_know a {
+    width: 199px;
+    background: url(../images/nav_know_o.gif) no-repeat 0 0;
+}
+
+.mainNav li.nav_use,
+.mainNav li.nav_use a {
+	width: 198px;
+    background:url(../images/nav_use_o.gif) no-repeat 0 0;
+}
+
+.mainNav li.nav_read,
+.mainNav li.nav_read a {
+	width: 177px;
+    background:url(../images/nav_read_o.gif) no-repeat 0 0;
+}
+
+.mainNav li.nav_entry,
+.mainNav li.nav_entry a {
+ 	width: 193px;
+   background:url(../images/nav_entry_o.gif) no-repeat 0 0;
+}
+
+
+.mainNav li a:hover {
+    background-color:#ffffff; /*IE6動作用*/
+}
+
+
+#know .mainNav li.nav_know img,
+#use .mainNav li.nav_use img,
+#read .mainNav li.nav_read img,
+#entry .mainNav li.nav_entry img,
+.mainNav li a:hover img,
+.mainNav li a:focus img,
+.mainNav li a:active img {
+    width: 0;
+	height: 0;
+}
 
 
 
@@ -203,9 +251,9 @@ header h1 {
 ----------------------------------------------------------*/
 #contentsArea {
     margin: 0 300px 30px 15px;
-	background-color: #FFFFFF;
-	border: 3px solid #DFD0B3;
-	padding: 15px;
+    background-color: #FFFFFF;
+    border: 3px solid #DFD0B3;
+    padding: 15px;
 
 }
 
@@ -220,95 +268,95 @@ header h1 {
 aside {
     float : right;
     width: 285px;
-	margin-top: 20px;
-	margin-right: 15px;
-	background-color: #DFD0B3;
-	border-left: none;
+    margin-top: 20px;
+    margin-right: 15px;
+    background-color: #DFD0B3;
+    border-left: none;
 }
 
 /*サブメニュー*/
 aside nav {
-	margin: 18px 10px 18px 8px;
-	border-top: 3px solid #CCCCCC;
-	border-right: 3px solid #CCCCCC;
-	border-bottom: 2px solid #CCCCCC;
-	border-left: 3px solid #CCCCCC;
-	background-color: #FFFFFF;
+    margin: 18px 10px 18px 8px;
+    border-top: 3px solid #CCCCCC;
+    border-right: 3px solid #CCCCCC;
+    border-bottom: 2px solid #CCCCCC;
+    border-left: 3px solid #CCCCCC;
+    background-color: #FFFFFF;
 }
 
 
 aside nav h2 {
-	padding: 10px 10px 10px 13px;
-	font-size: 120%;
+    padding: 10px 10px 10px 38px;
+    font-size: 120%;
 }
 
 #know aside nav h2 {
-	background: #D9F0F0;
-	border-bottom: 3px solid #3586A8;
+    background: #D9F0F0 url(../images/tt_know.gif) no-repeat 15px 50%;
+    border-bottom: 3px solid #3586A8;
 }
 
 #use aside nav h2 {
-	background: #FFE59B;
-	border-bottom: 3px solid #FB5424;
+    background: #FFE59B url(../images/tt_use.gif) no-repeat 15px 50%;
+    border-bottom: 3px solid #FB5424;
 }
 
 #read aside nav h2 {
-	background: #FAD1D1;
-	border-bottom: 3px solid #FF3366;
+    background: #FAD1D1 url(../images/tt_read.gif) no-repeat 15px 50%;
+    border-bottom: 3px solid #FF3366;
 }
 
 #entry aside nav h2 {
-	background: #D2E5B7;
-	border-bottom: 3px solid #628811;
+    background: #D2E5B7 url(../images/tt_entry.gif) no-repeat 15px 50%;
+    border-bottom: 3px solid #628811;
 }
 
 aside nav li {
-	border-bottom: 1px solid #CCCCCC;
-	font-weight: bold;
+    border-bottom: 1px solid #CCCCCC;
+    font-weight: bold;
 }
 
 aside nav li li {
-	border: none;
-	font-weight: normal;
-	font-size: 95%;
-	padding-left: 1em;
+    border: none;
+    font-weight: normal;
+    font-size: 95%;
+    padding-left: 1em;
 }
 
 aside nav li a {
-	padding: 5px 10px;
-	display: block;
+    padding: 5px 10px;
+    display: block;
 }
 
 aside nav li a:hover,
 aside nav li a:focus,
 aside nav li a:active {
-	background-color:#F0F0F0;
+    background-color:#F0F0F0;
 }
 
 
 aside nav li.selected {
-	background-color:#F0F0F0;
-	padding: 5px 10px;
+    background-color:#F0F0F0;
+    padding: 5px 10px;
 }
 
 aside nav li.selected a {
-	background-color:#F0F0F0;
-	padding: 0;
+    background-color:#F0F0F0;
+    padding: 0;
 }
 
 aside nav li.selected a:hover,
 aside nav li.selected a:focus,
 aside nav li.selected a:active {
-	background-color:#F0F0F0;
+    background-color:#F0F0F0;
 }
 
 aside nav li li.selected,
 aside nav li li a {
-	padding-left: 30px;
+    padding-left: 30px;
 }
 
 aside nav li li.selected a {
-	padding: 0;
+    padding: 0;
 }
 
 
@@ -316,54 +364,54 @@ aside nav li li.selected a {
  8-フッタエリア
 ----------------------------------------------------------*/
 footer {
-	clear: both;
-	width: 100%;
-	background: #6A4800 url(../images/footer_back.gif) repeat-x 0 0;
+    clear: both;
+    width: 100%;
+    background: #6A4800 url(../images/footer_back.gif) repeat-x 0 0;
 }
 
 footer div {
-	padding: 70px 30px 30px 30px;
-	background: url(../images/footer_town.gif) no-repeat right top;
-	zoom: 1;
+    padding: 70px 30px 30px 30px;
+    background: url(../images/footer_town.gif) no-repeat right top;
+    zoom: 1;
 }
 
 
 /*リンク*/
 footer  ul {
-	zoom:1;
+    zoom:1;
 }
 
 footer li {
-	float: left;
-	margin-right: 20px;
+    float: left;
+    margin-right: 20px;
 }
 
 footer li a {
-	color: #FFFFFF !important;
-	background: url(../images/link_b.gif) no-repeat 0 50%;
-	padding-left: 20px;
+    color: #FFFFFF !important;
+    background: url(../images/link_b.gif) no-repeat 0 50%;
+    padding-left: 20px;
 }
 
 
 /*サイト運営者情報*/
 footer address {
-	clear: both;
-	padding-top: 33px;
-	color:#ECE9D8;
-	font-size: 93%;
+    clear: both;
+    padding-top: 33px;
+    color:#ECE9D8;
+    font-size: 93%;
 }
 
 footer address span {
-	font-weight: bold;
-	font-size: large;
+    font-weight: bold;
+    font-size: large;
 }
 
 footer .copy {
-	text-align: right;
-	margin-top: 10px;
-	font-family:Arial, Helvetica, sans-serif;
-	color:#ECE9D8;
-	font-size: 85%;
+    text-align: right;
+    margin-top: 10px;
+    font-family:Arial, Helvetica, sans-serif;
+    color:#ECE9D8;
+    font-size: 85%;
 }
 
 

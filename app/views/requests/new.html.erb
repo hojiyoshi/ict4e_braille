@@ -15,7 +15,7 @@ window.onload=function(){
   <% end %>
 </p>
 <%= error_messages_for 'tenji_request' %>
-<% form_tag({:controller => 'requests', :action => 'confirm', :data_type => params[:data_type]},{:name=>'to_form',:method => :put}) do -%>
+<% form_tag({:controller => 'requests', :action => 'confirm'},{:name=>'to_form',:method => :put}) do -%>
   <% fields_for :tenji_request do |f| %>
   <%= f.hidden_field(:data_type, :value => params[:data_type]) %>
 <h2>依頼人情報</h2>
@@ -149,7 +149,7 @@ window.onload=function(){
   <tr>
     <th><label for="print_contents1">内容1<span class="tCaution">(必須)</span></label></th>
     <td>
-      <%= f.text_field :print_contents1, :id => "print_contents1", :cols => 30, :class => "textareaA fullwidth-kana", :required => "required" %>
+      <%= f.text_area :print_contents1, :id => "print_contents1", :cols => 30, :class => "textareaA fullwidth-kana", :required => "required" %>
     </td>
   </tr>
   <tr>
@@ -161,7 +161,7 @@ window.onload=function(){
   <tr>
     <th><label for="print_contents2">内容2</label></th>
     <td>
-      <%= f.text_field :print_contents2, :id => "print_contents2", :cols => 30, :class => "textareaA fullwidth-kana" %>
+      <%= f.text_area :print_contents2, :id => "print_contents2", :cols => 30, :class => "textareaA fullwidth-kana" %>
     </td>
   </tr>
   <tr>
@@ -173,12 +173,12 @@ window.onload=function(){
   <tr>
     <th><label for="print_contents3">内容3</label></th>
     <td>
-      <%= f.text_field :print_contents3, :id => "print_contents3", :cols => 30, :class => "textareaA fullwidth-kana" %>
+      <%= f.text_area :print_contents3, :id => "print_contents3", :cols => 30, :class => "textareaA fullwidth-kana" %>
     </td>
   </tr>
 </table>
-<% elsif params[:data_type] == 'data_type_file' %>
 
+<% elsif params[:data_type] == 'data_type_file' %>
 <!--ファイル添付の場合以下を表示-->
 <h2>印刷依頼データ（ファイル添付）</h2>
 <p>点字印刷を依頼したいファイルの情報を入力してください。</p>
@@ -205,7 +205,7 @@ window.onload=function(){
 <h2>連絡事項</h2>
 <p>連絡事項があれば入力してください。</p>
 <p>
-  <%= f.text_field :message, :id => "message", :cols => 5, :class => "textareaB fullwidth-kana" %>
+  <%= f.text_area :message, :id => "message", :cols => 5, :class => "textareaB fullwidth-kana" %>
 </p>
 
 <p>

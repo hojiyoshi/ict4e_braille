@@ -2,6 +2,7 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
   has_one :tenji_user
+  has_many :tenji_requests
   
   include Authentication
   include Authentication::ByPassword

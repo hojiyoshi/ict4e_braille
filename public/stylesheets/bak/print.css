@@ -1,0 +1,100 @@
+@charset "utf-8";
+
+/*--------------------------------------------------------
+	ファイル名: print.css
+	概要：印刷スタイル設定
+	制作日: 2010/10/21
+	更新日: 2010/10/21
+----------------------------------------------------------*/
+
+html{
+	background: #FFFFFF none !important;
+}
+
+body {
+	color: #000000 !important;
+	line-height:1.65;
+	background: #FFFFFF none !important;
+	width: auto !important;
+	font-size: 10pt !important;
+}
+
+header {
+	height: 2cm !important;
+	margin-bottom: 0 !important;
+	background: #ffffff none !important;
+}
+
+header h1 {
+	top: 0 !important;
+	left: 0 !important;
+}
+
+
+header h1 img{
+	width: 205px !important;
+	height: 55px !important;
+
+}
+
+
+nav ul {
+	display: none !important;
+	width: 0 !important;
+	height: 0 !important;
+}
+
+#container {
+    margin-right :  0  !important;
+}
+
+
+#contentsArea {
+    margin: 0  !important;
+    padding: 0  !important;
+	background-color: #FFFFFF !important;
+	border: none !important;
+}
+
+p.pagetop,
+aside {
+	display: none !important;
+	width: 0 !important;
+	height: 0 !important;
+	border: none !important;
+}
+
+/*フッター
+--------------------------------------------------*/
+footer {
+	background: #FFFFFF none !important;
+	margin-top: 3cm !important;
+}
+
+footer div {
+	padding: 0 !important;
+	background: #FFFFFF none !important;
+}
+
+
+footer ul {
+	display: none !important;
+}
+
+
+footer address {
+	padding-top: 0 !important;
+	color: #000000 !important;
+	background: #FFFFFF none !important;
+}
+
+footer address span {
+	font-size: 10pt !important;
+}
+
+
+footer .copy {
+	margin-top: 0 !important;
+	color: #000000 !important;
+	background: #FFFFFF none !important;
+}

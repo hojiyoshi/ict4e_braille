@@ -1,5 +1,5 @@
 class TenjiRequest < ActiveRecord::Base
-  belongs_to :tenji_user
+  belongs_to :user
   
   attr_accessor :to_type
   
@@ -72,7 +72,7 @@ class TenjiRequest < ActiveRecord::Base
 
   protected    
     def before_save
-      self.data_name = Time.now.strftime("%Y%m%d%H%M%S") + '.xml'
-      self.req_date = Time.now
+      self.braille_xmlfile = Time.now.strftime("%Y%m%d%H%M%S") + '.xml'
+      #self.req_date = Time.now
     end
 end

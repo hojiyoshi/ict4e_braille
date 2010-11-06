@@ -13,8 +13,7 @@ class CreateTenjiRequests < ActiveRecord::Migration
       t.string   :to_phone_number,       :limit => 64
       t.string   :to_user_address1,      :limit => 255, :null => false
       t.string   :to_user_address2,      :limit => 255
-      t.integer  :tenji_user_id,         :null => false
-      t.datetime :req_date,              :null => false
+      t.integer  :user_id,         :null => false
       t.string   :print_name,            :limit => 255, :null => false
       t.string   :print_title1,          :limit => 255
       t.string   :print_title2,          :limit => 255

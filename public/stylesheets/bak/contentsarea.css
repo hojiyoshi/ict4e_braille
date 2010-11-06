@@ -4,39 +4,33 @@
 	ファイル名: contentsarea.css
 	概要: コンテンツエリア限定スタイル
 	制作日: 2010/10/21
-	更新日: 2010/11/1
+	更新日: 2010/10/26
 
 ----------------------------------------------------------*/
-
 
 /*見出し1
 ----------------------------------------------------------*/
 #contentsArea h1 {
-	padding: 10px 15px;
+	padding: 10px 10px 10px 50px;
 	font-size: 150%;
 	margin-bottom: 15px;
-	background: #D9EBFF;
-	border: 3px solid #D9EBFF;
+	background: #D9EBFF url(../images/tt_common.gif) no-repeat 15px 50%;
 }
 
 #know #contentsArea h1 {
-	background: #D9F0F0;
-	border: 3px solid #D9F0F0;
+	background: #D9F0F0 url(../images/tt_know.gif) no-repeat 15px 50%;
 }
 
 #use #contentsArea h1 {
-	background: #FFE59B;
-	border: 3px solid #FFE59B;
+	background: #FFE59B url(../images/tt_use.gif) no-repeat 15px 50%;
 }
 
 #read #contentsArea h1 {
-	background: #FAD1D1;
-	border: 3px solid #FAD1D1;
+	background: #FAD1D1 url(../images/tt_read.gif) no-repeat 15px 50%;
 }
 
 #entry #contentsArea h1 {
-	background: #D2E5B7;
-	border: 3px solid #D2E5B7;
+	background: #D2E5B7 url(../images/tt_entry.gif) no-repeat 15px 50%;
 }
 
 
@@ -74,26 +68,25 @@
 /*見出し3
 ----------------------------------------------------------*/
 #contentsArea h3 {
-	padding: 3px 3px 3px 8px;
+	padding: 3px 3px 3px 20px;
 	font-size: 110%;
 	margin-bottom: 15px;
-	border-left: 3px solid #0060C0;
 }
 
 #know #contentsArea h3 {
-	border-left: 3px solid #3586A8;
+	background: url(../images/tt_know_s.gif) no-repeat 0 50%;
 }
 
 #use #contentsArea h3 {
-	border-left: 4px solid #FB5424;
+	background: url(../images/tt_use_s.gif) no-repeat 0 50%;
 }
 
 #read #contentsArea h3 {
-	border-left: 3px solid #FF3366;
+	background: url(../images/tt_read_s.gif) no-repeat 0 50%;
 }
 
 #entry #contentsArea h3 {
-	border-left: 3px solid #628811;
+	background: url(../images/tt_entry_s.gif) no-repeat 0 50%;
 }
 
 
@@ -104,22 +97,9 @@
 }
 
 #contentsArea p {
-	margin: 0  5px 15px 10px;
+	margin-bottom: 15px;
 }
 
-#contentsArea .supple {
-	font-size: 90%;
-	color: #3586A8;
-	font-weight: bold;
-}
-
-#know #contentsArea .supple {
-	color: #3586A8;
-}
-
-#read #contentsArea .supple {
-	color: #FF3366;
-}
 
 
 /*リスト
@@ -269,13 +249,8 @@
 
 #contentsArea .tCaution {
 	color:#CC0000;
-	font-weight: bold;
 }
 
-#contentsArea .fNum {
-	font-weight: bold;
-	padding-right: 3px;
-}
 
 /*余白
 ----------------------------------------------------------*/
