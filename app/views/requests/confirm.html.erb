@@ -1,6 +1,7 @@
 <h1 id="honbun">印刷依頼情報：確認</h1>
 <p>以下の内容でよろしければ、「この内容で印刷依頼する」ボタンを押してください。</p>
-<% form_tag :controller => 'requests', :type => params[:type] do -%>
+<% form_tag({:controller => 'requests'}) do -%>
+<%= file_column_field 'tenji_request', 'braille_datafile' %>
 <%= render :partial => 'hidden' %>
 <%= hidden_field(:entry, :entry, :value => params[:entry]['entry']) %>
 <h2>依頼人情報</h2>
@@ -55,7 +56,7 @@
 </table>
 
 <!--テキスト入力の場合以下を表示-->
-<% if params[:data_type] == 'data_type_text' %>
+<% if @tenji_request.data_type == "data_type_text" %>
 <h2>印刷依頼データ（テキスト入力）</h2>
 <table class="col">
   <tr>
@@ -87,18 +88,19 @@
     <td><%= h @tenji_request.print_contents3 %></td>
   </tr>
 </table>
-
-<% elsif params[:data_type] == 'data_type_file' %>
+<% elsif params[:tenji_request][:data_type] == 'data_type_file' %>
 <!--ファイル添付の場合以下を表示-->
 <h2>印刷依頼データ（ファイル添付）</h2>
 <table class="col">
   <tr>
     <th>タイトル</th>
-    <td>サンプル</td>
+    <td><%= h @tenji_request.print_name %></td>
   </tr>
   <tr>
     <th>添付ファイル</th>
-    <td>*****.doc</td>
+    <td>
+<%= # h @tenji_request.braille_datafile.original_filename
+%></td>
   </tr>
 </table>
 <% end %>

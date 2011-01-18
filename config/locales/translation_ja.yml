@@ -61,7 +61,7 @@ ja:
         cellphone_email: "携帯電話メールアドレス"  #g
 
       user: 
-        email: "email"  #g
+        email: "Eメール"  #g
         crypted_password: "crypted_password"  #g
         salt: "salt"  #g
         remember_token: "トークンしています。"  #g

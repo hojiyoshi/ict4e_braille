@@ -6,7 +6,7 @@
   入力されたユーザー情報のメールアドレスもしくはパスワードが正しくありません。登録されているユーザー情報を入力してください。
   <% end %>
 </p>
-<p>ユーザー登録されていない方は、事前に「<%= link_to 'ユーザ新規登録', select_master_data('ict4e_regist_url',:first) + 'signup' %>」が必要です。</p>
+<p>ユーザー登録されていない方は、事前に「<%= link_to 'ユーザ新規登録', ICT4E_ACCOUNTS_URL + 'signup' %>」が必要です。</p>
 <% form_tag :controller => 'sessions', :action => 'create' do -%>
   <% fields_for :users do |f| %>
 <h2>登録済みユーザー情報</h2>

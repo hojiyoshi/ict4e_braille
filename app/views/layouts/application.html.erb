@@ -29,7 +29,7 @@
         </ul>
         <ul class="mainNav">
           <li class="nav_know"><%= link_to(image_tag('nav_know.gif', :size => '199x58', :alt =>'知る',:border=>0), "http://archism.jp/ict4e/know/") %></li>
-          <li class="nav_use"><%= link_to(image_tag('nav_use.gif', :size => '198x58', :alt =>'使う',:border=>0), "http://archism.jp/ict4e/know/") %></li>
+          <li class="nav_use"><%= link_to(image_tag('nav_use_o.gif', :size => '198x58', :alt =>'使う',:border=>0), "http://archism.jp/ict4e/know/") %></li>
           <li class="nav_read"><%= link_to(image_tag('nav_read.gif', :size => '177x58', :alt =>'読む',:border=>0), "http://archism.jp/ict4e/know/") %></li>
           <li class="nav_entry"><%= link_to(image_tag('nav_entry.gif', :size => '193x58', :alt =>'参加',:border=>0), "http://archism.jp/ict4e/know/") %></li>
         </ul>
@@ -62,8 +62,8 @@
       <nav>
         <h2>「使う」メニュー</h2>
         <ul>
-          <li><a href="../rinamn/">RAINMAN(レインマン)</a></li>
-          <li><a href="../youyaku/">要約筆記依頼サービス</a></li>
+          <li><a href="../rainman/">RAINMAN(レインマン)</a></li>
+          <li><a href="../brailleml/">BrailleML（ブレイル　エムエル）</a></li>
           <li class="selected">
             <a href="index.php">遠隔点字印刷サービス</a>
             <ul>
@@ -73,8 +73,8 @@
               <li><a>印刷依頼</a></li>
             </ul>
           </li>
+          <li><a href="../youyaku/">要約筆記依頼サービス</a></li>
           <li><a href="../user/">ユーザー登録・変更</a></li>
-          <li><a href="../rule/">利用規約</a></li>
         </ul>
       </nav>
     </aside>
@@ -94,5 +94,17 @@
       </div>
     </footer>
     <!--footer[END]-->
+    
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-19615620-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </body>
 </html>

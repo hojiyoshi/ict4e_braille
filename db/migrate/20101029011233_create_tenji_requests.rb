@@ -18,11 +18,11 @@ class CreateTenjiRequests < ActiveRecord::Migration
       t.string   :print_title1,          :limit => 255
       t.string   :print_title2,          :limit => 255
       t.string   :print_title3,          :limit => 255
-      t.text     :print_contents1,       :null => false
+      t.text     :print_contents1
       t.text     :print_contents2
       t.text     :print_contents3
       t.string   :attached_file,         :limit => 255
-      t.string   :braille_xmlfile,       :limit => 255
+      t.string   :braille_datafile,       :limit => 255
       t.text     :message
       t.datetime :created_at
       t.datetime :updated_at

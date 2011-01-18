@@ -15,7 +15,7 @@ window.onload=function(){
   <% end %>
 </p>
 <%= error_messages_for 'tenji_request' %>
-<% form_tag({:controller => 'requests', :action => 'confirm'},{:name=>'to_form',:method => :put}) do -%>
+<% form_tag({:controller => 'requests', :action => 'confirm'},{:name=>'to_form',:multipart=>true, :method => :put}) do -%>
   <% fields_for :tenji_request do |f| %>
   <%= f.hidden_field(:data_type, :value => params[:data_type]) %>
 <h2>依頼人情報</h2>
@@ -130,7 +130,7 @@ window.onload=function(){
 </div>
 
 <!--テキスト入力の場合以下を表示-->
-<% if params[:data_type] == 'data_type_text' %>
+<% if params[:data_type] == 'data_type_text' || @tenji_request.data_type == "data_type_text"%>
 <h2>印刷依頼データ（テキスト入力）</h2>
 <p>点字印刷を依頼したいテキスト情報を入力してください。見出しは3つ分の入力欄があります。</p>
 <table class="col">
@@ -178,7 +178,7 @@ window.onload=function(){
   </tr>
 </table>
 
-<% elsif params[:data_type] == 'data_type_file' %>
+<% elsif params[:data_type] == 'data_type_file' || @tenji_request.data_type == "data_type_file" %>
 <!--ファイル添付の場合以下を表示-->
 <h2>印刷依頼データ（ファイル添付）</h2>
 <p>点字印刷を依頼したいファイルの情報を入力してください。</p>
@@ -197,7 +197,10 @@ window.onload=function(){
         ファイル名は半角英数字と一部の半角記号(._-)の使用が可能です。<br />
         依頼データはWordデータ（.doc又は.docxファイル）もしくは点字データ(.Base又は.Besファイル)に限ります。
       </p>
-      <p><%= f.file_field :attached_file, :id => 'print_file', :size => '30', :required => 'required' %></p>
+      <p>
+<%= file_column_field "tenji_request", "braille_datafile"%>
+<%= #f.file_field :braille_datafile, :id => 'braille_datafile', :size => '30', :required => 'required'
+%></p>
 </td></tr>
 </table>
 <% end %>

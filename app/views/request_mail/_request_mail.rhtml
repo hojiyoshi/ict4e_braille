@@ -1,0 +1,49 @@
+<% request = TenjiUser.find(:first, :conditions => ['id = ?',@user.req_id])
+   # In a "<%=　％>", the search or method of access to the server to stop it from the added cost.
+   # So, the method of access by "<%　％>" is better done at once, and I think.
+   user = User.find(:first, :conditions => ['id = ?',request.send('user_id')])
+   user_account = user.send('email')
+   to_address = @user.to_user_address1 + @user.to_user_address2 + @user.to_user_address3 + @user.to_user_address4 + @user.to_user_address5
+   to_phone_number = "#{@user.to_phone_number1} - #{@user.to_phone_number2} - #{@user.to_phone_number3}"
+   to_cellphone_number = "#{@user.to_cellphone_number1} - #{@user.to_cellphone_number2} - #{@user.to_cellphone_number3}"
+   from_address = @user.from_user_address1 + @user.from_user_address2 + @user.from_user_address3 + @user.from_user_address4 + @user.from_user_address5
+   from_phone_number = "#{@user.from_phone_number1} - #{@user.from_phone_number2} - #{@user.from_phone_number3}"
+   from_cellphone_number = "#{@user.from_cellphone_number1} - #{@user.from_cellphone_number2} - #{@user.from_cellphone_number3}"
+%>
+<%= user_account %>様より点字印刷の依頼を承っております。
+
+以下のリンクより、依頼データのダウンロードを行うことができます。
+<%= @url %>
+
+◆タイトル
+<%= @user.req_title %>
+
+◆依頼データ名
+<%= @user.data_name %>
+
+◆発送先の情報
+〒<%= @user.to_zip_code %>
+<%= to_address %>
+
+　<%= @user.to_lastname_kanji %><%= @user.to_lastname_kana %>
+　　　<%= @user.to_firstname_kanji %>
+
+　TEL：<%= to_phone_number %>
+　携帯電話番号：<%= to_cellphone_number %>
+
+
+◆発送元の情報
+〒<%= @user.from_zip_code %>
+<%= from_address %>
+
+　<%= @user.from_lastname_kanji %><%= @user.from_lastname_kana %>
+　　　<%= @user.from_firstname_kanji %>
+
+　TEL：<%= from_phone_number %>
+　携帯電話番号：<%= from_cellphone_number %>
+
+
+今後ともよろしくお願い申し上げます。
+
+お問い合わせ：<%= @office %>
+URL：<%= @ict4everyone_name %>

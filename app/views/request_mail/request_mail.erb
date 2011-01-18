@@ -1,0 +1,30 @@
+<%= @request.from_user_name %>様より点字印刷の依頼を承っております。
+
+以下のリンクより、依頼データのダウンロードを行うことができます。
+<%= @url %>
+
+◆タイトル
+<%= @request.print_name %>
+
+◆依頼データ名
+<%= @request.braille_datafile %>
+
+◆発送先の情報
+〒<%= @request.to_zip_code %>
+<%= @request.to_user_address1 %>　<%= @request.to_user_address2 %>
+
+　お名前：<%= @request.to_user_name %>
+
+◆発送元の情報
+〒<%= @request.from_zip_code %>
+<%= @request.from_user_address1 %>　<%= @request.from_user_address2 %>
+
+　お名前：<%= @request.from_user_name %>
+　所属：<%= @request.from_user_affiliation %>
+
+　TEL：<%= @request.from_phone_number %>
+
+今後ともよろしくお願い申し上げます。
+
+お問い合わせ：<%= @office %>
+URL：<%= @ict4everyone_name %>
