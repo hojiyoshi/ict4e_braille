@@ -100,12 +100,9 @@ class TenjiRequest < ActiveRecord::Base
   protected    
     def before_save
       if self.braille_datafile.blank?
-        self.braille_datafile = Time.now.strftime("%Y%m%d%H%M%S") + '.txt'
+        # self.braille_datafile = File.new(Time.now.strftime("%Y%m%d%H%M%S") + '.txt', "r")
+        # self.braille_datafile = Time.now.strftime("%Y%m%d%H%M%S") + '.txt'
       end
-    end
-
-    def after_save
-      
     end
 
     def validate_upload

@@ -66,17 +66,13 @@ class RequestsController < ApplicationController
     @tenji_request.user_id = current_user.id
     # データベースに登録する。
     if @tenji_request.save
-      # メールを送る。
-      RequestMail.deliver_request_mail(@tenji_request)
 
       # フォーム入力の場合、データを書き出す。
       # ファイルの場合は、file_columnプラグインに任せる。
       if @tenji_request.data_type == 'data_type_text'
-        file_dir = RAILS_ROOT + '/public/tenji_request/' + @tenji_request.id
+        file_dir = RAILS_ROOT + '/public/tenji_request/braille_datafile/' + @tenji_request.id.to_s + '/'
         Dir::mkdir(file_dir)
-        file_name = file_dir + "#{@tenji_request.braille_datafile}"
-        ## XMLファイルを出力する。
-        @tenji_request.braille_datafile = Time.now.strftime("%Y%m%d%H%M%S") + '.txt'
+        file_name = file_dir + Time.now.strftime("%Y%m%d%H%M%S") + '.txt'        
         
         source = <<EOF
 <h1>#{@tenji_request.print_title1}</h1>
@@ -92,7 +88,13 @@ EOF
         foo = File.open(file_name,'w')
         foo.puts source
         foo.close
+
+        @tenji_request.braille_datafile = File.new(file_name, "r")
+        @tenji_request.save
       end
+      
+      # メールを送る。
+      RequestMail.deliver_request_mail(@tenji_request)
     
       # 「入力した名前・住所等を登録する」チェックがされている場合
       if params[:entry]['entry'] == '1'
