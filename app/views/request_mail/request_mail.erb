@@ -24,6 +24,13 @@
 
 　TEL：<%= @request.from_phone_number %>
 
+◆連絡事項
+<% if @request.message.blank? %>
+無し
+<% else %>
+@request.message
+<% end %>
+
 今後ともよろしくお願い申し上げます。
 
 お問い合わせ：<%= @office %>

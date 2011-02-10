@@ -12,26 +12,26 @@
     <%= javascript_include_tag 'valueconvertor.js' %>
     <%= javascript_include_tag 'over.js' %>
     <%= javascript_include_tag 'application.js' %>
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <!--[if lte IE 8]>
+    <script type="text/javascript" src="/common/js/html5.js"></script>
     <![endif]-->
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
   </head>
   <body id="use">
-    <p class="skiplink" id="skiplink"><a href="http://archism.jp/ict4e/use/tenji/entry.php#honbun">本文へ移動</a></p>
+    <p class="skiplink" id="skiplink"><a href="#honbun">本文へ移動</a></p>
     <!--header[START]-->
     <header>
-      <h1><%= link_to(image_tag('logo.gif', :size => '336x91', :alt =>'みんなのICTホーム',:border=>0), "http://archism.jp/ict4e/") %></h1>
+      <h1><%= link_to(image_tag('logo.gif', :size => '336x91', :alt =>'みんなのICTホーム',:border=>0), '/') %></h1>
       <nav role="navigation">
         <ul class="functionNav">
-          <li><a href="http://archism.jp/ict4e/sitemap/">サイトマップ</a></li>
-          <li><a href="http://archism.jp/ict4e/contact/">お問い合わせ</a></li>
+          <li><%= link_to 'サイトマップ', '/sitemap/'%></li>
+          <li><%= link_to 'お問い合わせ', 'https://www.ict4everyone.jp/contact/'%></li>
         </ul>
         <ul class="mainNav">
-          <li class="nav_know"><%= link_to(image_tag('nav_know.gif', :size => '199x58', :alt =>'知る',:border=>0), "http://archism.jp/ict4e/know/") %></li>
-          <li class="nav_use"><%= link_to(image_tag('nav_use_o.gif', :size => '198x58', :alt =>'使う',:border=>0), "http://archism.jp/ict4e/know/") %></li>
-          <li class="nav_read"><%= link_to(image_tag('nav_read.gif', :size => '177x58', :alt =>'読む',:border=>0), "http://archism.jp/ict4e/know/") %></li>
-          <li class="nav_entry"><%= link_to(image_tag('nav_entry.gif', :size => '193x58', :alt =>'参加',:border=>0), "http://archism.jp/ict4e/know/") %></li>
+          <li class="nav_know"><%= link_to(image_tag('nav_know.gif', :size => '199x58', :alt =>'知る',:border=>0), '/know/') %></li>
+          <li class="nav_use"><%= link_to(image_tag('nav_use_o.gif', :size => '198x58', :alt =>'使う',:border=>0), '/use/') %></li>
+          <li class="nav_read"><%= link_to(image_tag('nav_read.gif', :size => '177x58', :alt =>'読む',:border=>0), '/read/') %></li>
+          <li class="nav_entry"><%= link_to(image_tag('nav_entry.gif', :size => '193x58', :alt =>'参加',:border=>0), '/entry/') %></li>
         </ul>
       </nav>
     </header>
@@ -44,7 +44,14 @@
       <div id="contentsArea" role="main">
         <nav>
           <p class="topicPath">
-            <span>現在の位置： </span><a href="../../">ホーム</a> ＞ <a href="../">使う</a> ＞ <a href="index.php">遠隔点字印刷サービス</a> ＞ <%=@nav_title%>
+            <span>現在の位置： </span>
+            <a href='/'>ホーム</a> ＞ <a href='/use/'>使う</a> ＞
+            <%= link_to '遠隔点字依頼サービス', :controller => 'tenji' %> ＞
+            <% unless @nav_title.blank? %>
+              <% for i in 0..@nav_title.size-1 %>
+                <%= link_to(@nav_title[i], :controller => @nav_controller[i], :action => @nav_action[i], 'tenji_request[data_type]' => params[:tenji_request][:data_type]) %> ＞
+              <% end %>
+            <% end %>
           </p>
         </nav>
 
@@ -62,19 +69,19 @@
       <nav>
         <h2>「使う」メニュー</h2>
         <ul>
-          <li><a href="../rainman/">RAINMAN(レインマン)</a></li>
-          <li><a href="../brailleml/">BrailleML（ブレイル　エムエル）</a></li>
+          <li><a href="/use/rainman/">RAINMAN(レインマン)</a></li>
+          <li><a href="/use/brailleml/">BrailleML（ブレイル　エムエル）</a></li>
           <li class="selected">
             <a href="index.php">遠隔点字印刷サービス</a>
             <ul>
-              <li><a href="service.php">サービス内容</a></li>
-              <li><a href="manual.php">ご利用方法</a></li>
-              <li><a href="data.php">印刷依頼データについて</a></li>
+              <li><a href="/use/tenji">サービス内容</a></li>
+              <li><a href="/use/tenji/manual.php">ご利用方法</a></li>
+              <li><a href="/use/tenji/data.php">印刷依頼データについて</a></li>
               <li><a>印刷依頼</a></li>
             </ul>
           </li>
-          <li><a href="../youyaku/">要約筆記依頼サービス</a></li>
-          <li><a href="../user/">ユーザー登録・変更</a></li>
+          <li><a href="/use/youyaku/">要約筆記依頼サービス</a></li>
+          <li><%= link_to 'ユーザー登録・変更', ICT4E_ACCOUNTS_URL %></li>
         </ul>
       </nav>
     </aside>
@@ -84,7 +91,7 @@
     <footer role="contentinfo">
       <div>
         <ul>
-          <li><a href="http://archism.jp/ict4e/about/">サイトのご利用について</a></li>
+          <li><a href="/about/">サイトのご利用について</a></li>
         </ul>
         <address><span>特定非営利活動法人　みんなのICT</span><br>
           住所：〒790-0062　愛媛県松山南江戸1町目10-21　ペリ館S棟103<br>

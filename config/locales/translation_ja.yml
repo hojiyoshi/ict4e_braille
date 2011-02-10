@@ -34,7 +34,7 @@ ja:
         print_contents1: "印刷依頼データの内容1" #g
         print_contents2: "印刷依頼データの内容2" #g
         print_contents3: "印刷依頼データの内容3" #g
-        attached_file: "印刷依頼データの添付ファイル" #g
+        braille_datafile: "印刷依頼データの添付ファイル" #g
 
       tenji_user: 
         tenji_type: "tenji_type"  #g

@@ -43,9 +43,6 @@ module Authentication
       
       # Encrypts the password with the user salt
       def encrypt(password)
-        p password
-        p salt
-        #p self.class.password_digest(password, salt)
         self.class.password_digest(password, salt)
       end
       

@@ -130,7 +130,7 @@ window.onload=function(){
 </div>
 
 <!--テキスト入力の場合以下を表示-->
-<% if params[:data_type] == 'data_type_text' || @tenji_request.data_type == "data_type_text"%>
+<% if @tenji_request.data_type == 'data_type_text' || @tenji_request.data_type == "data_type_text"%>
 <h2>印刷依頼データ（テキスト入力）</h2>
 <p>点字印刷を依頼したいテキスト情報を入力してください。見出しは3つ分の入力欄があります。</p>
 <table class="col">
@@ -198,9 +198,9 @@ window.onload=function(){
         依頼データはWordデータ（.doc又は.docxファイル）もしくは点字データ(.Base又は.Besファイル)に限ります。
       </p>
       <p>
-<%= file_column_field "tenji_request", "braille_datafile"%>
-<%= #f.file_field :braille_datafile, :id => 'braille_datafile', :size => '30', :required => 'required'
-%></p>
+<%= #file_column_field "tenji_request", "braille_datafile", :id => 'braille_datafile', :size => '30', :required => 'required'
+%>
+<%= f.file_field :braille_datafile, :id => 'braille_datafile', :size => '30', :required => 'required'%></p>
 </td></tr>
 </table>
 <% end %>
