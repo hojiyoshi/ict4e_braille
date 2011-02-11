@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       # メールアドレスの初期値をCookieに保存させておく。
       cookies[:user_email] = {:value => params[:users]['email'], :expires => 1.months.from_now}
       # 点字印刷依頼ページにリダイレクトさせる。
-      redirect_to :controller => 'requests', :action => 'new', 'tenji_request[data_type]' => params[:users][:data_type]
+      redirect_to :controller => 'requests', :action => 'new', 'tenji_request[data_type]' => params[:users][:data_type], :login => true
 
     # 認証NGの場合
     else

@@ -49,7 +49,7 @@
             <%= link_to '遠隔点字依頼サービス', :controller => 'tenji' %> ＞
             <% unless @nav_title.blank? %>
               <% for i in 0..@nav_title.size-1 %>
-                <%= link_to(@nav_title[i], :controller => @nav_controller[i], :action => @nav_action[i], 'tenji_request[data_type]' => params[:tenji_request][:data_type]) %> ＞
+                <%= link_to(@nav_title[i], :controller => @nav_controller[i], :action => @nav_action[i], 'tenji_request[data_type]' => params[:tenji_request][:data_type], :login => true) %> ＞
               <% end %>
             <% end %>
           </p>

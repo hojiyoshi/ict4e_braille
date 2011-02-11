@@ -18,19 +18,20 @@ class RequestsController < ApplicationController
     @tenji_request = TenjiRequest.new(params[:tenji_request])
 
     # トップページより依頼登録画面へ遷移した場合は、ユーザ情報を発送元の初期値とする。
-    if params[:tenji_request].blank?
+    unless params[:login].blank?
       # 点字印刷依頼システムのユーザ情報をログインユーザの情報から取得する。
       tenji_user = current_user.tenji_user
-      
+
       unless tenji_user.blank?
         # モデルオブaジェクトに発送元の情報を設定する。
         @tenji_request = TenjiRequest.new(
           :from_zip_code        => tenji_user.zip_code,
           :from_user_address1   => tenji_user.user_address1,
           :from_user_address2   => tenji_user.user_address2,
-          :from_user_name  => tenji_user.user_name,
-          :from_user_affiliation   => tenji_user.user_affiliation,
-          :from_phone_number   => tenji_user.phone_number
+          :from_user_name       => tenji_user.user_name,
+          :from_user_affiliation=> tenji_user.user_affiliation,
+          :from_phone_number    => tenji_user.phone_number,
+          :data_type            => params[:tenji_request][:data_type]
         )
       end
     end
