@@ -3,7 +3,7 @@ require 'nkf'
 class RequestMail < ActionMailer::Base
   def request_mail(tenji_request)
     setup_email(tenji_request)
-    @body[:url] = ICT4E_BRAILLE_URL+"/tenji_request/braille_datafile/#{tenji_request.id}/#{File::basename(tenji_request.braille_datafile)}"
+    @body[:url] = ICT4E_BRAILLE_URL+"tenji_request/braille_datafile/#{tenji_request.id}/#{File::basename(tenji_request.braille_datafile)}"
   end
 
   protected
