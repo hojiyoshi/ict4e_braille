@@ -23,7 +23,7 @@
   <td>
     <%= f.password_field 'password', :id => 'password', :size => "10", :style => "ime-mode: disabled;",
       :class => "textC ascii", :required => "required" %>
-    <a href="../user/forget.php">パスワードを忘れた方</a></td>
+    <%= link_to 'パスワードを忘れた方', ICT4E_ACCOUNTS_URL + 'users/forget' %></td>
   </tr>
 </table>
 
