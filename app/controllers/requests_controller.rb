@@ -62,6 +62,17 @@ class RequestsController < ApplicationController
   end
 
   def create
+    # 多重サブミットチェック
+    if double_submit?
+      # 多重注意画面を表示する。
+      respond_to do |format|
+        format.html{
+          render :action => 'double_submit'
+        }
+      end
+      return
+    end
+
     @tenji_request = TenjiRequest.new(params[:tenji_request])
     @tenji_request.user_id = current_user.id
     # データベースに登録する。
@@ -111,6 +122,7 @@ EOF
         user.tenji_user.phone_number = @tenji_request.from_phone_number
         user.tenji_user.user_address1 = @tenji_request.from_user_address1
         user.tenji_user.user_address2 = @tenji_request.from_user_address2
+        
         # 点字印刷ユーザオブジェクトを保存する。
         user.tenji_user.save
       end
