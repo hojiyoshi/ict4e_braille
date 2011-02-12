@@ -89,13 +89,13 @@ window.onload=function(){
   <p>
     <label for="to_type_same" class="fBold">
       <%= f.radio_button :to_type, :to_type_same, {:id => 'data_type_same', :checked => true, :onClick => "setToForm();"} %>
-      依頼人の住所に送る
+      上記の依頼人の住所に送る
     </label>
   </p>
   <p>
     <label for="to_type_other" class="fBold">
       <%= f.radio_button :to_type, :to_type_other, {:id => 'data_type_other', :onClick => "setToForm();"} %>
-      別の住所に送る
+      別の住所に送る（下のフォームにご入力ください）
     </label>
   </p>
 </fieldset>
