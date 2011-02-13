@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
       note_failed_signin
       # 点字印刷トップページにリダイレクトさせる。
       # たぶん、入力値が保持されない…
-      redirect_to :controller => 'tenji'
+      redirect_to :controller => 'tenji', 'users[data_type]' => params[:users][:data_type]
     end
   end
 

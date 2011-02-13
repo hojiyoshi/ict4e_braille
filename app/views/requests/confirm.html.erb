@@ -5,7 +5,6 @@
 <%= file_column_field 'tenji_request', 'braille_datafile',:style => 'visibility:hidden' %>
 <% end %>
 <%= render :partial => 'hidden' %>
-<%= hidden_field(:entry, :entry, :value => params[:entry]['entry']) %>
 <h2>依頼人情報</h2>
 <table class="col">
   <tr>
@@ -119,6 +118,14 @@
 </p>
 
 <p>
-  <%= submit_tag 'この内容で印刷依頼する', :id => 'next', :name => 'next', :disable_with => 'しばらくお待ちください。' %>
+  <div style="float: left">
+    <%= submit_tag 'この内容で印刷依頼する', :id => 'next', :name => 'next', :disable_with => 'しばらくお待ちください。' %>&nbsp;
+    <% end -%>
+    <% form_tag({:controller => 'requests', :action => 'new'}) do -%>
+  </div>
+  <div>
+    <%= render :partial => 'hidden' %>
+    <%= submit_tag '前画面に戻る', :id => 'next', :name => 'next', :disable_with => 'しばらくお待ちください。' %>
+    <% end -%>
+  </div>
 </p>
-<% end -%>

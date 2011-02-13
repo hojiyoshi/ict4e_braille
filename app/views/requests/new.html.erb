@@ -3,10 +3,27 @@
 <!--
 window.onload=function(){
   setToForm(this);
+
+  var list = document.getElementsByTagName("input");
+        for(var i=0; i<list.length; i++){
+        if(list[i].type == 'text' || list[i].type == 'password'){
+            list[i].onkeypress = function (event){
+                return submitStop(event);
+            };
+        }
+    }
 }
+
+function submitStop(e){
+    if (!e) var e = window.event;
+
+    if(e.keyCode == 13)
+        return false;
+}
+
 //-->
 </script>
-<h1 id="honbun">印刷依頼情報<%= '：エラー' unless error_messages_for('tenji_request').blank? %></h1>
+<h1 id="honbun">印刷依頼情報の入力<%= '：エラー' unless error_messages_for('tenji_request').blank? %></h1>
 <p>
   <% if error_messages_for('tenji_request').blank? %>
   依頼人情報、お届け先、印刷依頼データを入力して、「確認画面へ」ボタンを押してください。
@@ -19,6 +36,19 @@ window.onload=function(){
   <% fields_for :tenji_request do |f| %>
   <%= f.hidden_field(:data_type, :value => params[:data_type]) %>
 <h2>依頼人情報</h2>
+<div class="boxB">
+  <p class="mNon">
+    <label for="entry" class="fBold">
+      <%= f.check_box :entry, :id => 'entry', :onClick => "setToForm(this);",
+        :checked => (true if params[:tenji_request][:entry].blank? || params[:tenji_request][:entry] == '1') %>
+      入力した依頼人情報(名前･住所等)を登録する。
+    </label>
+  </p>
+  <p class="mNon fSmall">
+    ※チェックをいれると次回から入力する手間が省けます。<br />
+    ※登録済みの情報を編集すると登録済み情報に上書きされます。
+  </p>
+</div>
 <table class="col">
   <tr>
     <th>Eメール</th>
@@ -71,30 +101,20 @@ window.onload=function(){
   </tr>
 </table>
 
-<div class="boxB">
-  <p class="mNon">
-    <label for="entry" class="fBold">
-      <%= check_box :entry, :entry, :id => 'entry', :onClick => "setToForm(this);", :checked => true %>
-      入力した依頼人情報(名前･住所等)を登録する。
-    </label>
-  </p>
-  <p class="mNon fSmall">
-    ※チェックをいれると次回から入力する手間が省けます。<br />
-    ※登録済みの情報を編集すると登録済み情報に上書きされます。
-  </p>
-</div>
 <h2>お届け先</h2>
 <fieldset>
   <legend class="acc">お届け先の選択</legend>
   <p>
     <label for="to_type_same" class="fBold">
-      <%= f.radio_button :to_type, :to_type_same, {:id => 'data_type_same', :checked => true, :onClick => "setToForm();"} %>
+      <%= f.radio_button :to_type, :to_type_same, {:id => 'to_type_same',
+        :checked => (true if params[:tenji_request][:to_type].blank? || params[:tenji_request][:to_type] == 'to_type_same'), :onClick => "setToForm();"} %>
       上記の依頼人の住所に送る
     </label>
   </p>
   <p>
     <label for="to_type_other" class="fBold">
-      <%= f.radio_button :to_type, :to_type_other, {:id => 'data_type_other', :onClick => "setToForm();"} %>
+      <%= f.radio_button :to_type, :to_type_other, {:id => 'to_type_other',
+        :checked => (true if params[:tenji_request][:to_type] == 'to_type_other'), :onClick => "setToForm();"} %>
       別の住所に送る（下のフォームにご入力ください）
     </label>
   </p>
@@ -200,8 +220,7 @@ window.onload=function(){
         依頼データはWordデータ（.doc又は.docxファイル）もしくは点字データ(.Base又は.Besファイル)に限ります。
       </p>
       <p>
-<%= #file_column_field "tenji_request", "braille_datafile", :id => 'braille_datafile', :size => '30', :required => 'required'
-%>
+
 <%= f.file_field :braille_datafile, :id => 'braille_datafile', :size => '30', :required => 'required'%></p>
 </td></tr>
 </table>

@@ -2,7 +2,7 @@ class TenjiRequest < ActiveRecord::Base
   belongs_to :user
   file_column :braille_datafile
   
-  attr_accessor :to_type, :original_filename
+  attr_accessor :to_type, :entry
   
   # 依頼人）名前の値検証
   # 入力必須をチェック

@@ -1,8 +1,8 @@
 class RequestsController < ApplicationController
   # 初期化メソッド（最初に呼ばれる）
   def initialize
-    # ページタイトル/ナビゲーションタイトルの設定
-    @title = '印刷依頼情報:遠隔点字印刷サービス：みんなのICT'
+    # ページタイトル/ナビゲーションタイトルの初期設定
+    @title = '：遠隔点字印刷サービス：みんなのICT'
     
     # ナビゲーションタイトルの設定
     @nav_title = ['印刷依頼']
@@ -13,6 +13,8 @@ class RequestsController < ApplicationController
   # 依頼登録画面
   # requests/new:GET
   def new
+    # ページタイトルの設定
+    @title = '印刷依頼情報の入力' + @title
     # 確認画面より、「前画面へ戻る」ボタンをクリックした場合、
     # モデルオブジェクトを作成し、フォームの初期値を入力値とする。
     @tenji_request = TenjiRequest.new(params[:tenji_request])
@@ -54,17 +56,25 @@ class RequestsController < ApplicationController
 
     # 値検証NGの場合は、登録画面を表示する。
     unless @tenji_request.valid?
+      # ページタイトルの設定（入力画面のエラー表示にする）
+      @title = '印刷依頼情報の入力：エラー' + @title
+
       respond_to do |format|
         format.html{
           render :action => 'new'
         }
       end
+    else
+      # ページタイトルの設定（確認画面の表示にする）
+      @title = '印刷依頼情報：確認' + @title
     end
   end
 
   def create
     # 多重サブミットチェック
     if double_submit?
+      # ページタイトルの設定（多重サブミット画面の表示にする）
+      @title = '印刷依頼：エラー' + @title
       # 多重注意画面を表示する。
       respond_to do |format|
         format.html{
@@ -73,6 +83,9 @@ class RequestsController < ApplicationController
       end
       return
     end
+
+    # ページタイトルの設定（完了画面の表示にする）
+    @title = '印刷依頼：完了' + @title
 
     @tenji_request = TenjiRequest.new(params[:tenji_request])
     @tenji_request.user_id = current_user.id

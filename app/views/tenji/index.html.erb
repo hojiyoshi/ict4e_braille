@@ -32,13 +32,15 @@
   <legend class="acc">印刷依頼データの選択</legend>
   <p>
     <label for="data_type_text" class="fBold">
-      <%= f.radio_button :data_type, :data_type_text, {:id => :data_type_text, :checked => true} %>テキスト入力
+      <%= f.radio_button :data_type, :data_type_text, {:id => :data_type_text, 
+        :checked => (true if (params[:users].blank? || params[:users][:data_type] == 'data_type_text'))} %>テキスト入力
     </label>
     <br />入力フォームに直接テキストを入力します。
   </p>
   <p>
     <label for="data_type_file" class="fBold">
-      <%= f.radio_button :data_type, :data_type_file, {:id => 'data_type_file'} %>ファイル添付
+      <%= f.radio_button :data_type, :data_type_file, {:id => 'data_type_file',
+        :checked => (true if !params[:users].blank? && params[:users][:data_type] == 'data_type_file')} %>ファイル添付
     </label>
     <br />添付可能ファイルはWord(.docまたは.docx)もしくは点字データ(.Baseまたは.Bes)
   </p>
