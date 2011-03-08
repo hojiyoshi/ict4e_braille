@@ -21,6 +21,8 @@ function submitStop(e){
         return false;
 }
 
+AjaxZip2.JSONDATA = '/ajaxzip2/data';
+
 //-->
 </script>
 <h1 id="honbun">印刷依頼情報の入力<%= '：エラー' unless error_messages_for('tenji_request').blank? %></h1>
@@ -65,10 +67,12 @@ function submitStop(e){
     <th><label for="zip">郵便番号<span class="tCaution">(必須)</span></label></th>
     <td>
       <span class="fSmall">入力例：123-4567</span><br />
-      <%= f.text_field :from_zip_code, :id => "zip", :style => "ime-mode: disabled;", :size => "8", :maxlength => "8", :class=>"textC ascii", :required => "required"%>
-      <!--
-      <input id="auto_add" name="auto_add" type="button" value="住所を自動入力" class="btA" />
-      -->
+      <%= f.text_field :from_zip_code, :id => "zip", :style => "ime-mode: disabled;", :size => "8", 
+        :maxlength => "8", :class=>"textC ascii", :required => "required"#,
+      # :onKeyUp => "AjaxZip2.zip2addr(this, 'tenji_request[from_user_address1]', 'tenji_request[from_user_address1]', null, 'tenji_request[from_user_address1]');"
+      %>
+      <input id="auto_add" name="auto_add" onclick="AjaxZip2.zip2addr('tenji_request[from_zip_code]', 'tenji_request[from_user_address1]', 'tenji_request[from_user_address1]', null, 'tenji_request[from_user_address1]');" type="button" value="住所を自動入力" class="btA" />
+      
     </td>
   </tr>
   <tr>

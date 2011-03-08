@@ -11,7 +11,10 @@
     <%= stylesheet_link_tag('common.css') %>
     <%= javascript_include_tag 'valueconvertor.js' %>
     <%= javascript_include_tag 'over.js' %>
+    <%= javascript_include_tag 'prototype.js' %>
     <%= javascript_include_tag 'application.js' %>
+    <%= javascript_include_tag 'ajaxzip2.js', :charset => 'UTF-8' if params[:controller] == 'requests' %>
+
     <!--[if lte IE 8]>
     <script type="text/javascript" src="/common/js/html5.js"></script>
     <![endif]-->
