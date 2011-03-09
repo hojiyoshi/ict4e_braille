@@ -39,16 +39,16 @@ AjaxZip2.JSONDATA = '/ajaxzip2/data';
   <%= f.hidden_field(:data_type, :value => params[:data_type]) %>
 <h2>依頼人情報</h2>
 <div class="boxB">
+  <p class="mNon fSmall">
+    ※チェックをいれると次回から入力する手間が省けます。<br />
+    ※登録済みの情報を編集すると登録済み情報に上書きされます。
+  </p>
   <p class="mNon">
     <label for="entry" class="fBold">
       <%= f.check_box :entry, :id => 'entry', :onClick => "setToForm(this);",
         :checked => (true if params[:tenji_request][:entry].blank? || params[:tenji_request][:entry] == '1') %>
       入力した依頼人情報(名前･住所等)を登録する。
     </label>
-  </p>
-  <p class="mNon fSmall">
-    ※チェックをいれると次回から入力する手間が省けます。<br />
-    ※登録済みの情報を編集すると登録済み情報に上書きされます。
   </p>
 </div>
 <table class="col">
@@ -220,8 +220,8 @@ AjaxZip2.JSONDATA = '/ajaxzip2/data';
     <th><label for="print_file">添付ファイル<span class="tCaution">(必須)</span></label></th>
     <td>
       <p class="fSmall">
-        ファイル名は半角英数字と一部の半角記号(._-)の使用が可能です。<br />
-        依頼データはWordデータ（.doc又は.docxファイル）もしくは点字データ(.Base又は.Besファイル)に限ります。
+        参照ボタンをスペースキーで押して、添付ファイルを選んでください。<br />
+        添付ファイルはWordデータ（.doc又は.docxファイル）もしくは点字データ(.Base又は.Besファイル)に限ります。
       </p>
       <p>
 

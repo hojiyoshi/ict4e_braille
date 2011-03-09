@@ -13,4 +13,5 @@ function setToForm(){
         document.to_form.addr2.disabled = "";
         document.to_form.bill2.disabled = "";
     }
+    document.to_form.next.disabled = "";
 }

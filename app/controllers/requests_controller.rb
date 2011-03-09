@@ -68,9 +68,11 @@ class RequestsController < ApplicationController
       # ページタイトルの設定（確認画面の表示にする）
       @title = '印刷依頼情報：確認' + @title
     end
+    
   end
 
   def create
+    p session["submit_token"]
     # 多重サブミットチェック
     if double_submit?
       # ページタイトルの設定（多重サブミット画面の表示にする）
@@ -122,7 +124,7 @@ EOF
       RequestMail.deliver_request_mail(@tenji_request)
     
       # 「入力した名前・住所等を登録する」チェックがされている場合
-      if params[:entry]['entry'] == '1'
+      if params[:tenji_request]['entry'] == '1'
         #
         user = @tenji_request.user
         if user.tenji_user.blank?
