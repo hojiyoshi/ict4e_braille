@@ -112,7 +112,7 @@ AjaxZip2.JSONDATA = '/ajaxzip2/data';
     <label for="to_type_same" class="fBold">
       <%= f.radio_button :to_type, :to_type_same, {:id => 'to_type_same',
         :checked => (true if params[:tenji_request][:to_type].blank? || params[:tenji_request][:to_type] == 'to_type_same'), :onClick => "setToForm();"} %>
-      上記の依頼人の住所に送る
+      上記の依頼人の住所に送る（チェックすると、下のフォームが非アクテイブになります）
     </label>
   </p>
   <p>
@@ -220,7 +220,7 @@ AjaxZip2.JSONDATA = '/ajaxzip2/data';
     <th><label for="print_file">添付ファイル<span class="tCaution">(必須)</span></label></th>
     <td>
       <p class="fSmall">
-        参照ボタンをスペースキーで押して、添付ファイルを選んでください。<br />
+        下のフォームは直接入力することはできません。参照ボタンをクリック、またはスペースキーで押して、添付ファイルを選んでください。<br />
         添付ファイルはWordデータ（.doc又は.docxファイル）もしくは点字データ(.Base又は.Besファイル)に限ります。
       </p>
       <p>
