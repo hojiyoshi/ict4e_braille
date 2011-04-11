@@ -121,13 +121,13 @@
 
 <p>
   <div style="float: left">
-    <%= submit_tag 'この内容で印刷依頼する', :id => 'next', :name => 'next', :disable_with => 'しばらくお待ちください。' %>&nbsp;
+    <%= submit_tag 'この内容で印刷依頼する', :id => 'next', :name => 'next' %>&nbsp;
     <% end -%>
     <% form_tag({:controller => 'requests', :action => 'new'}) do -%>
   </div>
   <div>
     <%= render :partial => 'hidden' %>
-    <%= submit_tag '前画面に戻る', :id => 'next', :name => 'next', :disable_with => 'しばらくお待ちください。' %>
+    <%= submit_tag '前画面に戻る', :id => 'next', :name => 'next' %>
     <% end -%>
   </div>
 </p>

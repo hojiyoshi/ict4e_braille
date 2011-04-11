@@ -33,24 +33,14 @@ AjaxZip2.JSONDATA = '/ajaxzip2/data';
   エラー内容を確認し、入力情報を修正後、「確認画面へ」ボタンを押してください。
   <% end %>
 </p>
-<%= error_messages_for 'tenji_request' %>
+
+<!-- 改良版error_message_for -->
+<%= template_error_messages_for 'tenji_request' %>
+
 <% form_tag({:controller => 'requests', :action => 'confirm'},{:name=>'to_form',:multipart=>true, :method => :put}) do -%>
   <% fields_for :tenji_request do |f| %>
   <%= f.hidden_field(:data_type, :value => params[:data_type]) %>
 <h2>依頼人情報</h2>
-<div class="boxB">
-  <p class="mNon fSmall">
-    ※チェックをいれると次回から入力する手間が省けます。<br />
-    ※登録済みの情報を編集すると登録済み情報に上書きされます。
-  </p>
-  <p class="mNon">
-    <label for="entry" class="fBold">
-      <%= f.check_box :entry, :id => 'entry', :onClick => "setToForm(this);",
-        :checked => (true if params[:tenji_request][:entry].blank? || params[:tenji_request][:entry] == '1') %>
-      入力した依頼人情報(名前･住所等)を登録する。
-    </label>
-  </p>
-</div>
 <table class="col">
   <tr>
     <th>Eメール</th>
@@ -104,7 +94,19 @@ AjaxZip2.JSONDATA = '/ajaxzip2/data';
     </td>
   </tr>
 </table>
-
+<div class="boxB">
+  <p class="mNon fSmall">
+    ※チェックをいれると次回から入力する手間が省けます。<br />
+    ※登録済みの情報を編集すると登録済み情報に上書きされます。
+  </p>
+  <p class="mNon">
+    <label for="entry" class="fBold">
+      <%= f.check_box :entry, :id => 'entry', :onClick => "setToForm(this);",
+        :checked => (true if params[:tenji_request][:entry].blank? || params[:tenji_request][:entry] == '1') %>
+      入力した依頼人情報(名前･住所等)を登録する。
+    </label>
+  </p>
+</div>
 <h2>お届け先</h2>
 <fieldset>
   <legend class="acc">お届け先の選択</legend>
@@ -112,7 +114,7 @@ AjaxZip2.JSONDATA = '/ajaxzip2/data';
     <label for="to_type_same" class="fBold">
       <%= f.radio_button :to_type, :to_type_same, {:id => 'to_type_same',
         :checked => (true if params[:tenji_request][:to_type].blank? || params[:tenji_request][:to_type] == 'to_type_same'), :onClick => "setToForm();"} %>
-      上記の依頼人の住所に送る（チェックすると、下のフォームが非アクテイブになります）
+      上記の依頼人の住所に送る
     </label>
   </p>
   <p>
@@ -217,7 +219,7 @@ AjaxZip2.JSONDATA = '/ajaxzip2/data';
     </td>
   </tr>
   <tr>
-    <th><label for="print_file">添付ファイル<span class="tCaution">(必須)</span></label></th>
+    <th><label for="braille_datafile">添付ファイル<span class="tCaution">(必須)</span></label></th>
     <td>
       <p class="fSmall">
         下のフォームは直接入力することはできません。参照ボタンをクリック、またはスペースキーで押して、添付ファイルを選んでください。<br />
@@ -230,14 +232,14 @@ AjaxZip2.JSONDATA = '/ajaxzip2/data';
 </table>
 <% end %>
 
-<h2>連絡事項</h2>
+<h2><label for="message">連絡事項</label></h2>
 <p>連絡事項があれば入力してください。</p>
 <p>
   <%= f.text_area :message, :id => "message", :cols => 5, :class => "textareaB fullwidth-kana" %>
 </p>
 
 <p>
-  <%= submit_tag '確認画面へ', :id => 'next', :name => 'next', :disable_with => 'しばらくお待ちください。' %>
+  <%= submit_tag '確認画面へ', :id => 'next', :name => 'next' %>
 </p>
   <% end -%>
 <% end -%>

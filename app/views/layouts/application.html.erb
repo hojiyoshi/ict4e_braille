@@ -18,6 +18,16 @@
     <!--[if lte IE 8]>
     <script type="text/javascript" src="/common/js/html5.js"></script>
     <![endif]-->
+
+    <!-- Firefoxの場合、ブラウザ戻るボタン時にdisable withのステータスが戻らない問題対処（戻るボタンを使えないようにした） -->
+    <script type="text/javascript">
+      <!--
+      if(navigator.userAgent.indexOf("Firefox") != -1){
+        history.forward()
+      }
+      //-->
+    </script>
+
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
   </head>
   <body id="use">

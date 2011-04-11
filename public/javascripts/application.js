@@ -5,6 +5,11 @@ function setToForm(){
         document.to_form.zip2.disabled = "true";
         document.to_form.addr2.disabled = "true";
         document.to_form.bill2.disabled = "true";
+
+        document.to_form.name2.value ="";
+        document.to_form.zip2.value ="";
+        document.to_form.addr2.value ="";
+        document.to_form.bill2.value ="";
     }
     else{
 
@@ -13,5 +18,4 @@ function setToForm(){
         document.to_form.addr2.disabled = "";
         document.to_form.bill2.disabled = "";
     }
-    document.to_form.next.disabled = "";
 }

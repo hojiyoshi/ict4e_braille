@@ -1,3 +1,4 @@
+/*
 #errorExplanation {
     border: 3px solid #CCCCCC;
     padding: 15px;
@@ -11,7 +12,7 @@
 #errorExplanation p{
     color:#CC0000;font-weight: bold;font-size: small;
 }
-
+*/
 .fieldWithErrors{
   display: inline;
 }
