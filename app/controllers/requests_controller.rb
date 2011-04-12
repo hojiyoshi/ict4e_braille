@@ -72,7 +72,6 @@ class RequestsController < ApplicationController
   end
 
   def create
-    p session["submit_token"]
     # 多重サブミットチェック
     if double_submit?
       # ページタイトルの設定（多重サブミット画面の表示にする）

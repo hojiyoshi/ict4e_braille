@@ -1,0 +1,12 @@
+<div class="boxB errorExplanation" id="errorExplanation">
+  <dl>
+    <dt class="tCaution">エラー内容</dt>
+    <dd>
+      <ul class="tCaution">
+        <%- messages.sort.each do |mes| -%>
+          <li><%= mes %></li>
+        <%- end -%>
+      </ul>
+    </dd>
+  </dl>
+</div>
