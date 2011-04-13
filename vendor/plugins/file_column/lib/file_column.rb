@@ -233,7 +233,7 @@ module FileColumn # :nodoc:
       if options[:fix_file_extensions]
         # try to determine correct file extension and fix
         # if necessary
-        content_type = get_content_type((file.content_type.chomp if file.content_type))
+        content_type = file.content_type.chomp# get_content_type((file.content_type.chomp if file.content_type))
         if content_type and options[:mime_extensions][content_type]
           @filename = correct_extension(@filename,options[:mime_extensions][content_type])
         end
