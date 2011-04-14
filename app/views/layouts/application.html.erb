@@ -4,13 +4,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title><%=@title%></title>
     <%= stylesheet_link_tag('base.css', :media => 'screen,print') %>
     <%= stylesheet_link_tag('contentsarea.css', :media => 'screen,print') %>
     <%= stylesheet_link_tag('print.css', :media => 'print') %>
     <%= stylesheet_link_tag('common.css') %>
     <%= javascript_include_tag 'valueconvertor.js' %>
-    <%= javascript_include_tag 'over.js' %>
     <%= javascript_include_tag 'prototype.js' %>
     <%= javascript_include_tag 'application.js' %>
     <%= javascript_include_tag 'ajaxzip2.js', :charset => 'UTF-8' if params[:controller] == 'requests' %>
@@ -18,15 +18,6 @@
     <!--[if lte IE 8]>
     <script type="text/javascript" src="/common/js/html5.js"></script>
     <![endif]-->
-
-    <!-- Firefoxの場合、ブラウザ戻るボタン時にdisable withのステータスが戻らない問題対処（戻るボタンを使えないようにした） -->
-    <script type="text/javascript">
-      <!--
-      if(navigator.userAgent.indexOf("Firefox") != -1){
-        history.forward()
-      }
-      //-->
-    </script>
 
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
   </head>
@@ -41,10 +32,10 @@
           <li><%= link_to 'お問い合わせ', 'https://www.ict4everyone.jp/contact/'%></li>
         </ul>
         <ul class="mainNav">
-          <li class="nav_know"><%= link_to(image_tag('nav_know.gif', :size => '199x58', :alt =>'知る',:border=>0), '/know/') %></li>
-          <li class="nav_use"><%= link_to(image_tag('nav_use_o.gif', :size => '198x58', :alt =>'使う',:border=>0), '/use/') %></li>
-          <li class="nav_read"><%= link_to(image_tag('nav_read.gif', :size => '177x58', :alt =>'読む',:border=>0), '/read/') %></li>
-          <li class="nav_entry"><%= link_to(image_tag('nav_entry.gif', :size => '193x58', :alt =>'参加',:border=>0), '/entry/') %></li>
+          <li class="nav_know"><a href="/know/">活動紹介</a></li>
+          <li class="nav_use"><a href="/use/">アプリ･サービス</a></li>
+          <li class="nav_read"><a href="/read/">コラム</a></li>
+          <li class="nav_entry"><a href="/entry/">入会案内</a></li>
         </ul>
       </nav>
     </header>
@@ -58,11 +49,20 @@
         <nav>
           <p class="topicPath">
             <span>現在の位置： </span>
-            <a href='/'>ホーム</a> ＞ <a href='/use/'>使う</a> ＞
-            <%= link_to '遠隔点字依頼サービス', :controller => 'tenji' %> ＞
-            <% unless @nav_title.blank? %>
-              <% for i in 0..@nav_title.size-1 %>
-                <%= link_to(@nav_title[i], :controller => @nav_controller[i], :action => @nav_action[i], 'tenji_request[data_type]' => params[:tenji_request][:data_type], :login => true) %> ＞
+            <a href='/'>ホーム</a> ＞ <a href='/use/'>アプリサービス</a> ＞
+            <% if APP_NAME == 'ict4e_braille' %>
+              <%= link_to '遠隔点字依頼サービス', :controller => 'tenji' %> ＞
+              <% unless @nav_title.blank? %>
+                <% for i in 0..@nav_title.size-1 %>
+                  <%= link_to(@nav_title[i], :controller => @nav_controller[i], :action => @nav_action[i], 'tenji_request[data_type]' => params[:tenji_request][:data_type], :login => true) %> ＞
+                <% end %>
+              <% end %>
+            
+            <% elsif APP_NAME == 'ict4e_common'%>
+              <% unless @nav_title.blank? %>
+                <% for i in 0..@nav_title.size-1 %>
+                  <%= link_to(@nav_title[i], :controller => @nav_controller[i], :action => @nav_action[i] ) %> ＞
+                <% end %>
               <% end %>
             <% end %>
           </p>
@@ -80,21 +80,38 @@
     <!--aside[START]-->
     <aside>
       <nav>
-        <h2>「使う」メニュー</h2>
+        <h2>「アプリ･サービス」メニュー</h2>
         <ul>
           <li><a href="/use/rainman/">RAINMAN(レインマン)</a></li>
           <li><a href="/use/brailleml/">BrailleML（ブレイル　エムエル）</a></li>
-          <li class="selected">
-            <a href="index.php">遠隔点字印刷サービス</a>
+
+          <li>
+            <% if APP_NAME == 'ict4e_braille' %>
+            <a>遠隔点字印刷サービス</a>
             <ul>
               <li><a href="/use/tenji">サービス内容</a></li>
               <li><a href="/use/tenji/manual.php">ご利用方法</a></li>
               <li><a href="/use/tenji/data.php">印刷依頼データについて</a></li>
-              <li><a>印刷依頼</a></li>
+              <li><%= link_to '印刷依頼', :controller => 'tenji' %> </li>
             </ul>
+            <% else %>
+              <a href="/use/tenji/">遠隔点字印刷サービス</a>
+            <% end %>
           </li>
           <li><a href="/use/youyaku/">要約筆記依頼サービス</a></li>
-          <li><%= link_to 'ユーザー登録・変更', ICT4E_ACCOUNTS_URL %></li>
+
+          <li>
+            <% if APP_NAME == 'ict4e_common' %>
+            <a>ユーザー登録・変更</a>
+            <ul>
+              <li><%= link_to 'ユーザー登録', :controller => 'users', :action => 'new'%></li>
+              <li><%= link_to 'ユーザー情報変更', :controller => 'users', :action => 'edit_auth' %></li>
+              <li><%= link_to 'パスワードを忘れた方', :controller => 'users', :action => 'forget'%></li>
+            </ul>
+            <% else %>
+              <%= link_to 'ユーザー登録・変更', ICT4E_ACCOUNTS_URL %>
+            <% end %>
+          </li>
         </ul>
       </nav>
     </aside>
@@ -105,6 +122,8 @@
       <div>
         <ul>
           <li><a href="/about/">サイトのご利用について</a></li>
+          <li><a href="/acc/">アクセシビリティポリシー</a></li>
+          <li><a href="/privacy/">プライバシーポリシー</a></li>
         </ul>
         <address><span>特定非営利活動法人　みんなのICT</span><br>
           住所：〒790-0062　愛媛県松山南江戸1町目10-21　ペリ館S棟103<br>

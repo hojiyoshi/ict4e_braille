@@ -4,19 +4,38 @@
 	ファイル名: contentsarea.css
 	概要: コンテンツエリア限定スタイル
 	制作日: 2010/10/21
-	更新日: 2010/11/1
+	更新日: 2011/04/13
 
 ----------------------------------------------------------*/
+
+/*リンク
+----------------------------------------------------------*/
+#contentsArea a {
+	padding: 3px;
+}
+
+
+#contentsArea a:hover,
+#contentsArea a:focus {
+	color: #FFFFFF;
+	background-color:#0060C0;
+}
 
 
 /*見出し1
 ----------------------------------------------------------*/
 #contentsArea h1 {
-	padding: 10px 15px;
+	padding: 10px 15px 10px 13px;
 	font-size: 150%;
 	margin-bottom: 15px;
 	background: #D9EBFF;
 	border: 3px solid #D9EBFF;
+}
+
+#contentsArea h1:before {
+	display:marker;  
+	padding-right:10px;  
+	content:url(/images/tt_common.gif);  
 }
 
 #know #contentsArea h1 {
@@ -24,9 +43,17 @@
 	border: 3px solid #D9F0F0;
 }
 
+#know #contentsArea h1:before {
+	content:url(/images/tt_know.gif);
+}
+
 #use #contentsArea h1 {
 	background: #FFE59B;
 	border: 3px solid #FFE59B;
+}
+
+#use #contentsArea h1:before {
+	content:url(/images/tt_use.gif);
 }
 
 #read #contentsArea h1 {
@@ -34,15 +61,24 @@
 	border: 3px solid #FAD1D1;
 }
 
+#read #contentsArea h1:before {
+	content:url(/images/tt_read.gif);
+}
+
 #entry #contentsArea h1 {
 	background: #D2E5B7;
 	border: 3px solid #D2E5B7;
+}
+
+#entry #contentsArea h1:before {
+	content:url(/images/tt_entry.gif);  
 }
 
 
 /*見出し2
 ----------------------------------------------------------*/
 #contentsArea h2 {
+	clear: both;
 	padding: 5px 10px;
 	font-size: 120%;
 	margin-bottom: 15px;
@@ -52,7 +88,7 @@
 
 #know #contentsArea h2 {
 	background: #F0F0F0;
-	border-bottom: 3px solid #3586A8;
+	border-bottom: 3px solid #2F7695;
 }
 
 #use #contentsArea h2 {
@@ -81,7 +117,7 @@
 }
 
 #know #contentsArea h3 {
-	border-left: 3px solid #3586A8;
+	border-left: 3px solid #2F7695;
 }
 
 #use #contentsArea h3 {
@@ -109,16 +145,16 @@
 
 #contentsArea .supple {
 	font-size: 90%;
-	color: #3586A8;
+	color: #2F7695;
 	font-weight: bold;
 }
 
 #know #contentsArea .supple {
-	color: #3586A8;
+	color: #2F7695;
 }
 
 #read #contentsArea .supple {
-	color: #FF3366;
+	color: #E40E49;
 }
 
 
@@ -132,7 +168,7 @@
 	padding-left: 20px;
 	font-weight: bold;
 	color: #333333;
-	background: url(../images/tt_common_s.gif) no-repeat 0 50%;
+	background: url(/images/tt_common_s.gif) no-repeat 0 50%;
 }
 
 #contentsArea dd {
@@ -150,7 +186,7 @@
 #contentsArea ul li {
 	margin-left: 25px;
 	list-style-position: outside;
-	list-style-type: circle;	
+	list-style-type: disc;	
 }
 
 #contentsArea ol li {
@@ -161,11 +197,18 @@
 
 
 
+#contentsArea ul.newList li {
+	list-style: none;
+	margin: 0;
+	padding: 10px 5px;
+	border-bottom: 1px dashed #CCCCCC;
+}
+
 /*リンク
 ----------------------------------------------------------*/
 #contentsArea a.link {
 	padding-left: 20px;
-	background:url(../images/link.gif) no-repeat 0 50%;
+	background:url(/images/link.gif) no-repeat 0 50%;
 }
 
 /*このページの先頭へ*/
@@ -177,7 +220,13 @@
 
 #contentsArea .pagetop a {
 	padding-left: 20px;
-	background:url(../images/link_up.gif) no-repeat 0 50%;
+	background:url(/images/link_up.gif) no-repeat 0 50%;
+}
+
+#contentsArea .pagetop a:hover,
+#contentsArea .pagetop a:focus {
+	color: #FFFFFF;
+	background: #0060C0 url(/images/link_up_o.gif) no-repeat 0 50%;
 }
 
 /*ボックス
@@ -207,6 +256,7 @@
 #contentsArea table td {
 	padding: 7px;
 	border: 2px solid #CCCCCC;
+	background: #FFFFFF;
 }
 
 #contentsArea table th {
@@ -215,9 +265,25 @@
 	background-color: #F0F0F0;
 }
 
+#contentsArea table td p {
+	margin: 0;
+}
+
 #contentsArea table.col th {
-	text-align: right;
+	text-align: left;
 	vertical-align: top;
+}
+
+
+#contentsArea table.reset {
+	width: auto;
+	margin-bottom: 0;
+}
+
+#contentsArea table.reset th {
+	white-space: nowrap;
+	width: auto;
+	background-color: #F0F0F0;
 }
 
 #contentsArea caption {
@@ -231,6 +297,7 @@
 	font-size: 90%;
 	color: #333333;
 }
+
 
 #contentsArea .topicPath span {
 	font-weight: bold;
@@ -255,6 +322,11 @@
 
 /*テキスト
 ----------------------------------------------------------*/
+#contentsArea .fLarge {
+	font-size: large;
+}
+
+
 #contentsArea .fBold {
 	font-weight: bold;
 }
@@ -309,6 +381,12 @@
 	float: right;
 }
 
+/*スクロール
+----------------------------------------------------------*/
+#contentsArea .scroll {
+	height: 300px;
+	overflow: scroll;
+}
 
 /*フォーム
 ----------------------------------------------------------*/

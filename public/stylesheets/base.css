@@ -4,7 +4,7 @@
 	ファイル名: base.css
 	概要：基本スタイル設定
 	制作日: 2010/10/21
-	更新日: 2010/11/1
+	更新日: 2011/04/13
 ----------------------------------------------------------*/
 
 
@@ -15,7 +15,8 @@
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,select,textarea,p,blockquote,th,td { 
 	margin:0;
 	padding:0;
-	font-family:'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','MS P Gothic','ＭＳ Ｐゴシック',Osaka,sans-serif;
+	/*font-family:'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','MS P Gothic','ＭＳ Ｐゴシック',Osaka,sans-serif;*/
+	font-family: Verdana;
 	font-size:100%;
 }
 
@@ -61,10 +62,9 @@ html{
 }
 
 body {
-	color:#333333;
+	color:#000000;
 	line-height:1.65;
-	background: #469EFF url(../images/nav_back.gif) repeat-x 0 0;
-
+	background: #469EFF;
 }
 
 hr {
@@ -74,7 +74,6 @@ hr {
 a:link {
 	color: #0060C0;
 }
-
 
 /*html5新要素*/
 article, aside, dialog, figure, footer, header,hgroup, nav, section { display: block; }
@@ -109,11 +108,11 @@ p.skiplink a {
 	text-align: center;
 }
 
-p.skiplink a:focus,
-p.skiplink a:active {
+p.skiplink a:focus {
 	left: 0;
-	background: #666;
+	background: #000000;
 	color: #fff;
+	font-weight: bold;
 }
 
 
@@ -136,9 +135,9 @@ p.skiplink a:active {
  4-ヘッダエリア
 ----------------------------------------------------------*/
 header {
-	height: 194px;
+	height: 185px;
 	margin-bottom: 25px;
-	background: url(../images/head_back.gif) no-repeat 367px 0;
+	background: url(/images/head_back.gif) no-repeat 367px 0;
 }
 
 header h1 {
@@ -157,7 +156,6 @@ header h1 {
 .functionNav li {
 	float: left;
 	margin-left: 8px;
-	background: #FFFFFF url(../images/link.gif) no-repeat 12px 50%;
 	border-right: 3px solid #CCCCCC;
 	border-left: 3px solid #CCCCCC;
 	border-bottom: 3px solid #CCCCCC;
@@ -167,26 +165,60 @@ header h1 {
 	display: block;
 	padding: 5px 12px 5px 35px;
 	font-weight: bold;
-
+	background: #FFFFFF url(/images/link.gif) no-repeat 12px 50%;
 }
 
+.functionNav li a[href]:hover,
+.functionNav li a[href]:focus {
+	background: #0060C0 url(/images/link_o.gif) no-repeat 12px 50%;
+	color: #FFFFFF;
+}
 
 /*共通ナビ*/
 .mainNav {
 	position: absolute;
 	top: 130px;
-	width: 787px;
+	width: 100%;
 	border-top: 3px solid #cccccc;
 	border-bottom: 3px solid #cccccc;
+	background-color:#FFFFFF;
 }
 
 .mainNav li {
 	float: left;
 	border-right: 3px solid #cccccc;
-    height:58px;
 }
 
 
+#know .mainNav li.nav_know {
+	background: #D9F0F0;
+}
+
+#use .mainNav li.nav_use {
+	background: #FFE59B;
+}
+
+#read .mainNav li.nav_read {
+	background: #FAD1D1;
+}
+
+#entry .mainNav li.nav_entry {
+	background: #D2E5B7;
+}
+
+
+.mainNav li a {
+	font-weight: bold;
+	display: block;
+	padding: 8px 30px;
+	font-size: 120%;
+}
+
+.mainNav li a[href]:hover,
+.mainNav li a[href]:focus {
+	color: #FFFFFF;
+	background: #0060C0;
+}
 
 
 /*--------------------------------------------------------
@@ -206,6 +238,10 @@ header h1 {
 	background-color: #FFFFFF;
 	border: 3px solid #DFD0B3;
 	padding: 15px;
+
+	min-height: 500px;
+	height: auto !important;/*IE用min-height fast hack*/
+	height: 500px;/*IE用min-height fast hack*/
 
 }
 
@@ -239,7 +275,15 @@ aside nav {
 
 aside nav h2 {
 	padding: 10px 10px 10px 13px;
-	font-size: 120%;
+	font-size: 115%;
+	background-color: #D9EBFF;
+	border-bottom: 3px solid #49A0FF;
+}
+
+aside nav h2:before {
+	display:marker;  
+	padding-right: 5px;  
+	content:url(/images/tt_common_s2.gif); 
 }
 
 #know aside nav h2 {
@@ -247,9 +291,17 @@ aside nav h2 {
 	border-bottom: 3px solid #3586A8;
 }
 
+#know aside nav h2:before {
+	content:url(/images/tt_know_s.gif);  
+}
+
 #use aside nav h2 {
 	background: #FFE59B;
 	border-bottom: 3px solid #FB5424;
+}
+
+#use aside nav h2:before {
+	content:url(/images/tt_use_s.gif);  
 }
 
 #read aside nav h2 {
@@ -257,58 +309,84 @@ aside nav h2 {
 	border-bottom: 3px solid #FF3366;
 }
 
+#read aside nav h2:before {
+	content:url(/images/tt_read_s.gif);  
+}
+
 #entry aside nav h2 {
 	background: #D2E5B7;
 	border-bottom: 3px solid #628811;
 }
 
+#entry aside nav h2:before {
+	content:url(/images/tt_entry_s.gif);  
+}
+
+
+
+
+/*親メニュー*/
 aside nav li {
 	border-bottom: 1px solid #CCCCCC;
 	font-weight: bold;
 }
 
+aside nav li a {
+	display: block;
+	padding: 5px 10px;
+	background:#F0F0F0;/**/
+}
+
+aside nav li a[href] {
+	background:#FFFFFF;/**/
+}
+/*
+aside nav li.selected a {
+	background:#F0F0F0;
+}
+
+aside nav li.selected a[href] {
+	background: none;
+}
+*/
+
+aside nav li a[href]:hover,
+aside nav li a[href]:focus {
+	color: #FFFFFF;
+	background-color:#0060C0;
+}
+
+
+/*子メニュー*/
 aside nav li li {
 	border: none;
-	font-weight: normal;
-	font-size: 95%;
+	font-size: 95%;	
 	padding-left: 1em;
 }
 
-aside nav li a {
-	padding: 5px 10px;
-	display: block;
-}
-
-aside nav li a:hover,
-aside nav li a:focus,
-aside nav li a:active {
-	background-color:#F0F0F0;
-}
-
-
-aside nav li.selected {
-	background-color:#F0F0F0;
-	padding: 5px 10px;
-}
-
-aside nav li.selected a {
-	background-color:#F0F0F0;
+/*
+aside nav li.selected li a {
 	padding: 0;
+	padding-left: 0.5em;
 }
 
-aside nav li.selected a:hover,
-aside nav li.selected a:focus,
-aside nav li.selected a:active {
-	background-color:#F0F0F0;
-}
 
-aside nav li li.selected,
+aside nav li.selected li a:hover,
+aside nav li.selected li a:focus {
+	color: #FFFFFF;
+	background-color:#0060C0;
+}
+*/
 aside nav li li a {
-	padding-left: 30px;
+	padding: 0;
+	padding-left: 0.5em;
 }
 
-aside nav li li.selected a {
-	padding: 0;
+
+aside nav li li a:hover,
+aside nav li li a:focus {
+	color: #FFFFFF;
+	background-color:#0060C0;
 }
 
 
@@ -318,12 +396,12 @@ aside nav li li.selected a {
 footer {
 	clear: both;
 	width: 100%;
-	background: #6A4800 url(../images/footer_back.gif) repeat-x 0 0;
+	background: #6A4800 url(/images/footer_back.gif) repeat-x 0 0;
 }
 
 footer div {
 	padding: 70px 30px 30px 30px;
-	background: url(../images/footer_town.gif) no-repeat right top;
+	background: url(/images/footer_town.gif) no-repeat right top;
 	zoom: 1;
 }
 
@@ -340,8 +418,13 @@ footer li {
 
 footer li a {
 	color: #FFFFFF !important;
-	background: url(../images/link_b.gif) no-repeat 0 50%;
-	padding-left: 20px;
+	background: url(/images/link_b.gif) no-repeat 3px 50%;
+	padding: 3px 3px 3px 23px;
+}
+
+footer li a:hover,
+footer li a:focus {
+	background: #0060C0 url(/images/link_o.gif) no-repeat 3px 50%;
 }
 
 
@@ -355,7 +438,7 @@ footer address {
 
 footer address span {
 	font-weight: bold;
-	font-size: large;
+	font-size: 120%;
 }
 
 footer .copy {
@@ -372,28 +455,40 @@ footer .copy {
  9-角丸
 ----------------------------------------------------------*/
 .functionNav li {
-  -moz-border-radius: 0 0 10px 10px; /* Firefox */
-  -webkit-border-radius: 0 0 10px 10px; /* Safari and Chrome */
-  border-radius: 0 0 10px 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	-moz-border-radius: 0 0 10px 10px; /* Firefox */
+	-webkit-border-radius: 0 0 10px 10px; /* Safari and Chrome */
+	border-radius: 0 0 10px 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
 
-/*  behavior: url(http://archism.jp/ict4e/common/css/ie-css3.htc); *//* This lets IE know to call the script on all elements which get the 'box' class */
+	/*behavior: url(http://133.243.243.186/common/css/ie-css3.htc);*/ /* This lets IE know to call the script on all elements which get the 'box' class */
 
 }
 
-#contentsArea, #contentsArea h1 {
-  -moz-border-radius: 10px; /* Firefox */
-  -webkit-border-radius: 10px; /* Safari and Chrome */
-  border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+.functionNav li a {
+	-moz-border-radius: 0 0 7px 7px; /* Firefox */
+	-webkit-border-radius: 0 0 7px 7px; /* Safari and Chrome */
+	border-radius: 0 0 7px 7px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
 
-/*  behavior: url(http://archism.jp/ict4e/common/css/ie-css3.htc); *//* This lets IE know to call the script on all elements which get the 'box' class */
+	/*behavior: url(http://133.243.243.186/common/css/ie-css3.htc);*/ /* This lets IE know to call the script on all elements which get the 'box' class */
+
+}
+
+#contentsArea, 
+#contentsArea h1,
+.homeMain,
+.homeUse dl {
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+
+	/*behavior: url(http://133.243.243.186/common/css/ie-css3.htc);*/ /* This lets IE know to call the script on all elements which get the 'box' class */
 }
 
 aside {
-  -moz-border-radius: 0 10px 10px 0; /* Firefox */
-  -webkit-border-radius: 0 10px 10px 0; /* Safari and Chrome */
-  border-radius: 0 10px 10px 0; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	-moz-border-radius: 0 10px 10px 0; /* Firefox */
+	-webkit-border-radius: 0 10px 10px 0; /* Safari and Chrome */
+	border-radius: 0 10px 10px 0; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
 
- /* behavior: url(http://archism.jp/ict4e/common/css/ie-css3.htc);*/ /* This lets IE know to call the script on all elements which get the 'box' class */
+	/*behavior: url(http://133.243.243.186/common/css/ie-css3.htc);*/ /* This lets IE know to call the script on all elements which get the 'box' class */
 }
 
 
