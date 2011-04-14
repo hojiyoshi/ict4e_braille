@@ -35,7 +35,7 @@
 #contentsArea h1:before {
 	display:marker;  
 	padding-right:10px;  
-	content:url(/images/tt_common.gif);  
+	content:url(../images/tt_common.gif);
 }
 
 #know #contentsArea h1 {
@@ -44,7 +44,7 @@
 }
 
 #know #contentsArea h1:before {
-	content:url(/images/tt_know.gif);
+	content:url(../images/tt_know.gif);
 }
 
 #use #contentsArea h1 {
@@ -53,7 +53,7 @@
 }
 
 #use #contentsArea h1:before {
-	content:url(/images/tt_use.gif);
+	content:url(../images/tt_use.gif);
 }
 
 #read #contentsArea h1 {
@@ -62,7 +62,7 @@
 }
 
 #read #contentsArea h1:before {
-	content:url(/images/tt_read.gif);
+	content:url(../images/tt_read.gif);
 }
 
 #entry #contentsArea h1 {
@@ -71,7 +71,7 @@
 }
 
 #entry #contentsArea h1:before {
-	content:url(/images/tt_entry.gif);  
+	content:url(../images/tt_entry.gif);
 }
 
 
@@ -168,7 +168,7 @@
 	padding-left: 20px;
 	font-weight: bold;
 	color: #333333;
-	background: url(/images/tt_common_s.gif) no-repeat 0 50%;
+	background: url(../images/tt_common_s.gif) no-repeat 0 50%;
 }
 
 #contentsArea dd {
@@ -208,7 +208,7 @@
 ----------------------------------------------------------*/
 #contentsArea a.link {
 	padding-left: 20px;
-	background:url(/images/link.gif) no-repeat 0 50%;
+	background:url(../images/link.gif) no-repeat 0 50%;
 }
 
 /*このページの先頭へ*/
@@ -220,13 +220,13 @@
 
 #contentsArea .pagetop a {
 	padding-left: 20px;
-	background:url(/images/link_up.gif) no-repeat 0 50%;
+	background:url(../images/link_up.gif) no-repeat 0 50%;
 }
 
 #contentsArea .pagetop a:hover,
 #contentsArea .pagetop a:focus {
 	color: #FFFFFF;
-	background: #0060C0 url(/images/link_up_o.gif) no-repeat 0 50%;
+	background: #0060C0 url(../images/link_up_o.gif) no-repeat 0 50%;
 }
 
 /*ボックス

@@ -137,7 +137,7 @@ p.skiplink a:focus {
 header {
 	height: 185px;
 	margin-bottom: 25px;
-	background: url(/images/head_back.gif) no-repeat 367px 0;
+	background: url(../images/head_back.gif) no-repeat 367px 0;
 }
 
 header h1 {
@@ -165,12 +165,12 @@ header h1 {
 	display: block;
 	padding: 5px 12px 5px 35px;
 	font-weight: bold;
-	background: #FFFFFF url(/images/link.gif) no-repeat 12px 50%;
+	background: #FFFFFF url(../images/link.gif) no-repeat 12px 50%;
 }
 
 .functionNav li a[href]:hover,
 .functionNav li a[href]:focus {
-	background: #0060C0 url(/images/link_o.gif) no-repeat 12px 50%;
+	background: #0060C0 url(../images/link_o.gif) no-repeat 12px 50%;
 	color: #FFFFFF;
 }
 
@@ -283,7 +283,7 @@ aside nav h2 {
 aside nav h2:before {
 	display:marker;  
 	padding-right: 5px;  
-	content:url(/images/tt_common_s2.gif); 
+	content:url(../images/tt_common_s2.gif);
 }
 
 #know aside nav h2 {
@@ -292,7 +292,7 @@ aside nav h2:before {
 }
 
 #know aside nav h2:before {
-	content:url(/images/tt_know_s.gif);  
+	content:url(../images/tt_know_s.gif);
 }
 
 #use aside nav h2 {
@@ -301,7 +301,7 @@ aside nav h2:before {
 }
 
 #use aside nav h2:before {
-	content:url(/images/tt_use_s.gif);  
+	content:url(../images/tt_use_s.gif);
 }
 
 #read aside nav h2 {
@@ -310,7 +310,7 @@ aside nav h2:before {
 }
 
 #read aside nav h2:before {
-	content:url(/images/tt_read_s.gif);  
+	content:url(../images/tt_read_s.gif);
 }
 
 #entry aside nav h2 {
@@ -319,7 +319,7 @@ aside nav h2:before {
 }
 
 #entry aside nav h2:before {
-	content:url(/images/tt_entry_s.gif);  
+	content:url(../images/tt_entry_s.gif);
 }
 
 
@@ -396,12 +396,12 @@ aside nav li li a:focus {
 footer {
 	clear: both;
 	width: 100%;
-	background: #6A4800 url(/images/footer_back.gif) repeat-x 0 0;
+	background: #6A4800 url(../images/footer_back.gif) repeat-x 0 0;
 }
 
 footer div {
 	padding: 70px 30px 30px 30px;
-	background: url(/images/footer_town.gif) no-repeat right top;
+	background: url(../images/footer_town.gif) no-repeat right top;
 	zoom: 1;
 }
 
@@ -418,13 +418,13 @@ footer li {
 
 footer li a {
 	color: #FFFFFF !important;
-	background: url(/images/link_b.gif) no-repeat 3px 50%;
+	background: url(../images/link_b.gif) no-repeat 3px 50%;
 	padding: 3px 3px 3px 23px;
 }
 
 footer li a:hover,
 footer li a:focus {
-	background: #0060C0 url(/images/link_o.gif) no-repeat 3px 50%;
+	background: #0060C0 url(../images/link_o.gif) no-repeat 3px 50%;
 }
 
 
