@@ -49,7 +49,7 @@
         <nav>
           <p class="topicPath">
             <span>現在の位置： </span>
-            <a href='/'>ホーム</a> ＞ <a href='/use/'>アプリサービス</a> ＞
+            <a href='/'>ホーム</a> ＞ <a href='/use/'>アプリ・サービス</a> ＞
             <% if APP_NAME == 'ict4e_braille' %>
               <%= link_to '遠隔点字依頼サービス', :controller => 'tenji' %> ＞
               <% unless @nav_title.blank? %>
@@ -87,12 +87,19 @@
 
           <li>
             <% if APP_NAME == 'ict4e_braille' %>
-            <a>遠隔点字印刷サービス</a>
+            <a href="/use/tenji">遠隔点字印刷サービス</a>
             <ul>
-              <li><a href="/use/tenji">サービス内容</a></li>
+              <li><a href="/use/tenji/service.php">サービス内容</a></li>
               <li><a href="/use/tenji/manual.php">ご利用方法</a></li>
               <li><a href="/use/tenji/data.php">印刷依頼データについて</a></li>
-              <li><%= link_to '印刷依頼', :controller => 'tenji' %> </li>
+              <li class="selected">
+                <!-- 点字印刷トップ以外は、リンクを置く。 -->
+                <% if params[:controller] != 'tenji' %>
+                  <%= link_to '印刷依頼', :controller => 'tenji' %>
+                <% else %>
+                  <a>印刷依頼</a>
+                <% end %>
+              </li>
             </ul>
             <% else %>
               <a href="/use/tenji/">遠隔点字印刷サービス</a>
@@ -102,16 +109,18 @@
 
           <li>
             <% if APP_NAME == 'ict4e_common' %>
-            <a>ユーザー登録・変更</a>
+              <%= link_to 'ユーザー登録・変更', :controller => 'users' %>
             <ul>
-              <li><%= link_to 'ユーザー登録', :controller => 'users', :action => 'new'%></li>
-              <li><%= link_to 'ユーザー情報変更', :controller => 'users', :action => 'edit_auth' %></li>
-              <li><%= link_to 'パスワードを忘れた方', :controller => 'users', :action => 'forget'%></li>
+              <li><%= sub_menu_link('ユーザー登録', 'users', 'new') %></li>
+              <li><%= sub_menu_link('ユーザー情報変更', 'users', 'edit_auth') %></li>
+              <li><%= sub_menu_link('パスワードを忘れた方', 'users', 'forget') %></li>
             </ul>
             <% else %>
               <%= link_to 'ユーザー登録・変更', ICT4E_ACCOUNTS_URL %>
             <% end %>
           </li>
+
+          <li><a href="/use/rule/">利用規約</a></li>
         </ul>
       </nav>
     </aside>
