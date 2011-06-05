@@ -229,9 +229,12 @@ AjaxZip2.JSONDATA = '/ajaxzip2/data';
         添付ファイルはWordデータ（.doc又は.docxファイル）もしくは点字データ(.Base又は.Besファイル)に限ります。
       </p>
       <p>
-
-<%= f.file_field :braille_datafile, :id => 'braille_datafile', :required => 'required'%></p>
-</td></tr>
+        <input id="braille_datafile" name="tenji_request[braille_datafile]" required="required" type="file" />
+        <%= #f.file_field :braille_datafile, :id => 'braille_datafile', :required => 'required'
+        %>
+      </p>
+    </td>
+  </tr>
 </table>
 <% end %>
 
