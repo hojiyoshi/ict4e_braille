@@ -99,10 +99,13 @@ AjaxZip2.JSONDATA = '/ajaxzip2/data';
     ※チェックをいれると次回から入力する手間が省けます。<br />
     ※登録済みの情報を編集すると登録済み情報に上書きされます。
   </p>
+  
   <p class="mNon">
     <label for="entry" class="fBold">
-      <%= f.check_box :entry, :id => 'entry', :onClick => "setToForm(this);",
-        :checked => (true if params[:tenji_request][:entry].blank? || params[:tenji_request][:entry] == '1') %>
+      <%= check_box_tag 'tenji_request[entry]', "1", true if params[:tenji_request][:entry].blank? || params[:tenji_request][:entry] == '1' %>
+      <%= #f.check_box :entry, :id => 'entry', :onClick => "setToForm(this);",
+        #:checked => (true if params[:tenji_request][:entry].blank? || params[:tenji_request][:entry] == '1')
+      %>
       入力した依頼人情報(名前･住所等)を登録する。
     </label>
   </p>
@@ -227,7 +230,7 @@ AjaxZip2.JSONDATA = '/ajaxzip2/data';
       </p>
       <p>
 
-<%= f.file_field :braille_datafile, :id => 'braille_datafile', :size => '30', :required => 'required'%></p>
+<%= f.file_field :braille_datafile, :id => 'braille_datafile', :required => 'required'%></p>
 </td></tr>
 </table>
 <% end %>

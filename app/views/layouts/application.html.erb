@@ -4,7 +4,6 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title><%=@title%></title>
     <%= stylesheet_link_tag('base.css', :media => 'screen,print') %>
     <%= stylesheet_link_tag('contentsarea.css', :media => 'screen,print') %>
@@ -25,7 +24,7 @@
     <p class="skiplink" id="skiplink"><a href="#honbun">本文へ移動</a></p>
     <!--header[START]-->
     <header>
-      <h1><%= link_to(image_tag('logo.gif', :size => '336x91', :alt =>'みんなのICTホーム',:border=>0), '/') %></h1>
+      <h1><%= link_to(image_tag('logo.gif', :size => '336x91', :alt =>'みんなのICTホーム'), '/') %></h1>
       <nav role="navigation">
         <ul class="functionNav">
           <li><%= link_to 'サイトマップ', '/sitemap/'%></li>
@@ -57,7 +56,7 @@
                   <%= link_to(@nav_title[i], :controller => @nav_controller[i], :action => @nav_action[i], 'tenji_request[data_type]' => params[:tenji_request][:data_type], :login => true) %> ＞
                 <% end %>
               <% end %>
-            
+
             <% elsif APP_NAME == 'ict4e_common'%>
               <% unless @nav_title.blank? %>
                 <% for i in 0..@nav_title.size-1 %>
@@ -94,11 +93,16 @@
               <li><a href="/use/tenji/data.php">印刷依頼データについて</a></li>
               <li class="selected">
                 <!-- 点字印刷トップ以外は、リンクを置く。 -->
-                <% if params[:controller] != 'tenji' %>
-                  <%= link_to '印刷依頼', :controller => 'tenji' %>
-                <% else %>
+                <% 
+                  # if params[:controller] != 'tenji'
+                %>
+                  <%= # link_to '印刷依頼', :controller => 'tenji'
+                  %>
+                <% #else
+                %>
                   <a>印刷依頼</a>
-                <% end %>
+                <% #end
+                %>
               </li>
             </ul>
             <% else %>
@@ -111,9 +115,13 @@
             <% if APP_NAME == 'ict4e_common' %>
               <%= link_to 'ユーザー登録・変更', :controller => 'users' %>
             <ul>
-              <li><%= sub_menu_link('ユーザー登録', 'users', 'new') %></li>
-              <li><%= sub_menu_link('ユーザー情報変更', 'users', 'edit_auth') %></li>
-              <li><%= sub_menu_link('パスワードを忘れた方', 'users', 'forget') %></li>
+              <!--
+                Helperでコントローラ名とアクション名が一致していれば、"selected"をli要素に付加
+                また、リンクを貼らない。
+              -->
+              <li<%= sub_menu_selected('new') %>><%= sub_menu_link('ユーザー登録', 'new') %></li>
+              <li<%= sub_menu_selected('edit') %>><%= sub_menu_link('メールアドレス・パスワード変更', 'edit_auth') %></li>
+              <li<%= sub_menu_selected('forget') %>><%= sub_menu_link('パスワードを忘れた方', 'forget') %></li>
             </ul>
             <% else %>
               <%= link_to 'ユーザー登録・変更', ICT4E_ACCOUNTS_URL %>
@@ -142,7 +150,7 @@
       </div>
     </footer>
     <!--footer[END]-->
-    
+
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-19615620-1']);
