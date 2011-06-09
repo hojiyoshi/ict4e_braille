@@ -73,7 +73,6 @@ class RequestsController < ApplicationController
 
   def create
     # 多重サブミットチェック
-=begin
     if double_submit?
       # ページタイトルの設定（多重サブミット画面の表示にする）
       @title = '印刷依頼：エラー' + @title
@@ -85,7 +84,6 @@ class RequestsController < ApplicationController
       end
       return
     end
-=end
     # ページタイトルの設定（完了画面の表示にする）
     @title = '印刷依頼：完了' + @title
 

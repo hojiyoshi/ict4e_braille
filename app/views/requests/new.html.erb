@@ -101,7 +101,7 @@ AjaxZip2.JSONDATA = '/ajaxzip2/data';
   </p>
   
   <p class="mNon">
-    <label for="entry" class="fBold">
+    <label for="tenji_request_entry" class="fBold">
       <%= check_box_tag 'tenji_request[entry]', "1", true if params[:tenji_request][:entry].blank? || params[:tenji_request][:entry] == '1' %>
       <%= #f.check_box :entry, :id => 'entry', :onClick => "setToForm(this);",
         #:checked => (true if params[:tenji_request][:entry].blank? || params[:tenji_request][:entry] == '1')
