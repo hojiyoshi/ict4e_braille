@@ -11,6 +11,7 @@
 <% end %>
 
 <p>ユーザー登録されていない方は、事前に「<%= link_to 'ユーザ新規登録', ICT4E_ACCOUNTS_URL + 'signup' %>」が必要です。</p>
+<p>※）2011年7月10日より前にユーザ登録された方は、お手数ですが、再度登録をお願いします。</p>
 <% form_tag :controller => 'sessions', :action => 'create' do -%>
   <% fields_for :users do |f| %>
 <h2>登録済みユーザー情報</h2>
