@@ -50,7 +50,7 @@
             <span>現在の位置： </span>
             <a href='/'>ホーム</a> ＞ <a href='/use/'>アプリ・サービス</a> ＞
             <% if APP_NAME == 'ict4e_braille' %>
-              <%= link_to 'ネット点字印刷サービス', :controller => 'tenji' %> ＞
+              <%= link_to 'ネット点字印刷', :controller => 'tenji' %> ＞
               <% unless @nav_title.blank? %>
                 <% for i in 0..@nav_title.size-1 %>
                   <%= link_to(@nav_title[i], :controller => @nav_controller[i], :action => @nav_action[i], 'tenji_request[data_type]' => params[:tenji_request][:data_type], :login => true) %> ＞
@@ -94,7 +94,7 @@
 
           <li>
             <% if APP_NAME == 'ict4e_braille' %>
-            <a href="/use/tenji">ネット点字印刷サービス</a>
+            <a href="/use/tenji">ネット点字印刷</a>
             <ul>
               <li><a href="/use/tenji/service.php">サービス内容</a></li>
               <li><a href="/use/tenji/manual.php">ご利用方法</a></li>
@@ -105,7 +105,7 @@
               </li>
             </ul>
             <% else %>
-              <a href="/use/tenji/">ネット点字印刷サービス</a>
+              <a href="/use/tenji/">ネット点字印刷</a>
             <% end %>
           </li>
           <li>
