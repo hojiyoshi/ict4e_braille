@@ -50,13 +50,19 @@
             <span>現在の位置： </span>
             <a href='/'>ホーム</a> ＞ <a href='/use/'>アプリ・サービス</a> ＞
             <% if APP_NAME == 'ict4e_braille' %>
-              <%= link_to '遠隔点字依頼サービス', :controller => 'tenji' %> ＞
+              <%= link_to 'ネット点字印刷サービス', :controller => 'tenji' %> ＞
               <% unless @nav_title.blank? %>
                 <% for i in 0..@nav_title.size-1 %>
                   <%= link_to(@nav_title[i], :controller => @nav_controller[i], :action => @nav_action[i], 'tenji_request[data_type]' => params[:tenji_request][:data_type], :login => true) %> ＞
                 <% end %>
               <% end %>
-
+            <% elsif APP_NAME == 'ict4e_remotecaption' %>
+              <%= link_to '要約筆記支援サービス', :controller => 'home' %> ＞
+              <% unless @nav_title.blank? %>
+                <% for i in 0..@nav_title.size-1 %>
+                  <%= link_to(@nav_title[i], :controller => @nav_controller[i], :action => @nav_action[i] ) %> ＞
+                <% end %>
+              <% end %>
             <% elsif APP_NAME == 'ict4e_common'%>
               <% unless @nav_title.blank? %>
                 <% for i in 0..@nav_title.size-1 %>
@@ -66,7 +72,9 @@
             <% end %>
           </p>
         </nav>
-
+        <% if APP_NAME == 'ict4e_remotecaption' && !current_user.blank? && !current_user.summary_user.blank? %>
+        <%= render :partial => 'layouts/nav_bar' %>
+        <% end %>
         <%= yield %>
 
         <p class="pagetop"><a href="#skiplink">このページの先頭へ</a></p>
@@ -86,30 +94,30 @@
 
           <li>
             <% if APP_NAME == 'ict4e_braille' %>
-            <a href="/use/tenji">遠隔点字印刷サービス</a>
+            <a href="/use/tenji">ネット点字印刷サービス</a>
             <ul>
               <li><a href="/use/tenji/service.php">サービス内容</a></li>
               <li><a href="/use/tenji/manual.php">ご利用方法</a></li>
               <li><a href="/use/tenji/data.php">印刷依頼データについて</a></li>
               <li class="selected">
                 <!-- 点字印刷トップ以外は、リンクを置く。 -->
-                <% 
-                  # if params[:controller] != 'tenji'
-                %>
-                  <%= # link_to '印刷依頼', :controller => 'tenji'
-                  %>
-                <% #else
-                %>
                   <a>印刷依頼</a>
-                <% #end
-                %>
               </li>
             </ul>
             <% else %>
               <a href="/use/tenji/">遠隔点字印刷サービス</a>
             <% end %>
           </li>
-          <li><a href="/use/youyaku/">要約筆記依頼サービス</a></li>
+          <li>
+            <a href="/use/youyaku/">要約筆記依頼サービス</a>
+            <% if APP_NAME == 'ict4e_remotecaption' %>
+            <ul>
+              <li><a href="/use/youyaku/service.php">サービス内容</a></li>
+              <li><a href="/use/youyaku/manual.php">ご利用方法</a></li>
+              <li><a>サービスのご利用</a></li>
+            </ul>
+            <% end %>
+          </li>
 
           <li>
             <% if APP_NAME == 'ict4e_common' %>

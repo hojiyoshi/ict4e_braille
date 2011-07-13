@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
   # 初期化メソッド（最初に呼ばれる）
   def initialize
     # ページタイトル/ナビゲーションタイトルの初期設定
-    @title = '：遠隔点字印刷サービス：みんなのICT'
+    @title = '：ネット点字印刷サービス：みんなのICT'
     
     # ナビゲーションタイトルの設定
     @nav_title = ['印刷依頼']
