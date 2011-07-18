@@ -5,7 +5,7 @@ class TenjiController < ApplicationController
   # /:[GET]
   def index
     # タイトルの設定
-    @title = '印刷依頼：みんなのICT'
+    @title = '印刷依頼：ネット点字印刷：みんなのICT'
     # Cookieからメールアドレスの初期値を読み込む
     @user_email = cookies[:user_email]
   end
