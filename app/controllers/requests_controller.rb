@@ -84,6 +84,7 @@ class RequestsController < ApplicationController
       end
       return
     end
+
     # ページタイトルの設定（完了画面の表示にする）
     @title = '印刷依頼：完了' + @title
 
@@ -104,10 +105,10 @@ class RequestsController < ApplicationController
 <p>#{@tenji_request.print_contents1}</p>
 
 <h1>#{@tenji_request.print_title2}</h1>
-<p>#{@tenji_request.print_contents1}</p>
+<p>#{@tenji_request.print_contents2}</p>
 
 <h1>#{@tenji_request.print_title3}</h1>
-<p>#{@tenji_request.print_contents1}</p>
+<p>#{@tenji_request.print_contents3}</p>
 EOF
 
         foo = File.open(file_name,'w')
