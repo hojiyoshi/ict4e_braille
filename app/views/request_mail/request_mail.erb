@@ -10,16 +10,16 @@
 〒<%= @request.to_zip_code %>
 <%= @request.to_user_address1 %>　<%= @request.to_user_address2 %>
 
-　お名前：<%= @request.to_user_name %>
+お名前：<%= @request.to_user_name %>
 
 ◆発送元の情報
 〒<%= @request.from_zip_code %>
 <%= @request.from_user_address1 %>　<%= @request.from_user_address2 %>
 
-　お名前：<%= @request.from_user_name %>
-　所属：<%= @request.from_user_affiliation %>
+お名前：<%= @request.from_user_name %>
+メールアドレス：<%= @user.email %>
 
-　TEL：<%= @request.from_phone_number %>
+TEL：<%= @request.from_phone_number %>
 
 ◆連絡事項
 <% if @request.message.blank? %>

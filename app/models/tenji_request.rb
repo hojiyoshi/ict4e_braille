@@ -108,8 +108,8 @@ class TenjiRequest < ActiveRecord::Base
     def validate_upload
       extname = File::extname(braille_datafile).downcase
       
-      if !(extname == '.doc' || extname == '.docx' || extname == '.base' || extname == '.bes')
-        errors.add(:braille_datafile, 'は、Wordデータ（.doc又は.docxファイル）もしくは点字データ(.Base又は.Besファイル)を選択してください。')
+      if !(extname == '.doc' || extname == '.docx' || extname == '.base' || extname == '.bes' || extname == '.bse')
+        errors.add(:braille_datafile, 'は、Wordデータ（.doc又は.docxファイル）もしくは点字データ(.base、bse、besファイル)を選択してください。')
       end
 
     end

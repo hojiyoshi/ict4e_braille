@@ -102,7 +102,7 @@ class RequestsController < ApplicationController
         
         source = <<EOF
 <h1>#{@tenji_request.print_title1}</h1>
-<p>#{@tenji_request.print_contents1}</p>
+<p>#{hbr2(@tenji_request.print_contents1)}</p>
 
 <h1>#{@tenji_request.print_title2}</h1>
 <p>#{@tenji_request.print_contents2}</p>
@@ -120,7 +120,7 @@ EOF
       end
       
       # メールを送る。
-      RequestMail.deliver_request_mail(@tenji_request)
+      RequestMail.deliver_request_mail(@tenji_request,current_user)
     
       # 「入力した名前・住所等を登録する」チェックがされている場合
       if params[:tenji_request]['entry'] == '1'
