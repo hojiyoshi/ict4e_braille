@@ -105,10 +105,10 @@ class RequestsController < ApplicationController
 <p>#{hbr2(@tenji_request.print_contents1)}</p>
 
 <h1>#{@tenji_request.print_title2}</h1>
-<p>#{@tenji_request.print_contents2}</p>
+<p>#{hbr2(@tenji_request.print_contents2)}</p>
 
 <h1>#{@tenji_request.print_title3}</h1>
-<p>#{@tenji_request.print_contents3}</p>
+<p>#{hbr2(@tenji_request.print_contents3)}</p>
 EOF
 
         foo = File.open(file_name,'w')
