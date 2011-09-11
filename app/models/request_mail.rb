@@ -13,7 +13,7 @@ class RequestMail < ActionMailer::Base
       @body[:office] = 'braille_office@ict4everyone.jp'
       @body[:ict4everyone_name] = 'http://www.ict4everyone.jp'
       @recipients  = REQUEST_MAILADDRESS
-      @from        = 'braille_request@ict4everyone.jp'
+      @from        = 'braille-request@ict4everyone.jp'
       @subject     = "【みんなのICT】点字印刷依頼受付完了のお知らせ "
       @body[:request] = tenji_request
       @body[:user] = user
