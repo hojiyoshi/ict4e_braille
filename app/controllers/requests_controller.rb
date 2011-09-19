@@ -67,8 +67,7 @@ class RequestsController < ApplicationController
     else
       # ページタイトルの設定（確認画面の表示にする）
       @title = '印刷依頼情報：確認' + @title
-    end
-    
+    end    
   end
 
   def create
