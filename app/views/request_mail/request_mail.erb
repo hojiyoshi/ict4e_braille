@@ -1,11 +1,24 @@
 <%= @request.from_user_name %>様より点字印刷の依頼を承っております。
 
 以下のリンクより、依頼データのダウンロードを行うことができます。
-<%= @url %>
 
 ◆タイトル
-<%= @request.print_name %>
+<%= @request.print_name1 %>
 
+<%= @url1 %>
+
+<% if !@request.print_name2.blank? && !@url2.blank? -%>
+<%= @request.print_name2 %>
+
+<%= @url2 %>
+
+<% end -%>
+<% if !@request.print_name3.blank? && !@url3.blank? -%>
+<%= @request.print_name3 %>
+
+<%= @url3 %>
+
+<% end -%>
 ◆発送先の情報
 〒<%= @request.to_zip_code %>
 <%= @request.to_user_address1 %>　<%= @request.to_user_address2 %>

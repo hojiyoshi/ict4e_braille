@@ -166,9 +166,9 @@ AjaxZip2.JSONDATA = '/ajaxzip2/data';
 <p>点字印刷を依頼したいテキスト情報を入力してください。見出しは3つ分の入力欄があります。</p>
 <table class="col">
   <tr>
-    <th><label for="print_name">タイトル<span class="tCaution">(必須)</span></label></th>
+    <th><label for="print_name1">タイトル<span class="tCaution">(必須)</span></label></th>
     <td>
-      <%= f.text_field :print_name, :id => "print_name", :size => "30", :class => "textA fullwidth-kana", :required => "required" %>
+      <%= f.text_field :print_name1, :id => "print_name1", :size => "30", :class => "textA fullwidth-kana", :required => "required" %>
     </td>
   </tr>
   <tr>
@@ -215,23 +215,57 @@ AjaxZip2.JSONDATA = '/ajaxzip2/data';
 <p>点字印刷を依頼したいファイルの情報を入力してください。</p>
 <table class="col">
   <tr>
-    <th><label for="print_file_title">タイトル<span class="tCaution">(必須)</span></label></th>
+    <th><label for="print_file_title1">タイトル<span class="tCaution">(必須)</span></label></th>
     <td>
       <span class="fSmall">入力例：山田さんへの手紙</span><br />
-      <%= f.text_field :print_name, :id => "print_file_title", :size => "30", :class => "textA fullwidth-kana", :required => "required" %>
+      <%= f.text_field :print_name1, :id => "print_file_title1", :size => "30", :class => "textA fullwidth-kana", :required => "required" %>
     </td>
   </tr>
   <tr>
-    <th><label for="braille_datafile">添付ファイル<span class="tCaution">(必須)</span></label></th>
+    <th><label for="braille_datafile1">添付ファイル<span class="tCaution">(必須)</span></label></th>
     <td>
       <p class="fSmall">
         下のフォームは直接入力することはできません。参照ボタンをクリック、またはスペースキーで押して、添付ファイルを選んでください。<br />
         添付ファイルはWordデータ（.doc又は.docxファイル）もしくは点字データ(.base、bse、besファイル)に限ります。
       </p>
       <p>
-        <input id="braille_datafile" name="tenji_request[braille_datafile]" required="required" type="file" />
+        <input id="braille_datafile1" name="tenji_request[braille_datafile1]" required="required" type="file" />
         <%= #f.file_field :braille_datafile, :id => 'braille_datafile', :required => 'required'
         %>
+      </p>
+    </td>
+  </tr>
+</table>
+
+<p>複数のファイルを登録したい場合は、以下のフォームに情報を入力してください。</p>
+<table class="col">
+  <tr>
+    <th><label for="print_file_title2">タイトル2</label></th>
+    <td>
+      <%= f.text_field :print_name2, :id => "print_file_title2", :size => "30", :class => "textA fullwidth-kana" %>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="braille_datafile2">添付ファイル2</label></th>
+    <td>
+      <p>
+        <input id="braille_datafile2" name="tenji_request[braille_datafile2]" type="file" />
+      </p>
+    </td>
+  </tr>
+</table>
+<table class="col">
+  <tr>
+    <th><label for="print_file_title3">タイトル3</label></th>
+    <td>
+      <%= f.text_field :print_name3, :id => "print_file_title3", :size => "30", :class => "textA fullwidth-kana" %>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="braille_datafile3">添付ファイル3</label></th>
+    <td>
+      <p>
+        <input id="braille_datafile3" name="tenji_request[braille_datafile3]" type="file" />
       </p>
     </td>
   </tr>

@@ -4,7 +4,14 @@ class RequestMail < ActionMailer::Base
   def request_mail(tenji_request, user)
     setup_email(tenji_request, user)
     #@body[:url] = ICT4E_BRAILLE_URL+"tenji_request/braille_datafile/#{tenji_request.id}/#{File::basename(tenji_request.braille_datafile)}"
-    @body[:url] = ICT4E_BRAILLE_URL+"tenji_request/braille_datafile/#{tenji_request.braille_datafile_relative_path}"
+    @body[:url1] = ICT4E_BRAILLE_URL+"tenji_request/braille_datafile1/#{tenji_request.braille_datafile1_relative_path}"
+
+    if !tenji_request.print_name2.blank? && !tenji_request.braille_datafile2.blank?
+      @body[:url2] = ICT4E_BRAILLE_URL+"tenji_request/braille_datafile2/#{tenji_request.braille_datafile2_relative_path}"
+    end
+    if !tenji_request.print_name3.blank? && !tenji_request.braille_datafile3.blank?
+      @body[:url3] = ICT4E_BRAILLE_URL+"tenji_request/braille_datafile3/#{tenji_request.braille_datafile3_relative_path}"
+    end
   end
 
   protected

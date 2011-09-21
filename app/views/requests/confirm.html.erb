@@ -2,7 +2,9 @@
 <p>以下の内容でよろしければ、「この内容で印刷依頼する」ボタンを押してください。</p>
 <% form_tag({:controller => 'requests'}) do -%>
 <% if @tenji_request.data_type == 'data_type_file' %>
-<%= file_column_field 'tenji_request', 'braille_datafile',:style => 'visibility:hidden', :size=>nil %>
+<%= file_column_field('tenji_request', 'braille_datafile1',:style => 'visibility:hidden', :size=>nil) %>
+<%= file_column_field('tenji_request', 'braille_datafile2',:style => 'visibility:hidden', :size=>nil) unless @tenji_request.braille_datafile2.blank? %>
+<%= file_column_field('tenji_request', 'braille_datafile3',:style => 'visibility:hidden', :size=>nil) unless @tenji_request.braille_datafile3.blank? %>
 <% end %>
 <%= render :partial => 'hidden' %>
 <%= double_submit_token %>
@@ -66,7 +68,7 @@
 <table class="col">
   <tr>
     <th>タイトル</th>
-    <td><%= h @tenji_request.print_name %></td>
+    <td><%= h @tenji_request.print_name1 %></td>
   </tr>
   <tr>
     <th>サブタイトル1</th>
@@ -99,13 +101,42 @@
 <table class="col">
   <tr>
     <th>タイトル</th>
-    <td><%= h @tenji_request.print_name %></td>
+    <td><%= h @tenji_request.print_name1 %></td>
   </tr>
   <tr>
     <th>添付ファイル</th>
     <td>
-<%= h params[:tenji_request][:braille_datafile].original_filename %></td>
+      <p><%= h params[:tenji_request][:braille_datafile1].original_filename %></p>
+    </td>
   </tr>
+  <% if @tenji_request.print_name2 && !@tenji_request.braille_datafile2.blank? %>
+  <tr>
+    <th>タイトル2</th>
+    <td><%= h @tenji_request.print_name2 %></td>
+  </tr>
+  <tr>
+    <th>添付ファイル2</th>
+    <td>
+      <% unless @tenji_request.braille_datafile2.blank? %>
+        <p><%= h params[:tenji_request][:braille_datafile2].original_filename %></p>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+  <% if @tenji_request.print_name3 && !@tenji_request.braille_datafile3.blank? %>
+  <tr>
+    <th>タイトル3</th>
+    <td><%= h @tenji_request.print_name3 %></td>
+  </tr>
+  <tr>
+    <th>添付ファイル3</th>
+    <td>
+      <% unless @tenji_request.braille_datafile3.blank? %>
+        <p><%= h params[:tenji_request][:braille_datafile3].original_filename %></p>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
 </table>
 <% end %>
 

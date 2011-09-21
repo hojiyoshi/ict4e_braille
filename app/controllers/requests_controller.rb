@@ -95,7 +95,7 @@ class RequestsController < ApplicationController
       # フォーム入力の場合、データを書き出す。
       # ファイルの場合は、file_columnプラグインに任せる。
       if @tenji_request.data_type == 'data_type_text'
-        file_dir = RAILS_ROOT + '/public/tenji_request/braille_datafile/' + @tenji_request.id.to_s + '/'
+        file_dir = RAILS_ROOT + '/public/tenji_request/braille_datafile1/' + @tenji_request.id.to_s + '/'
         Dir::mkdir(file_dir)
         file_name = file_dir + Time.now.strftime("%Y%m%d%H%M%S") + '.txt'        
         
@@ -114,7 +114,7 @@ EOF
         foo.puts source
         foo.close
 
-        @tenji_request.braille_datafile = File.new(file_name, "r")
+        @tenji_request.braille_datafile1 = File.new(file_name, "r")
         @tenji_request.save
       end
       

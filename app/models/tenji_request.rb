@@ -1,8 +1,13 @@
 class TenjiRequest < ActiveRecord::Base
   belongs_to :user
-  file_column :braille_datafile
+  file_column :braille_datafile1
+  file_column :braille_datafile2
+  file_column :braille_datafile3
   
   attr_accessor :to_type, :entry
+
+  UPLOAD_ERR_MSG = 'は、Wordデータ（.doc又は.docxファイル）もしくは点字データ(.base、bse、besファイル)を選択してください。'
+  EXT_NAME_LIST = ['.doc', '.docx', '.base', '.bes', '.bse']
   
   # 依頼人）名前の値検証
   # 入力必須をチェック
@@ -65,9 +70,18 @@ class TenjiRequest < ActiveRecord::Base
 
   # 印刷依頼データ）タイトル
   # 入力必須をチェック
-  validates_presence_of :print_name
+  validates_presence_of :print_name1
+  validates_presence_of :print_name2,
+    :if => Proc.new {|p| p.data_type == 'data_type_file' && !p.braille_datafile2.blank?}
+  validates_presence_of :print_name3,
+    :if => Proc.new {|p| p.data_type == 'data_type_file' && !p.braille_datafile3.blank?}
+  
   #文字列の最大長さ（100文字以下）をチェック
-  validates_length_of :print_name,:maximum => 100
+  validates_length_of :print_name1,:maximum => 100
+  validates_length_of :print_name2,:maximum => 100,
+    :if => Proc.new {|p| p.data_type == 'data_type_file' && !p.braille_datafile3.blank?}
+  validates_length_of :print_name3,:maximum => 100,
+    :if => Proc.new {|p| p.data_type == 'data_type_file' && !p.braille_datafile3.blank?}
   
   # 印刷依頼データ）サブタイトル1
   # 『テキスト入力』の場合、文字列の最大長さ（100文字以下）をチェック
@@ -91,26 +105,36 @@ class TenjiRequest < ActiveRecord::Base
 
   # 印刷依頼データ）添付ファイル
   # 『添付ファイル』の場合、入力必須をチェック
-  validates_presence_of :braille_datafile,
+  validates_presence_of :braille_datafile1,
     :if => Proc.new {|p| p.data_type == 'data_type_file'}
+  
   # 『添付ファイル』の場合、ファイルフォーマットをチェック
-  validate :validate_upload,
-    :if => Proc.new {|p| p.data_type == 'data_type_file' && !p.braille_datafile.blank?}
+  validate :validate_upload1,
+    :if => Proc.new {|p| p.data_type == 'data_type_file' && !p.braille_datafile1.blank?}
+  validate :validate_upload2,
+    :if => Proc.new {|p| p.data_type == 'data_type_file' && !p.braille_datafile2.blank?}
+  validate :validate_upload3,
+    :if => Proc.new {|p| p.data_type == 'data_type_file' && !p.braille_datafile3.blank?}
 
-  protected    
-    def before_save
-      if self.braille_datafile.blank?
-        # self.braille_datafile = File.new(Time.now.strftime("%Y%m%d%H%M%S") + '.txt', "r")
-        # self.braille_datafile = Time.now.strftime("%Y%m%d%H%M%S") + '.txt'
+  protected 
+    def validate_upload1
+      extname = File::extname(braille_datafile1).downcase
+      if !(extname == '.doc' || extname == '.docx' || extname == '.base' || extname == '.bes' || extname == '.bse')
+        errors.add(:braille_datafile1, UPLOAD_ERR_MSG)
       end
     end
 
-    def validate_upload
-      extname = File::extname(braille_datafile).downcase
-      
+    def validate_upload2
+      extname = File::extname(braille_datafile2).downcase
       if !(extname == '.doc' || extname == '.docx' || extname == '.base' || extname == '.bes' || extname == '.bse')
-        errors.add(:braille_datafile, 'は、Wordデータ（.doc又は.docxファイル）もしくは点字データ(.base、bse、besファイル)を選択してください。')
+        errors.add(:braille_datafile2, UPLOAD_ERR_MSG)
       end
+    end
 
+    def validate_upload3
+      extname = File::extname(braille_datafile3).downcase
+      if !(extname == '.doc' || extname == '.docx' || extname == '.base' || extname == '.bes' || extname == '.bse')
+        errors.add(:braille_datafile3, UPLOAD_ERR_MSG)
+      end
     end
 end
