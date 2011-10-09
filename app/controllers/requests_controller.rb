@@ -97,18 +97,29 @@ class RequestsController < ApplicationController
       if @tenji_request.data_type == 'data_type_text'
         file_dir = RAILS_ROOT + '/public/tenji_request/braille_datafile1/' + @tenji_request.id.to_s + '/'
         Dir::mkdir(file_dir)
-        file_name = file_dir + Time.now.strftime("%Y%m%d%H%M%S") + '.txt'        
+        file_name = file_dir + Time.now.strftime("%Y%m%d%H%M%S") + '.txt'
+        title_header = '　　　　　　　　'# 全角スペース×8
+        subtitle_header='　　　　　　' # 全角スペース×6
+        content_header='　　' # 全角スペース×2
+        source = title_header + @tenji_request.print_name1 + "\n"
+        source += subtitle_header + @tenji_request.print_title1 + "\n" unless @tenji_request.print_title1.nil?
+        source += content_header + hbr2(@tenji_request.print_contents1)
+        source += subtitle_header + @tenji_request.print_title2 + "\n" unless @tenji_request.print_title2.nil?
+        source += content_header + hbr2(@tenji_request.print_contents1) unless @tenji_request.print_contents1.nil?
+        source += subtitle_header + @tenji_request.print_title3 + "\n" unless @tenji_request.print_title3.nil?
+        source += content_header + hbr2(@tenji_request.print_contents3) unless @tenji_request.print_contents3.nil?
         
-        source = <<EOF
-<h1>#{@tenji_request.print_title1}</h1>
-<div>#{hbr2(@tenji_request.print_contents1)}</div>
 
-<h1>#{@tenji_request.print_title2}</h1>
-<div>#{hbr2(@tenji_request.print_contents2)}</div>
+#        source = <<EOF
+#<h1>#{@tenji_request.print_title1}</h1>
+#<div>#{hbr2(@tenji_request.print_contents1)}</div>
 
-<h1>#{@tenji_request.print_title3}</h1>
-<div>#{hbr2(@tenji_request.print_contents3)}</div>
-EOF
+#<h1>#{@tenji_request.print_title2}</h1>
+#<div>#{hbr2(@tenji_request.print_contents2)}</div>
+
+#<h1>#{@tenji_request.print_title3}</h1>
+#<div>#{hbr2(@tenji_request.print_contents3)}</div>
+#EOF
 
         foo = File.open(file_name,'w')
         foo.puts source
