@@ -101,13 +101,13 @@ class RequestsController < ApplicationController
         
         source = <<EOF
 <h1>#{@tenji_request.print_title1}</h1>
-<p>#{hbr2(@tenji_request.print_contents1)}</p>
+<div>#{hbr2(@tenji_request.print_contents1)}</div>
 
 <h1>#{@tenji_request.print_title2}</h1>
-<p>#{hbr2(@tenji_request.print_contents2)}</p>
+<div>#{hbr2(@tenji_request.print_contents2)}</div>
 
 <h1>#{@tenji_request.print_title3}</h1>
-<p>#{hbr2(@tenji_request.print_contents3)}</p>
+<div>#{hbr2(@tenji_request.print_contents3)}</div>
 EOF
 
         foo = File.open(file_name,'w')

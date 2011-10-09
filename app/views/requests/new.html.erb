@@ -212,7 +212,10 @@ AjaxZip2.JSONDATA = '/ajaxzip2/data';
 <% elsif params[:data_type] == 'data_type_file' || @tenji_request.data_type == "data_type_file" %>
 <!--ファイル添付の場合以下を表示-->
 <h2>印刷依頼データ（ファイル添付）</h2>
-<p>点字印刷を依頼したいファイルの情報を入力してください。</p>
+<p>
+  点字印刷を依頼したいファイルの情報を入力してください。<br />
+  3件まで添付できます。
+</p>
 <table class="col">
   <tr>
     <th><label for="print_file_title1">タイトル<span class="tCaution">(必須)</span></label></th>
