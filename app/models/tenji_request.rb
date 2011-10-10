@@ -107,6 +107,10 @@ class TenjiRequest < ActiveRecord::Base
   # 『添付ファイル』の場合、入力必須をチェック
   validates_presence_of :braille_datafile1,
     :if => Proc.new {|p| p.data_type == 'data_type_file'}
+  validates_presence_of :braille_datafile2,
+    :if => Proc.new {|p| p.data_type == 'data_type_file' && !p.print_name2.blank?}
+  validates_presence_of :braille_datafile3,
+    :if => Proc.new {|p| p.data_type == 'data_type_file' && !p.print_name3.blank?}
   
   # 『添付ファイル』の場合、ファイルフォーマットをチェック
   validate :validate_upload1,

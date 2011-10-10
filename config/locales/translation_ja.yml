@@ -28,8 +28,8 @@ ja:
         to_user_address1: "お届け先の住所"  #g
         to_user_address2: "お届け先のビル・マンション名"  #g
         print_name1: "印刷依頼データのタイトル" #g
-        print_name1: "印刷依頼データのタイトル2" #g
-        print_name1: "印刷依頼データのタイトル3" #g
+        print_name2: "印刷依頼データのタイトル2" #g
+        print_name3: "印刷依頼データのタイトル3" #g
         print_title1: "印刷依頼データのサブタイトル1" #g
         print_title2: "印刷依頼データのサブタイトル2" #g
         print_title3: "印刷依頼データのサブタイトル3" #g
