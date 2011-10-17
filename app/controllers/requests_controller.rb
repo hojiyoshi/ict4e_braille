@@ -111,7 +111,7 @@ class RequestsController < ApplicationController
         source += subtitle_header + @tenji_request.print_title1 + "\r\n" unless @tenji_request.print_title1.nil?
         source += content_header + hbr2(@tenji_request.print_contents1)
         source += subtitle_header + @tenji_request.print_title2 + "\r\n" unless @tenji_request.print_title2.nil?
-        source += content_header + hbr2(@tenji_request.print_contents1) unless @tenji_request.print_contents1.nil?
+        source += content_header + hbr2(@tenji_request.print_contents2) unless @tenji_request.print_contents2.nil?
         source += subtitle_header + @tenji_request.print_title3 + "\r\n" unless @tenji_request.print_title3.nil?
         source += content_header + hbr2(@tenji_request.print_contents3) unless @tenji_request.print_contents3.nil?
 
