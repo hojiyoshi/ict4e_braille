@@ -1,4 +1,6 @@
 class RequestsController < ApplicationController
+  require 'kconv'
+
   # 初期化メソッド（最初に呼ばれる）
   def initialize
     # ページタイトル/ナビゲーションタイトルの初期設定
@@ -98,16 +100,22 @@ class RequestsController < ApplicationController
         file_dir = RAILS_ROOT + '/public/tenji_request/braille_datafile1/' + @tenji_request.id.to_s + '/'
         Dir::mkdir(file_dir)
         file_name = file_dir + Time.now.strftime("%Y%m%d%H%M%S") + '.txt'
-        title_header = '　　　　　　　　'# 全角スペース×8
-        subtitle_header='　　　　　　' # 全角スペース×6
-        content_header='　　' # 全角スペース×2
-        source = title_header + @tenji_request.print_name1 + "\n"
-        source += subtitle_header + @tenji_request.print_title1 + "\n" unless @tenji_request.print_title1.nil?
+        title_header   = '        '# 半角スペース×8
+        subtitle_header= '      ' # 半角スペース×6
+        content_header = '  ' # 半角スペース×2
+
+        source = 'この点字文書は自動点訳したものです。校正等は行っておりません。'+"\r\n"
+        source += "\r\n"
+
+        source += title_header + @tenji_request.print_name1 + "\r\n"
+        source += subtitle_header + @tenji_request.print_title1 + "\r\n" unless @tenji_request.print_title1.nil?
         source += content_header + hbr2(@tenji_request.print_contents1)
-        source += subtitle_header + @tenji_request.print_title2 + "\n" unless @tenji_request.print_title2.nil?
+        source += subtitle_header + @tenji_request.print_title2 + "\r\n" unless @tenji_request.print_title2.nil?
         source += content_header + hbr2(@tenji_request.print_contents1) unless @tenji_request.print_contents1.nil?
-        source += subtitle_header + @tenji_request.print_title3 + "\n" unless @tenji_request.print_title3.nil?
+        source += subtitle_header + @tenji_request.print_title3 + "\r\n" unless @tenji_request.print_title3.nil?
         source += content_header + hbr2(@tenji_request.print_contents3) unless @tenji_request.print_contents3.nil?
+
+        source = source.tosjis
         
 
 #        source = <<EOF
@@ -130,7 +138,7 @@ class RequestsController < ApplicationController
       end
       
       # メールを送る。
-      RequestMail.deliver_request_mail(@tenji_request,current_user)
+      #RequestMail.deliver_request_mail(@tenji_request,current_user)
     
       # 「入力した名前・住所等を登録する」チェックがされている場合
       if params[:tenji_request]['entry'] == '1'
