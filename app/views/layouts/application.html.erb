@@ -118,10 +118,14 @@
             </ul>
             <% end %>
           </li>
+          
+          <li><a href="../acc/">ウェブアクセシビリティ</a></li>
 
           <li>
             <% if APP_NAME == 'ict4e_common' %>
-              <%= link_to 'ユーザー登録・変更', :controller => 'users' %>
+            <a>ユーザ登録・変更</a>
+              <%= # link_to 'ユーザー登録・変更', :controller => 'users'
+              %>
             <ul>
               <!--
                 Helperでコントローラ名とアクション名が一致していれば、"selected"をli要素に付加
