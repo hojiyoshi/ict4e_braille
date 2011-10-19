@@ -14,7 +14,13 @@ module CommonFunction
 
   def hbr2(target)
     target = ERB::Util.html_escape(target)
-    target.gsub(/\r\n|\r|\n/, "\r\n  ")
+    target.gsub!(/\r\n|\r|\n/, "\n")
+    
+    result = ''
+    target.split("\n").each{|data|
+      result += '  ' + data + "\r\n"
+    }
+    return result
     #target.gsub(/\r\n|\r|\n/, "<br />")
   end
 end

@@ -74,6 +74,7 @@ class RequestsController < ApplicationController
 
   def create
     # 多重サブミットチェック
+=begin
     if double_submit?
       # ページタイトルの設定（多重サブミット画面の表示にする）
       @title = '印刷依頼：エラー' + @title
@@ -85,7 +86,7 @@ class RequestsController < ApplicationController
       end
       return
     end
-
+=end
     # ページタイトルの設定（完了画面の表示にする）
     @title = '印刷依頼：完了' + @title
 
@@ -109,11 +110,11 @@ class RequestsController < ApplicationController
 
         source += title_header + @tenji_request.print_name1 + "\r\n"
         source += subtitle_header + @tenji_request.print_title1 + "\r\n" unless @tenji_request.print_title1.nil?
-        source += content_header + hbr2(@tenji_request.print_contents1) + "\r\n"
+        source += hbr2(@tenji_request.print_contents1) + "\r\n"
         source += subtitle_header + @tenji_request.print_title2 + "\r\n" unless @tenji_request.print_title2.nil?
-        source += content_header + hbr2(@tenji_request.print_contents2) + "\r\n" unless @tenji_request.print_contents2.nil?
+        source += hbr2(@tenji_request.print_contents2) + "\r\n" unless @tenji_request.print_contents2.nil?
         source += subtitle_header + @tenji_request.print_title3 + "\r\n" unless @tenji_request.print_title3.nil?
-        source += content_header + hbr2(@tenji_request.print_contents3) + "\r\n" unless @tenji_request.print_contents3.nil?
+        source += hbr2(@tenji_request.print_contents3) + "\r\n" unless @tenji_request.print_contents3.nil?
 
         source = source.tosjis
         
