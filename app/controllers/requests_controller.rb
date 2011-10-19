@@ -74,7 +74,6 @@ class RequestsController < ApplicationController
 
   def create
     # 多重サブミットチェック
-=begin
     if double_submit?
       # ページタイトルの設定（多重サブミット画面の表示にする）
       @title = '印刷依頼：エラー' + @title
@@ -86,7 +85,7 @@ class RequestsController < ApplicationController
       end
       return
     end
-=end
+
     # ページタイトルの設定（完了画面の表示にする）
     @title = '印刷依頼：完了' + @title
 
@@ -139,7 +138,7 @@ class RequestsController < ApplicationController
       end
       
       # メールを送る。
-      #RequestMail.deliver_request_mail(@tenji_request,current_user)
+      RequestMail.deliver_request_mail(@tenji_request,current_user)
     
       # 「入力した名前・住所等を登録する」チェックがされている場合
       if params[:tenji_request]['entry'] == '1'
