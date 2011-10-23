@@ -5,10 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta charset="UTF-8" />
     <title><%=@title%></title>
-    <link rel="stylesheet" type="text/css" href="http://www.ict4everyone.jp/common/css/base.css" media="screen,print">
-    <link rel="stylesheet" type="text/css" href="http://www.ict4everyone.jp/common/css/contentsarea.css" media="screen,print">
-    <link rel="stylesheet" type="text/css" href="http://www.ict4everyone.jp/common/css/print.css" media="print">
-    <link rel="shortcut icon" href="http://www.ict4everyone.jp/common/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="<%= get_protcol_type %>www.ict4everyone.jp/common/css/base.css" media="screen,print">
+    <link rel="stylesheet" type="text/css" href="<%= get_protcol_type %>www.ict4everyone.jp/common/css/contentsarea.css" media="screen,print">
+    <link rel="stylesheet" type="text/css" href="<%= get_protcol_type %>www.ict4everyone.jp/common/css/print.css" media="print">
+    <link rel="shortcut icon" href="<%= get_protcol_type %>www.ict4everyone.jp/common/img/favicon.ico" type="image/x-icon">
 
 
     <%= stylesheet_link_tag('common.css') %>
@@ -57,7 +57,7 @@
         <nav>
           <p class="topicPath">
             <span>現在の位置： </span>
-            <a href='/'>ホーム</a> ＞ <a href='http://www.ict4everyone.jp/use/'>アプリ・サービス</a> ＞
+            <a href='http://www.ict4everyone.jp/'>ホーム</a> ＞ <a href='http://www.ict4everyone.jp/use/'>アプリ・サービス</a> ＞
             <% if APP_NAME == 'ict4e_braille' %>
               <%= link_to 'ネット点字印刷', :controller => 'tenji' %> ＞
               <% unless @nav_title.blank? %>

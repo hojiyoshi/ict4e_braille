@@ -15,4 +15,8 @@ module ApplicationHelper
         :locals=>{:messages=>object.errors.full_messages, :object=>object}
     end
   end
+
+  def get_protcol_type
+    return request.protocol
+  end
 end
