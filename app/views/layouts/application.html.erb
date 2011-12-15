@@ -99,11 +99,11 @@
         <h2>「アプリ･サービス」メニュー</h2>
         <ul>
           <li><a href="http://www.ict4everyone.jp/use/rainman/">RAINMAN(レインマン)</a></li>
-          <li><a href="http://www.ict4everyone.jp/use/brailleml/">BrailleML（ブレイル　エムエル）</a></li>
+          <li><a href="http://www.ict4everyone.jp/use/brailleml/">点助くん</a></li>
 
           <li>
             <% if APP_NAME == 'ict4e_braille' %>
-            <a href="/use/tenji">ネット点字印刷</a>
+            <li class="selected"><a href="/use/tenji">ネット点字印刷</a></li>
             <ul>
               <li><a href="http://www.ict4everyone.jp/use/tenji/service.php">サービス内容</a></li>
               <li><a href="http://www.ict4everyone.jp/use/tenji/manual.php">ご利用方法</a></li>
@@ -133,7 +133,7 @@
           <li>
             <% if APP_NAME == 'ict4e_common' %>
               <% if params[:action] == 'index' %>
-                <a>ユーザー登録・変更</a>
+                <li><a>ユーザー登録</a></li>
               <% else %>
                 <%=link_to 'ユーザー登録・変更', :controller => 'users' %>
               <% end %>
