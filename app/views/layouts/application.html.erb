@@ -104,15 +104,6 @@
           <li>
             <% if APP_NAME == 'ict4e_braille' %>
             <li class="selected"><a href="/use/tenji">ネット点字印刷</a></li>
-            <ul>
-              <li><a href="http://www.ict4everyone.jp/use/tenji/service.php">サービス内容</a></li>
-              <li><a href="http://www.ict4everyone.jp/use/tenji/manual.php">ご利用方法</a></li>
-              <li><a href="http://www.ict4everyone.jp/use/tenji/data.php">印刷依頼データについて</a></li>
-              <li class="selected">
-                <!-- 点字印刷トップ以外は、リンクを置く。 -->
-                  <a>印刷依頼</a>
-              </li>
-            </ul>
             <% else %>
               <a href="http://www.ict4everyone.jp/use/tenji/">ネット点字印刷</a>
             <% end %>
@@ -132,20 +123,7 @@
 
           <li>
             <% if APP_NAME == 'ict4e_common' %>
-              <% if params[:action] == 'index' %>
-                <li><a>ユーザー登録</a></li>
-              <% else %>
-                <%=link_to 'ユーザー登録・変更', :controller => 'users' %>
-              <% end %>
-            <ul>
-              <!--
-                Helperでコントローラ名とアクション名が一致していれば、"selected"をli要素に付加
-                また、リンクを貼らない。
-              -->
-              <li<%= sub_menu_selected('new') %>><%= sub_menu_link('ユーザー登録', 'new') %></li>
-              <li<%= sub_menu_selected('edit') %>><%= sub_menu_link('メールアドレス・パスワード変更', 'edit_auth') %></li>
-              <li<%= sub_menu_selected('forget') %>><%= sub_menu_link('パスワードを忘れた方', 'forget') %></li>
-            </ul>
+              <%=link_to 'ユーザー登録・変更', :controller => 'users' %>
             <% else %>
               <%= link_to 'ユーザー登録・変更', ICT4E_ACCOUNTS_URL %>
             <% end %>
