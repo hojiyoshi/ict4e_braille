@@ -1,10 +1,11 @@
+
 @charset "utf-8";
 
 /*--------------------------------------------------------
 	ファイル名: base.css
 	概要：基本スタイル設定
 	制作日: 2010/10/21
-	更新日: 2011/04/13
+	更新日: 2011/12/28
 ----------------------------------------------------------*/
 
 
@@ -12,10 +13,9 @@
 　1-リセット
 ----------------------------------------------------------*/
 
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,select,textarea,p,blockquote,th,td { 
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,select,textarea,p,blockquote,th,td {
 	margin:0;
 	padding:0;
-	/*font-family:'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','MS P Gothic','ＭＳ Ｐゴシック',Osaka,sans-serif;*/
 	font-family: Verdana;
 	font-size:100%;
 }
@@ -26,7 +26,7 @@ table {
 	font-size: 100%;
 }
 
-fieldset { 
+fieldset {
 	border:0;
 }
 
@@ -34,7 +34,7 @@ select option{
 	padding:0 5px;
 }
 
-img { 
+img {
 	border:0;
 	vertical-align: middle;
 }
@@ -65,6 +65,7 @@ body {
 	color:#000000;
 	line-height:1.65;
 	background: #469EFF;
+	min-width: 800px;
 }
 
 hr {
@@ -72,7 +73,7 @@ hr {
 }
 
 a:link {
-	color: #0060C0;
+	color: #004497;
 }
 
 /*html5新要素*/
@@ -135,15 +136,16 @@ p.skiplink a:focus {
  4-ヘッダエリア
 ----------------------------------------------------------*/
 header {
-	height: 185px;
-	margin-bottom: 25px;
-	background: url(../images/head_back.gif) no-repeat 367px 0;
+	float: left;
+	width: 100%;
+	background: url(../img/head_back.gif) no-repeat 367px 0;
 }
 
-header h1 {
+header h1,
+header p {
 	position: absolute;
 	top: 18px;
-	left: 18px; 
+	left: 18px;
 }
 
 /*補助ナビ*/
@@ -165,20 +167,20 @@ header h1 {
 	display: block;
 	padding: 5px 12px 5px 35px;
 	font-weight: bold;
-	background: #FFFFFF url(../images/link.gif) no-repeat 12px 50%;
+	background: #FFFFFF url(../img/link.gif) no-repeat 12px 50%;
 }
 
 .functionNav li a[href]:hover,
 .functionNav li a[href]:focus {
-	background: #0060C0 url(../images/link_o.gif) no-repeat 12px 50%;
+	background: #0060C0 url(../img/link_o.gif) no-repeat 12px 50%;
 	color: #FFFFFF;
 }
 
 /*共通ナビ*/
 .mainNav {
-	position: absolute;
-	top: 130px;
+	margin: 130px 0 25px 0;
 	width: 100%;
+	float: left;
 	border-top: 3px solid #cccccc;
 	border-bottom: 3px solid #cccccc;
 	background-color:#FFFFFF;
@@ -239,9 +241,9 @@ header h1 {
 	border: 3px solid #DFD0B3;
 	padding: 15px;
 
-	min-height: 500px;
-	height: auto !important;/*IE用min-height fast hack*/
-	height: 500px;/*IE用min-height fast hack*/
+	/*min-height: 500px;*/
+	/*height: auto !important;*//*IE用min-height fast hack*/
+	/*height: 500px;*//*IE用min-height fast hack*/
 
 }
 
@@ -281,9 +283,8 @@ aside nav h2 {
 }
 
 aside nav h2:before {
-	display:marker;  
-	padding-right: 5px;  
-	content:url(../images/tt_common_s2.gif);
+	padding-right: 5px;
+	content:url(../img/tt_common_s2.gif);
 }
 
 #know aside nav h2 {
@@ -292,7 +293,7 @@ aside nav h2:before {
 }
 
 #know aside nav h2:before {
-	content:url(../images/tt_know_s.gif);
+	content:url(../img/tt_know_menu.gif);
 }
 
 #use aside nav h2 {
@@ -301,7 +302,7 @@ aside nav h2:before {
 }
 
 #use aside nav h2:before {
-	content:url(../images/tt_use_s.gif);
+	content:url(../img/tt_use_menu.gif);
 }
 
 #read aside nav h2 {
@@ -310,7 +311,7 @@ aside nav h2:before {
 }
 
 #read aside nav h2:before {
-	content:url(../images/tt_read_s.gif);
+	content:url(../img/tt_read_menu.gif);
 }
 
 #entry aside nav h2 {
@@ -319,7 +320,7 @@ aside nav h2:before {
 }
 
 #entry aside nav h2:before {
-	content:url(../images/tt_entry_s.gif);
+	content:url(../img/tt_entry_menu.gif);
 }
 
 
@@ -333,22 +334,17 @@ aside nav li {
 
 aside nav li a {
 	display: block;
-	padding: 5px 10px;
-	background:#F0F0F0;/**/
+	padding: 5px 10px;/**/
+	background-color: #E8E8E8;
 }
 
 aside nav li a[href] {
 	background:#FFFFFF;/**/
 }
-/*
-aside nav li.selected a {
-	background:#F0F0F0;
-}
 
-aside nav li.selected a[href] {
-	background: none;
+aside nav li.selected a {
+	background-color: #E8E8E8;
 }
-*/
 
 aside nav li a[href]:hover,
 aside nav li a[href]:focus {
@@ -360,33 +356,20 @@ aside nav li a[href]:focus {
 /*子メニュー*/
 aside nav li li {
 	border: none;
-	font-size: 95%;	
+	font-size: 95%;
 	padding-left: 1em;
 }
 
-/*
-aside nav li.selected li a {
-	padding: 0;
-	padding-left: 0.5em;
-}
-
-
-aside nav li.selected li a:hover,
-aside nav li.selected li a:focus {
-	color: #FFFFFF;
-	background-color:#0060C0;
-}
-*/
 aside nav li li a {
-	padding: 0;
-	padding-left: 0.5em;
+	padding: 0 5px;
 }
 
+aside nav li li a[href] {
+	background:#FFFFFF;/**/
+}
 
-aside nav li li a:hover,
-aside nav li li a:focus {
-	color: #FFFFFF;
-	background-color:#0060C0;
+aside nav li li.selected a {
+	background-color: #E8E8E8;
 }
 
 
@@ -396,12 +379,12 @@ aside nav li li a:focus {
 footer {
 	clear: both;
 	width: 100%;
-	background: #6A4800 url(../images/footer_back.gif) repeat-x 0 0;
+	background: #6A4800 url(../img/footer_back.gif) repeat-x 0 0;
 }
 
 footer div {
 	padding: 70px 30px 30px 30px;
-	background: url(../images/footer_town.gif) no-repeat right top;
+	background: url(../img/footer_town.gif) no-repeat right top;
 	zoom: 1;
 }
 
@@ -418,13 +401,13 @@ footer li {
 
 footer li a {
 	color: #FFFFFF !important;
-	background: url(../images/link_b.gif) no-repeat 3px 50%;
+	background: url(../img/link_b.gif) no-repeat 3px 50%;
 	padding: 3px 3px 3px 23px;
 }
 
 footer li a:hover,
 footer li a:focus {
-	background: #0060C0 url(../images/link_o.gif) no-repeat 3px 50%;
+	background: #0060C0 url(../img/link_o.gif) no-repeat 3px 50%;
 }
 
 
@@ -472,10 +455,11 @@ footer .copy {
 
 }
 
-#contentsArea, 
+#contentsArea,
 #contentsArea h1,
 .homeMain,
-.homeUse dl {
+.homeUse dl,
+.menu {
 	-moz-border-radius: 10px; /* Firefox */
 	-webkit-border-radius: 10px; /* Safari and Chrome */
 	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
@@ -491,4 +475,8 @@ aside {
 	/*behavior: url(http://133.243.243.186/common/css/ie-css3.htc);*/ /* This lets IE know to call the script on all elements which get the 'box' class */
 }
 
-
+.menu h2 {
+	-moz-border-radius: 10px 10px 0 0; /* Firefox */
+	-webkit-border-radius: 10px 10px 0 0; /* Safari and Chrome */
+	border-radius: 10px 10px 0 0; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+}

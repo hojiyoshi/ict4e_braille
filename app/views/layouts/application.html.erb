@@ -101,15 +101,17 @@
           <li><a href="http://www.ict4everyone.jp/use/rainman/">RAINMAN(レインマン)</a></li>
           <li><a href="http://www.ict4everyone.jp/use/brailleml/">点助くん</a></li>
 
+          
+          <% if APP_NAME == 'ict4e_braille' %>
+            <li  class="selected"><a href="/use/tenji">ネット点字印刷</a></li>
+          <% else %>
+            <li><a href="http://www.ict4everyone.jp/use/tenji/">ネット点字印刷</a></li>
+          <% end %>
+          
+
+          <li><a href="http://www.ict4everyone.jp/use/acc/">ウェブアクセシビリティ</a></li>
           <li>
-            <% if APP_NAME == 'ict4e_braille' %>
-            <li class="selected"><a href="/use/tenji">ネット点字印刷</a></li>
-            <% else %>
-              <a href="http://www.ict4everyone.jp/use/tenji/">ネット点字印刷</a>
-            <% end %>
-          </li>
-          <li>
-            <a href="http://www.ict4everyone.jp/use/youyaku/">要約筆記依頼サービス</a>
+            <a href="http://www.ict4everyone.jp/use/youyaku/">要約筆記支援サービス</a>
             <% if APP_NAME == 'ict4e_remotecaption' %>
             <ul>
               <li><a href="http://www.ict4everyone.jp/use/youyaku/service.php">サービス内容</a></li>
@@ -119,16 +121,15 @@
             <% end %>
           </li>
 
-          <li><a href="http://www.ict4everyone.jp/use/acc/">ウェブアクセシビリティ</a></li>
-
-          <li>
-            <% if APP_NAME == 'ict4e_common' %>
-                <li class="selected"><%=link_to 'ユーザー登録・変更', :controller => 'users' %></li>
+          <% if APP_NAME == 'ict4e_common' %>
+            <% if params[:controller] == 'users' && params[:action] == 'index' %>
+              <li><a>ユーザー登録・変更</a></li>
             <% else %>
-              <%= link_to 'ユーザー登録・変更', ICT4E_ACCOUNTS_URL %>
+              <li  class="selected"><%= link_to 'ユーザー登録・変更', ICT4E_ACCOUNTS_URL %></li>
             <% end %>
-          </li>
-
+          <% else %>
+              <li><%= link_to 'ユーザー登録・変更', ICT4E_ACCOUNTS_URL %></li>
+          <% end %>
           <li><a href="http://www.ict4everyone.jp/use/rule/">利用規約</a></li>
         </ul>
       </nav>
