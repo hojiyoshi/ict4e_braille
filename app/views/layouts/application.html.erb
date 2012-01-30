@@ -59,7 +59,7 @@
             <span>現在の位置： </span>
             <a href='http://www.ict4everyone.jp/'>ホーム</a> ＞ <a href='http://www.ict4everyone.jp/use/'>アプリ・サービス</a> ＞
             <% if APP_NAME == 'ict4e_braille' %>
-              <%= link_to 'ネット点字印刷', :controller => 'tenji' %> ＞
+              <a href="http://www.ict4everyone.jp/use/tenji">ネット点字印刷</a> ＞
               <% unless @nav_title.blank? %>
                 <% for i in 0..@nav_title.size-1 %>
                   <%= link_to(@nav_title[i], :controller => @nav_controller[i], :action => @nav_action[i], 'tenji_request[data_type]' => params[:tenji_request][:data_type], :login => true) %> ＞
